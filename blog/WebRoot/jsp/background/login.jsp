@@ -12,7 +12,7 @@
   
   <div class="Sign">
   <div class="login"> 
-    <h1><img src="${blog}/img/ddmimg/xtlogo.png" alt="嘟嘟猫OA后台管理系统" /></h1>
+    <h1><img src="${blog}/img/ddmimg/xtlogo.png" alt="Blog后台管理系统" /></h1>
     <form method="post" name="listForm" action="${blog}/user/admin.html">
       <ul>
         <li><input type="text" name="account" class="z-h" value=""/></li>

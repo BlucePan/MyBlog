@@ -33,7 +33,7 @@
   </div>
       
       
-      <a href="#" class="btn goods" onclick="query()">查询</a> <a href="${blog}/article/addToArticle.html" class="btn goods">新增</a> </div>
+      <a href="#" class="btn goods" onclick="query()">查询</a> <a href="${blog}/article/manage/addToArticle.html" class="btn goods">新增</a> </div>
   </form>
   <div class="aotable">
     <table class="table" cellpadding="0" cellspacing="0">
@@ -66,10 +66,10 @@
             <td>${r.createUser}</td>
             <td>
             <c:choose>
-            <c:when test="${r.top == 1}"><a href="${blog}/article/delTopArticle.html?id=${r.id}" class="btn goods">取消置顶</a></c:when>
-            <c:otherwise><a href="${blog}/article/editTopArticle.html?id=${r.id}" class="btn goods">设为置顶</a></c:otherwise>
+            <c:when test="${r.top == 1}"><a href="${blog}/article/manage/delTopArticle.html?id=${r.id}" class="btn goods">取消置顶</a></c:when>
+            <c:otherwise><a href="${blog}/article/manage/editTopArticle.html?id=${r.id}" class="btn goods">设为置顶</a></c:otherwise>
             </c:choose>
-            <a href="${blog}/article/articleDetail.html?id=${r.id}" class="btn goods">查看详情</a> <a href="javascript:del('${r.id}')" class="btn danger modelshow">删除</a></td>
+            <a href="${blog}/article/manage/articleDetail.html?id=${r.id}" class="btn goods">查看详情</a> <a href="javascript:del('${r.id}')" class="btn danger modelshow">删除</a></td>
           </tr>
         </c:forEach>
       </tbody>
@@ -86,7 +86,7 @@
 <script type="text/javascript">
 
     function query(){
-        document.listForm.action = "${blog}/article/articleList.html";
+        document.listForm.action = "${blog}/article/manage/articleList.html";
 		document.listForm.submit();
 	}
 
@@ -97,7 +97,7 @@
 			data : {
 				id : id
 			},
-			url : "${blog}/article/delArticle.html",
+			url : "${blog}/article/manage/delArticle.html",
 			success : function(data) {
 				var obj = eval("("+data+")");
 				if(obj.status == '100'){

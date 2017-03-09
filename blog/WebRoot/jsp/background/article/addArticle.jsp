@@ -23,7 +23,7 @@
 </span>
 </div>
 
-<form action="${blog}/article/addArticle.html" name="listForm" method="post" >
+<form action="${blog}/article/manage/addArticle.html" name="listForm" method="post" >
 <div class="maincont othercolor">
   <div class="addmenu">
     <h2 class="addh2">新增博格文章</h2>
@@ -63,7 +63,7 @@
         </li>
         <li class="last-up">
         <a href="javascript:document.listForm.submit()" onclick="return verifyDate()" class="btn goods">保存</a>
-        <a href="${blog}/article/knowledgeList.html" class="btn danger">返回列表</a></li>
+        <a href="${blog}/article/manage/knowledgeList.html" class="btn danger">返回列表</a></li>
       </ul>
     </div>
   </div>

@@ -25,7 +25,7 @@ public class UserController extends BaseController{
 	@Resource
 	private BlogMenuService blogMenuService;
 	
-	
+	private String message;
 	
 	@RequestMapping("/main.html")
 	public String queryEntityById(HttpServletRequest request){
@@ -35,11 +35,10 @@ public class UserController extends BaseController{
 	}
 	
 	@RequestMapping("/myself.html")
-	public String getMyself(HttpServletRequest request){
-		
-		User user=(User) userService.queryUserById("666666");
-		request.setAttribute("user",user);
-		
+	public String getMyself(HttpServletRequest request){		
+	   User user=(User) userService.queryUserById("666666");		
+	
+		request.setAttribute("user", user);
 		return "face/myself";
 	}
 		
@@ -48,12 +47,25 @@ public class UserController extends BaseController{
 	@RequestMapping("/admin.html")
 	public String login(HttpServletRequest request){
 		
-		User user=(User) userService.queryUserById("666666");
-		if(user!=null){
-			request.getSession(true).setAttribute("blog_user_info", user);
-			return "redirect:index.html";
-		}		
-		request.setAttribute("message", "用户名或密码输入错误!");
+		//User user=(User) userService.queryUserById("666666");
+		String account = request.getParameter("account");
+		String password = request.getParameter("password");
+		if (account != null && !"".equals(account) && password != null
+				&& !"".equals(password)) {	
+			User u=new User();
+			u.setAccount(account);
+			u.setPassword(password);			
+		   User user=userService.queryUser(u);
+		   if(user!=null){
+				request.getSession(true).setAttribute("blog_user_info", user);
+				return "redirect:index.html";		  
+		   }else{
+			message = "帐号不存在";
+		   }
+		}else {
+			message = "请输入帐号和密码";
+		}
+		request.setAttribute("message", message);
 		return "background/login";
 	}
 	

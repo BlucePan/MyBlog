@@ -30,7 +30,7 @@
 </span>
 </div>
 
-<form action="${blog}/article/articleUpdate.html" name="listForm" method="post" >
+<form action="${blog}/article/manage/articleUpdate.html" name="listForm" method="post" >
 <input type="hidden" name="id" value="${article.id}"/>
 <div class="maincont othercolor">
   <div class="addmenu">
@@ -80,7 +80,7 @@
         </li>
         <li class="last-up">
         <a href="javascript:document.listForm.submit()" onclick="return verifyDate()" class="btn goods">保存</a>
-        <a href="${blog}/article/articleList.html" class="btn danger">返回列表</a></li>
+        <a href="${blog}/article/manage/articleList.html" class="btn danger">返回列表</a></li>
       </ul>
     </div>
   </div>

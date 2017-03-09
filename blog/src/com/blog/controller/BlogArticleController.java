@@ -22,7 +22,7 @@ import com.blog.util.BlogUtil;
 import com.blog.util.JsonBeang;
 import com.blog.util.PageView;
 @Controller
-@RequestMapping("/article")
+@RequestMapping("/article/manage/*")
 public class BlogArticleController extends BaseController {
 	private JsonBeang jb = new JsonBeang();
 	@Resource
@@ -71,7 +71,7 @@ public class BlogArticleController extends BaseController {
 		article.setId(BlogUtil.getKey());
 		article.setCreateUserId(String.valueOf(getLoginUser(request).getId()));
 		bArticleService.addArticle(article);
-		return "forward:/article/articleList.html";
+		 return "forward:/article/manage/articleList.html";
 }	
 	
 	//查看文章详情
@@ -96,7 +96,8 @@ public class BlogArticleController extends BaseController {
 		article.setUpdateUserId(String.valueOf(getLoginUser(request).getId()));
 		article.setContext(request.getParameter("context"));
 		bArticleService.updateBlogArticle(article);
-		return "forward:/article/articleList.html";
+		return "forward:/article/manage/articleList.html";
+		//	return "redirect:activityList.html";
 	}
 	//删除文章
 	@RequestMapping("/delArticle.html")
@@ -126,7 +127,8 @@ public class BlogArticleController extends BaseController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "forward:/article/articleList.html";
+		 return "forward:/article/manage/articleList.html";
+		// return "redirect:activityList.html";
 	}
 	
 	//取消置顶
@@ -140,6 +142,6 @@ public class BlogArticleController extends BaseController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "forward:/article/articleList.html";
+		return "forward:/article/manage/articleList.html";
 	}
 }
