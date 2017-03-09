@@ -1,0 +1,37 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@include file="/jsp/common/common.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<title>我的分享</title>
+<link href="${oa}/css/page.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body  class="index">
+<header> <a href="${oa}/main/knowledgeIndex.html?start=0&max=6" class="back"></a>
+  <h2>我的分享</h2>
+</header>
+<div class="myshare">
+<c:if test="${ empty data}"><div class="noshare">暂无分享</div></c:if>
+<!--<div class="noshare">暂无分享</div>-->
+  <ul>
+  <c:forEach items="${data}" var="d">
+    <li> <a href="${oa}/jsp/knowledge/knowledgeInfo.jsp?id=${d.id}&flag=1">
+      <p><img src="/imageService/uploadFiles/${d.img}"></p>
+      <dl>
+        <dt>${d.title}</dt>
+        <c:if test="${d.isShow == 1}"> <dd>已获得：${d.integral}积分</dd></c:if>
+        <c:if test="${d.isShow == 0}"> <dd>免费</dd></c:if>
+      </dl>
+      <span>查看</span> </a> </li>
+  </c:forEach>
+  </ul>
+</div>
+</body>
+</html>

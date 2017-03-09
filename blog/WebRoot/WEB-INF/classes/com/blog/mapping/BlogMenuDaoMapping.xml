@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.dao.BlogMenuDao">
+	<!-- 查询所有的菜单 -->
+		<select id="queryAll" parameterType="com.blog.model.BlogMenu" resultType="com.blog.model.BlogMenu">
+		select id,menuName,resKey,url,imgUrl,menuType,
+		superior,(select r.menuName from blog_menu r where r.id = blog_menu.superior ) superiorName,
+		priority,createTime,createUserId,updateUserId,updateTime,flag,remake,iScommon
+		from blog_menu where 1 = 1
+		<if test="id != null and id != ''">
+		and id = #{id}
+		</if>
+		<if test="menuName != null and menuName != ''">
+		and menuName like '%${menuName}%'
+		</if>
+		<if test="superior != null and superior != ''">
+		and superior = #{superior}
+		</if>
+		<if test="flag != null and flag != ''">
+		and flag = #{flag}
+		</if>
+		ORDER BY priority asc
+	</select> 
+		
+			<!-- 分页SQL语句 -->
+	<select id="findByPage" parameterType="java.util.HashMap" resultType="com.blog.model.BlogMenu">
+		select id,menuName,resKey,url,imgUrl,menuType,
+		superior,(select r.menuName from blog_menu r where r.id = blog_menu.superior ) superiorName,
+		priority,createTime,createUserId,updateUserId,updateTime,flag,remake,iScommon
+		from blog_menu where 1 = 1
+		<if test="menuName != null and menuName != ''">
+		and menuName like '%${menuName}%'
+		</if>
+		ORDER BY priority asc limit #{start}, #{max}
+	</select> 
+	<!-- 取得记录的总数 -->
+	<select id="getCount" parameterType="com.blog.model.BlogMenu" resultType="int">
+		select count(id) from blog_menu where 1 = 1
+		<if test="menuName != null and menuName != ''">
+		and menuName like '%${menuName}%'
+		</if>
+		ORDER BY priority asc 
+	</select>
+		
+	<!-- 增加菜单 -->	
+	  <insert id="addEntity" parameterType="com.blog.model.BlogMenu" >
+	INSERT into blog_menu (id,menuName,resKey,imgUrl,url,menuType,superior,priority,createTime,createUserId
+	,updateUserId,updateTime,flag,remake,iScommon) VALUES 
+	(
+	#{id},
+	#{menuName}, 
+	#{resKey},
+	#{imgUrl},
+	#{url},
+	#{menuType},
+	#{superior},
+	#{priority},
+	NOW(),
+	#{createUserId},
+	#{updateUserId},
+	#{updateTime},
+	#{flag},
+    #{remake},
+    #{iScommon}
+	)
+	</insert>	
+	<!-- 根据id查当前菜单对象 -->
+	<select id="queryBlogMenuById" parameterType="String" resultType="com.blog.model.BlogMenu">
+		select * from blog_menu where id=#{id}
+	</select>
+		<!-- 修改菜单 -->
+		<update id="editEntity"  parameterType="com.blog.model.BlogMenu" >
+	  UPDATE blog_menu set  updateTime = NOW(),
+	    <if test="menuName != null and menuName != ''">
+		 menuName = #{menuName},
+		</if>
+		<if test="menuType != null and menuType != ''">
+		 menuType = #{menuType},
+		</if>
+		<if test="resKey != null and resKey != ''">
+		 resKey = #{resKey},
+		</if>
+	    <if test="url != null and url != ''">
+		 url = #{url},
+		</if>
+		<if test="imgUrl != null and imgUrl != ''">
+		 imgUrl = #{imgUrl},
+		</if>
+		<if test="superior != null and superior != ''">
+		 superior = #{superior},
+		</if>
+		<if test="priority != null and priority != ''">
+		 priority = #{priority},
+		</if>
+		<if test="flag != null and flag != ''">
+		 flag = #{flag},
+		</if>
+		<if test="remake != null and remake != ''">
+		 remake = #{remake},
+		</if>
+		<if test="iScommon != null and iScommon != ''">
+		 iScommon = #{iScommon},
+		</if>
+	  updateUserId = #{updateUserId}
+	  where id = #{id}
+	</update>	
+		<!-- 删除菜单 -->
+		<delete id="deleteEntity" parameterType="String">
+		delete from blog_menu where id=#{id}
+	</delete>
+</mapper> 

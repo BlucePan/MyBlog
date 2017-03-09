@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.dao.BlogArticleDao">
+
+	<!-- 得到所有的文章类型 -->
+		<select id="getAllArticleType"  resultType="com.blog.model.BlogArticleType">
+		select * from blog_article_type 
+	</select>
+		
+					<!-- 分页SQL语句 -->
+	<select id="findByPage" parameterType="java.util.HashMap" resultType="com.blog.model.BlogArticle">
+	select a.*,(select articleName from blog_article_type where id=a.type) articleName,
+	(select name from user where id=a.createUserId) createUser from blog_article a where 1=1
+		<if test="title != null and title != ''">
+		and a.title like '%${title}%'
+		</if>
+		<if test="type != null and type != ''">
+		and a.type =#{type}
+		</if>
+		ORDER BY a.top desc,a.createTime desc limit #{start}, #{max}
+	</select> 
+	<!-- 取得记录的总数 -->
+	<select id="getCount" parameterType="com.blog.model.BlogArticle" resultType="int">
+		select count(id) from blog_article a where 1 = 1
+	<if test="title != null and title != ''">
+		and a.title like '%${title}%'
+		</if>
+		<if test="type != null and type != ''">
+		and a.type =#{type}
+		</if>
+	</select>
+			
+		<!-- 增加新闻 -->	
+	  <insert id="addEntity" parameterType="com.blog.model.BlogArticle" >
+	INSERT into blog_article (id,title,image,remake,createTime,createUserId
+	,updateUserId,updateTime,type,browse,popularity,context,top) VALUES 
+	(
+	#{id},
+	#{title}, 
+	#{image},
+	#{remake},
+	NOW(),
+	#{createUserId},
+	#{updateUserId},
+	#{updateTime},
+	#{type},
+    0,
+    0,
+    #{context},
+    0
+	)
+	</insert>		
+	<!-- 根据id查当前文章对象 -->
+	<select id="queryBlogArticleById" parameterType="String" resultType="com.blog.model.BlogArticle">
+		select * from blog_article where id=#{id}
+	</select>	
+		
+	<!-- 修改文章 -->
+		<update id="editEntity"  parameterType="com.blog.model.BlogArticle" >
+	  UPDATE blog_article set  updateTime = NOW(),
+	    <if test="title != null and title != ''">
+		 title = #{title},
+		</if>
+		<if test="type != null and type != ''">
+		 type = #{type},
+		</if>
+		<if test="image != null and image != ''">
+		 image = #{image},
+		</if>
+		<if test="remake != null and remake != ''">
+		 remake = #{remake},
+		</if>
+		<if test="top != null and top != ''">
+		 top = #{top},
+		</if>
+		<if test="context != null and context != ''">
+		 context = #{context},
+		</if>
+	  updateUserId = #{updateUserId}
+	  where id = #{id}
+	</update>	
+		<!-- 删除文章 -->
+		<delete id="deleteEntity" parameterType="String">
+		delete from blog_article where id=#{id}
+	</delete>		
+		
+			
+				<!--取消置顶 -->
+		<update id="delTopArticle"  parameterType="com.blog.model.BlogArticle" >
+	  UPDATE blog_article set  updateTime = NOW(),top=0,
+	  updateUserId = #{updateUserId}
+	  where id = #{id}
+	</update>	
+				
+</mapper> 
