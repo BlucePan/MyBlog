@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>个人博客模板（寻梦）</title>
-<meta name="keywords" content="个人博客模板,博客模板" />
+<title>个人博客 BlucePan</title>
+<meta name="keywords" content="个人博客模板,博客模板"/>
 <meta name="description" content="寻梦主题的个人博客模板，优雅、稳重、大气,低调。" />
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/index.css" rel="stylesheet">
@@ -23,20 +23,20 @@
 <div class="banner">
   <section class="box">
     <ul class="texts">
-      <p>打了死结的青春，捆死一颗苍白绝望的灵魂。</p>
-      <p>为自己掘一个坟墓来葬心，红尘一梦，不再追寻。</p>
-      <p>加了锁的青春，不会再因谁而推开心门。</p>
+      <p>嬉皮笑脸，面对人生的难。</p>
+      <p>说书唱戏劝人方，三条大陆走中央，</p>
+      <p>善恶到头终有报，人间正道是沧桑。</p>
     </ul>
-    <div class="avatar"><a href="#"><span>杨青</span></a> </div>
+    <div class="avatar"><a href="#"><span>盘子</span></a> </div>
   </section>
 </div>
 <div class="template">
   <div class="box">
     <h3>
-      <p><span>个人博客</span>模板 Templates</p>
+      <p><span></span>美图欣赏</p>
     </h3>
     <ul>
-      <li><a href="/"  target="_blank"><img src="${blog}/img/01.jpg"></a><span>仿新浪博客风格·梅——古典个人博客模板</span></li>
+      <li><a href="/"  target="_blank"><img src="${blog}/img/01.jpg"></a><span>小帅哥</span></li>
       <li><a href="/" target="_blank"><img src="${blog}/img/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
       <li><a href="/"  target="_blank"><img src="${blog}/img/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
       <li><a href="/" target="_blank"><img src="${blog}/img/04.jpg"></a><span>女生清新个人博客网站模板</span></li>

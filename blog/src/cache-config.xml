@@ -6,12 +6,15 @@
         http://www.springframework.org/schema/cache
         http://www.springframework.org/schema/cache/spring-cache.xsd ">
 
+	 <!--启用注解驱动缓存   -->
     <cache:annotation-driven cache-manager="cacheManager"/>
-	
-    <bean id="ehcacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+	  
+	   <!-- 指定 ehcache配置文件路径-->
+	   <bean id="ehcacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
         <property name="configLocation" value="classpath:ehcache.xml"/>
-    </bean>
+       </bean>
 
+  <!--声明一个缓存管理器（EhCacheCacheManager） 这里的实现代码是通过传入EhCache的CacheManager实例实现的 --> 
     <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
         <property name="cacheManager" ref="ehcacheManager"/>
         <property name="transactionAware" value="true"/>

@@ -10,7 +10,8 @@ public interface UserService {
 	 List<User> queryAll(User user);
 	 void addEntity(User user);
 	 void deleteEntity(String id);
-	 void editEntity(User user);
+	 User editEntity(User user);
+	 String getTimestamp(String param);  //测试缓存时间
 	 
 				
 }

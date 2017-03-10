@@ -22,10 +22,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="addEntity" parameterType="com.blog.model.User">
 		insert into user
 		(
-		id,account,password,name,qq,job
+		id,account,password,name,qq,job,createTime,updateTime
 		) values
 		(
-		#{id},#{account},#{password},#{name},#{qq},#{job}
+		#{id},#{account},#{password},#{name},#{qq},#{job},now(),now()
 		)
 	</insert>
 	<select id="queryAll" parameterType="com.blog.model.User"
@@ -43,12 +43,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 	<update id="editEntity" parameterType="com.blog.model.User">
-		UPDATE user set
+		UPDATE user set updateTime=now()
 		<if test="account != null and account != ''">
-			account = #{account},
+			,account = #{account}
+		</if>
+		<if test="name != null and name != ''">
+			,name = #{name}
 		</if>
 		<if test="password != null and password != ''">
-			password = #{password},
+			,password = #{password}
 		</if>
 		WHERE id = #{id}
 	</update>

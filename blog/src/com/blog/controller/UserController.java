@@ -29,7 +29,7 @@ public class UserController extends BaseController{
 	
 	@RequestMapping("/main.html")
 	public String queryEntityById(HttpServletRequest request){
-		
+		//跳往主页
 
 		return "face/home";
 	}

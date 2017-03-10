@@ -10,9 +10,24 @@ public class User implements Serializable {
 	private String job; //用户职业
 	private String account;
 	private String password;
+	private String createTime;
+	private String updateTime;
+	
 	
 	
 
+	public String getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+	public String getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
 	public String getAccount() {
 		return account;
 	}
