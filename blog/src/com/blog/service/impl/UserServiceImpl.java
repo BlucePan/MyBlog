@@ -32,7 +32,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> queryAll(User user) {
-		// TODO Auto-generated method stub
 		return userDao.queryAll(user);
 	}
 
