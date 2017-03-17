@@ -4,12 +4,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.blog.dao.BlogArticleDao">
 
-	<!-- 得到所有的文章类型 -->
-		<select id="getAllArticleType"  resultType="com.blog.model.BlogArticleType">
+	  <!-- 得到所有的文章类型 -->
+	<select id="getAllArticleType"  resultType="com.blog.model.BlogArticleType">
 		select * from blog_article_type 
 	</select>
 		
-					<!-- 分页SQL语句 -->
+	 <!-- 分页SQL语句 -->
 	<select id="findByPage" parameterType="java.util.HashMap" resultType="com.blog.model.BlogArticle">
 	select a.*,(select articleName from blog_article_type where id=a.type) articleName,
 	(select name from user where id=a.createUserId) createUser from blog_article a where 1=1
@@ -34,12 +34,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			
 		<!-- 增加新闻 -->	
 	  <insert id="addEntity" parameterType="com.blog.model.BlogArticle" >
-	INSERT into blog_article (id,title,image,remake,createTime,createUserId
+	INSERT into blog_article (id,title,image,keyWord,remake,createTime,createUserId
 	,updateUserId,updateTime,type,browse,popularity,context,top) VALUES 
 	(
 	#{id},
 	#{title}, 
 	#{image},
+	#{keyWord},
 	#{remake},
 	NOW(),
 	#{createUserId},
@@ -54,7 +55,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>		
 	<!-- 根据id查当前文章对象 -->
 	<select id="queryBlogArticleById" parameterType="String" resultType="com.blog.model.BlogArticle">
-		select * from blog_article where id=#{id}
+		select a.*,(select articleName from blog_article_type where id=a.type) articleName,
+	(select name from user where id=a.createUserId) createUser from blog_article a where id=#{id}
 	</select>	
 		
 	<!-- 修改文章 -->
@@ -68,6 +70,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 		<if test="image != null and image != ''">
 		 image = #{image},
+		</if>
+		<if test="keyWord != null and keyWord != ''">
+		 keyWord = #{keyWord},
 		</if>
 		<if test="remake != null and remake != ''">
 		 remake = #{remake},
@@ -93,5 +98,52 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  updateUserId = #{updateUserId}
 	  where id = #{id}
 	</update>	
-				
+		<!-- 得到推荐文章  根据置顶与浏览量来排序 -->			
+	<select id="getRecommendArticle" resultType="com.blog.model.BlogArticle">
+	  SELECT a.*,b.articleName articleName,u.name createUser  from blog_article a LEFT JOIN blog_article_type b 
+	  ON a.type=b.id left join user u on u.id=a.createUserId  ORDER BY a.top desc,a.browse desc,a.createTime desc limit 10
+	</select>	
+	
+		<!-- 得到最新文章  根据时间来排序 -->			
+	<select id="getNewArticle" resultType="com.blog.model.BlogArticle">
+	  SELECT * from blog_article  ORDER BY createTime desc limit 10
+	</select>	
+	
+			<!-- 得到排行文章  根据时间来排序 -->			
+	<select id="getSeniorityArticle" resultType="com.blog.model.BlogArticle">
+	  SELECT * from blog_article  ORDER BY popularity desc,browse desc limit 10
+	</select>	
+	
+	<!-- 上一篇，下一篇 -->
+	<select id="getNextArticle" resultType="com.blog.model.BlogArticle" parameterType="com.blog.model.BlogArticle">
+	SELECT * from blog_article where type= #{type}
+<!-- 	    <if test="isNext != null and isNext == '1' "> 上一篇   
+		  	 createTime &lt; (
+             select  createTime  from  blog_article  where  id = #{id} 
+              ) 
+	    </if> 
+	    <if test="isNext != null and isNext == '2' ">  下一篇
+		 	 createTime > (
+             select  createTime  from  blog_article  where  id = #{id} 
+              )
+		</if>  -->		
+		<choose>
+			<when test="isNext != null and isNext == '1'.toString()"> <!-- 上一篇 -->
+			 and     createTime &lt; (
+             select  createTime  from  blog_article  where  id = #{id} )
+			</when>
+			<when test="isNext != null and isNext == '2'.toString()"> <!-- 下一篇 -->
+			 and     createTime > (
+             select  createTime  from  blog_article  where  id = #{id} )
+			</when>
+			  <otherwise>                         
+              </otherwise>   		
+		</choose>
+    LIMIT 1
+	</select>
+	
+		<!-- 获取相关文章 -->
+	<select id="getLikeArticle" resultType="com.blog.model.BlogArticle" parameterType="java.util.HashMap">
+	SELECT * from blog_article where id!=#{id} and FIND_IN_SET(#{keyWord},keyWord) limit 6
+	</select>
 </mapper> 

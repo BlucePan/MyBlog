@@ -7,16 +7,12 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.blog.BaseController;
 import com.blog.model.BlogArticle;
 import com.blog.model.BlogArticleType;
-import com.blog.model.BlogMenu;
 import com.blog.service.BlogArticleService;
 import com.blog.util.BlogUtil;
 import com.blog.util.JsonBeang;
@@ -124,7 +120,6 @@ public class BlogArticleController extends BaseController {
 			article.setUpdateUserId(getLoginUser(request).getId());
 			bArticleService.updateBlogArticle(article);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		 return "forward:/article/manage/articleList.html";
@@ -144,4 +139,61 @@ public class BlogArticleController extends BaseController {
 		}
 		return "forward:/article/manage/articleList.html";
 	}
+	
+	
+	//前台查看文章详情
+	@RequestMapping("/seeArticleDetail.html")
+	public String seeArticleDetail(HttpServletRequest request, Model model) {
+		BlogArticle article = bArticleService.queryBlogArticleById(request.getParameter("id"));
+		  model.addAttribute("article", article);	
+		
+		  BlogArticle blogArticle =new BlogArticle();
+		  blogArticle.setId(request.getParameter("id"));
+		  blogArticle.setType(Integer.valueOf(request.getParameter("type")));
+		  //上一篇
+		  blogArticle.setIsNext("1");		
+		  BlogArticle aboveArticle  =bArticleService.getNextArticle(blogArticle);
+		  model.addAttribute("aboveArticle", aboveArticle);
+		  //下一篇
+		  blogArticle.setIsNext("2");		
+		  BlogArticle nextArticle  =bArticleService.getNextArticle(blogArticle);
+		  model.addAttribute("nextArticle", nextArticle);
+		  Map map=new HashMap();
+		  map.put("id", article.getId());
+		  map.put("keyWord", article.getKeyWord());
+		  //相关文章
+	      List<BlogArticle> lArticleList=bArticleService.getLikeArticle(map);
+	      request.setAttribute("lArticleList", lArticleList);
+		  return "face/articleDetail";
+	}
+	
+	//前台显示个人博客
+	//文章列表
+	@RequestMapping("/faceArticleList.html")
+	public String faceArticleList(HttpServletRequest request, Model model) {
+	  List<BlogArticleType> articleTypeList=bArticleService.getAllArticleType();//得到所有的文章类型
+	  	
+		PageView page = new PageView();
+		page.setPageSize(3);
+		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
+		Map map = new HashMap();
+		map.put("title", request.getParameter("title"));
+		map.put("type", request.getParameter("type"));
+		PageView pageView = bArticleService.findByPage(page, map);
+		StringBuffer buffer = new StringBuffer();
+		if(!BlogUtil.isEmpty(request.getParameter("title"))){
+			buffer.append("&title=");
+			buffer.append(request.getParameter("title"));
+		}if(!BlogUtil.isEmpty(request.getParameter("type"))){
+			buffer.append("&type=");
+			buffer.append(request.getParameter("type"));
+		}
+		model.addAttribute("pager",pageView.getPagerStr(buffer));
+        model.addAttribute("list", pageView.getItems());
+        model.addAttribute("articleTypeList", articleTypeList);
+			
+		return "face/faceArticleList";
+	}
+	
+	
 }

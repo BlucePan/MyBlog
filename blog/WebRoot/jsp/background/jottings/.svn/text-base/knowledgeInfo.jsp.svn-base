@@ -1,0 +1,79 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@include file="/jsp/common/common.jsp"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+String id = request.getParameter("id");
+String flag = request.getParameter("flag");
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+		<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>行业知识详情</title>
+		<link href="${oa}/css/page.css" rel="stylesheet" type="text/css" />
+		<script  type="text/javascript">
+	
+			$(function(){ 
+				var id = '<%=id%>';
+				  if(id == undefined && id == ''){
+					//alert('请求失败，请重试');
+					new TipBox({type:'error',str:'请求失败，请重试!',hasBtn:true});
+				}else{
+					   $.ajax({
+						url: '<%=path%>/main/knowledgeInfo.html?id=' + id,
+						type: 'post',
+						success: function(data){
+						//console.info("data---"+data);
+						var obj = eval("("+data+")");//转换为json对象
+						
+				        if(obj.status == '100'){
+						var object = obj.object;						
+						
+						$('#content').html(object.content);
+						var a = object.createTime.substring(0,10);
+						if(object.integral > 0){
+							a += '<span class="jifen">分享得积分</span>';
+						}
+						$('#ctime').html(a);				
+		                $('#title').html(object.title);
+		                $(".T-share a").attr("href","share.jsp?id=<%=id %>&title="+object.title+"&img="+object.img+"&context="+object.remake)
+						}else{
+						
+							//alert("请求失败，请重试或重新登录");
+							new TipBox({type:'error',str:'请求失败，请重试或重新登录!',hasBtn:true});
+						}
+			            },
+			            error: function(XMLHttpRequest, textStatus, errorThrown) {
+			            window.location.href = "<%=path%>/jsp/login.jsp";
+			          }
+			       }); 
+				}
+			
+			}); 
+		</script>
+		</head>
+		<body class="index">
+<header> 
+<%if(flag == null){ %>
+<a href="<%=path%>/main/knowledgeIndex.html?start=0&max=6" class="back"></a>
+<%}else{ %>
+<a href="<%=path%>/share/myShare.html" class="back"></a>
+<%} %>
+          <h2>行业头条</h2>
+          <p class="T-share"><a href="#" ><span></span><span></span><span></span></a></p>
+</header>
+<input id="tit" type="hidden" value="">
+<input id="img" type="hidden" value="">
+<div class="main-cont no-cont">
+    <div class="wbody">
+    <h1 id="title"></h1>
+    <div id="ctime" class="infop"></div>
+    <div class="ctcont" id="content"></div>
+  </div>
+</div>
+</body>
+</html>

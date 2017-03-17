@@ -66,6 +66,8 @@
             <mvc:mapping path="/article/manage/*" />
             <mvc:exclude-mapping path="/article/manage/articleList.html" /> <!-- 除了articleList.html这个请求 -->  
             <mvc:exclude-mapping path="/article/manage/articleDetail.html" />
+            <mvc:exclude-mapping path="/article/manage/seeArticleDetail.html" /> <!-- 前台页面查看详情 -->   
+            <mvc:exclude-mapping path="/article/manage/faceArticleList.html"/> <!-- 前台我的blog文章 -->        
             <bean class="com.blog.CommonInterceptor" />  
         </mvc:interceptor>  
     </mvc:interceptors>

@@ -16,13 +16,9 @@
 <link href='http://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<header>
-  <div id="logo"><a href="/"></a></div>
-  <nav class="topnav" id="topnav"><a href="index.html"><span>首页</span><span class="en">Protal</span></a><a href="about.html"><span>关于我</span><span class="en">About</span></a><a href="newlist.html"><span>慢生活</span><span class="en">Life</span></a><a href="moodlist.html"><span>碎言碎语</span><span class="en">Doing</span></a><a href="share.html"><span>模板分享</span><span class="en">Share</span></a><a href="knowledge.html"><span>学无止境</span><span class="en">Learn</span></a><a href="book.html"><span>留言版</span><span class="en">Gustbook</span></a></nav>
-  </nav>
-</header>
+<%@ include file="faceTop.jsp"%>
 <article class="aboutcon">
-<h1 class="t_nav"><span>像“草根”一样，紧贴着地面，低调的存在，冬去春来，枯荣无恙。</span><a href="/" class="n1">网站首页</a><a href="/" class="n2">关于我</a></h1>
+<h1 class="t_nav"><span>我不知道该说些什么。</span><a href="${blog}/user/main.html" class="n1">网站首页</a><a href="${blog}/jsp/face/about.jsp" class="n2">关于我</a></h1>
 <div class="about left">
   <h2>Just about me</h2>
     <ul> 

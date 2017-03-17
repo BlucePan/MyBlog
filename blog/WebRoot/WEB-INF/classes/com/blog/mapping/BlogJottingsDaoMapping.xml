@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.dao.BlogJottingsDao">
+	<!-- 查询所有的菜单 -->
+		<select id="queryAll" parameterType="com.blog.model.BlogJottings" resultType="com.blog.model.BlogJottings">		
+		 select * from blog_jottings where 1 = 1
+		<if test="id != null and id != ''">
+		and id = #{id}
+		</if>
+		ORDER BY createTime asc
+	</select> 
+		
+			<!-- 分页SQL语句 -->
+	<select id="findByPage" parameterType="java.util.HashMap" resultType="com.blog.model.BlogJottings">
+	   select *,(select u.name from user u where u.id = blog_jottings.createUserId ) createUser from blog_jottings  where 1 = 1
+		<if test="createTime != null and createTime != ''">
+		and createTime like '%${createTime}%'
+		</if>
+		ORDER BY createTime desc limit #{start}, #{max}
+	</select> 
+	<!-- 取得记录的总数 -->
+	<select id="getCount" parameterType="com.blog.model.BlogJottings" resultType="int">
+		select count(id) from blog_jottings where 1 = 1
+		<if test="createTime != null and createTime != ''">
+		and createTime like '%${createTime}%'
+		</if>
+		ORDER BY createTime desc 
+	</select>
+		
+	<!-- 增加随笔 -->	
+	  <insert id="addEntity" parameterType="com.blog.model.BlogJottings">
+	INSERT into blog_jottings (id,createUserId,keyWord,context,createTime,updateTime) VALUES 
+	(
+	#{id},	
+	#{createUserId},
+	#{keyWord},
+	#{context},
+	NOW(),
+    NOW()
+	)
+	</insert>	
+	<!-- 根据id查当前随笔对象 -->
+	<select id="queryBlogJottingsById" parameterType="String" resultType="com.blog.model.BlogJottings">
+		select * from blog_jottings where id=#{id}
+	</select>
+	
+		<!-- 修改随笔-->
+		<update id="editEntity"  parameterType="com.blog.model.BlogJottings" >
+	  UPDATE blog_jottings set  updateTime = NOW(),
+	  <if test="keyWord != null and keyWord != ''">
+		 keyWord= #{keyWord},
+		</if>
+		<if test="context != null and context !=''">
+		 context= #{context}
+		</if>
+	  where id = #{id}
+	</update>	
+	
+		<!-- 删除随笔 -->
+		<delete id="deleteEntity" parameterType="String">
+		delete from blog_jottings where id=#{id}
+	</delete>
+	
+				<!-- 滚动分页SQL语句 -->
+	<select id="findPageByRoll" parameterType="java.util.HashMap" resultType="com.blog.model.BlogJottings">
+	   select * from blog_jottings  where 1 = 1
+		ORDER BY createTime desc limit #{start}, #{max}
+	</select> 
+</mapper> 

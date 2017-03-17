@@ -52,6 +52,9 @@
           <div id="picup" class="zyupload"></div><input type="hidden" id="image" name="image"/>
           <input type="hidden" id="img" name="img" value=""/>
         </li>
+        <li><span>关键字：</span>
+         <input type="text"  name="keyWord" id="keyWord" />
+        </li>
         <li><span>摘要：</span>
           <textarea cols="10" name="remake" id ="remake"></textarea>
         </li>

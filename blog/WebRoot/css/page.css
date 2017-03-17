@@ -1,0 +1,9 @@
+@charset "gb2312";
+/* CSS Document */
+
+/*·ÖÒ³*/
+.pagelistFace{ text-align: right}
+.pagelistFace ul{padding:20px;}
+.pagelistFace ul li{ display: inline; margin: 0 2px;}
+.pagelistFace ul li a{border:1px solid #dcdcdc; border-radius:4px; display:inlin-block; text-align: center; padding:5px 10px; background:#fff;}
+.pagelistFace ul li a.thisclass{color:#fff; background:#0a859d;}

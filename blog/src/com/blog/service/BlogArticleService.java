@@ -16,5 +16,10 @@ public interface BlogArticleService {
 	  void updateBlogArticle(BlogArticle article);
 	  void deleteBlogArticle(String id);
 	  void delTopArticle(BlogArticle article);
+	  List<BlogArticle> getRecommendArticle();  //得到推荐文章
+	  List<BlogArticle> getNewArticle();  //得到最新文章	
+	  List<BlogArticle> getSeniorityArticle();//根据人气排行
+	  BlogArticle getNextArticle(BlogArticle article); //上一篇下一篇
+	  List<BlogArticle> getLikeArticle(Map map);//获取相关文章
 
 }

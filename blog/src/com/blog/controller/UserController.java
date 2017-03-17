@@ -11,8 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.blog.BaseController;
+import com.blog.model.BlogArticle;
 import com.blog.model.BlogMenu;
 import com.blog.model.User;
+import com.blog.service.BlogArticleService;
 import com.blog.service.BlogMenuService;
 import com.blog.service.UserService;
 
@@ -24,16 +26,26 @@ public class UserController extends BaseController{
 	private UserService userService;
 	@Resource
 	private BlogMenuService blogMenuService;
+	@Resource
+	private BlogArticleService bArticleService;
 	
 	private String message;
 	
+	//跳往主页面
 	@RequestMapping("/main.html")
-	public String queryEntityById(HttpServletRequest request){
+	public String queryEntityById(HttpServletRequest request,Model model){
 		//跳往主页
-
+		  List<BlogArticle>  bArticleList=bArticleService.getRecommendArticle();
+		  model.addAttribute("bArticleList", bArticleList);  //首页推荐文章
+		  List<BlogArticle>  nArticleList=bArticleService.getNewArticle();
+		  model.addAttribute("nArticleList", nArticleList);  //首页最新文章
+		  List<BlogArticle>  sArticleList=bArticleService.getSeniorityArticle();
+		  model.addAttribute("sArticleList", sArticleList);  //首页排行文章
+		  
 		return "face/home";
 	}
 	
+	//我的详情
 	@RequestMapping("/myself.html")
 	public String getMyself(HttpServletRequest request){		
 	   User user=(User) userService.queryUserById("666666");		
@@ -129,8 +141,17 @@ public class UserController extends BaseController{
 	
 	
 	
-	
-	
+	//右边公共文章展示
+	@RequestMapping("/faceRightArticleList.html")
+	public String faceRightArticleList(HttpServletRequest request,Model model){
+		//跳往主页
+		  List<BlogArticle>  nArticleList=bArticleService.getNewArticle();
+		  model.addAttribute("nArticleList", nArticleList);  //首页最新文章
+		  List<BlogArticle>  sArticleList=bArticleService.getSeniorityArticle();
+		  model.addAttribute("sArticleList", sArticleList);  //首页排行文章
+		  
+		return "face/faceRight";
+	}
 	
 	
 }

@@ -69,11 +69,14 @@
              <div id="zyupload" class="zyupload"></div>
             <input type="hidden" id="image" name="image" value="${article.image}"> 
         </li>
+          <li><span>关键字：</span>
+         <input type="text"  name="keyWord" id="keyWord" value="${article.keyWord}"/>
+        </li>
         <li><span>摘要：</span>
           <textarea cols="10" name="remake" id ="remake">${article.remake}</textarea>
         </li>
         <li><span>内容：</span>
-        	<textarea style="width:90%;height:300px;" name="content" id ="workstatus">${article.context}</textarea>
+        	<textarea style="width:90%;height:300px;" name="context" id ="workstatus">${article.context}</textarea>
           	<script type="text/javascript">
 	        var editor = UE.getEditor('workstatus');
 	    	</script>

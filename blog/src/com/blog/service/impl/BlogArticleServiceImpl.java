@@ -57,4 +57,30 @@ public class BlogArticleServiceImpl implements BlogArticleService {
 		
 	}
 
+	@Override
+	public List<BlogArticle> getRecommendArticle() {
+		return bArticleDao.getRecommendArticle();
+		
+	}
+
+	@Override
+	public List<BlogArticle> getNewArticle() {
+		return bArticleDao.getNewArticle();
+	}
+
+	@Override
+	public List<BlogArticle> getSeniorityArticle() {
+		return bArticleDao.getSeniorityArticle();
+	}
+
+	@Override
+	public BlogArticle getNextArticle(BlogArticle article) {
+		return bArticleDao.getNextArticle(article);
+	}
+
+	@Override
+	public List<BlogArticle> getLikeArticle(Map map) {
+		return bArticleDao.getLikeArticle(map);
+	}
+
 }
