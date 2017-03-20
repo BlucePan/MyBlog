@@ -74,9 +74,6 @@ public class BlogJottingsController extends BaseController {
 	//修改闲谈
 	@RequestMapping("/jottingsUpdate.html")
 	public String jottingsUpdate(BlogJottings jottings,HttpServletRequest request, Model model) {
-		
-		System.out.println(">>>>>"+jottings.getId()+jottings.getKeyWord());
-		
 		bJottingsService.updateBlogJottings(jottings);
 		return "forward:/jottings/manage/jottingsList.html";
 		//	return "redirect:activityList.html";
@@ -99,28 +96,20 @@ public class BlogJottingsController extends BaseController {
 	//前台分页加载闲谈列表
 	@RequestMapping("/faceJottingsList.html")
 	public String faceJottingsList(HttpServletRequest request, Model model) {
-		Map map=new HashMap();
-		map.put("start", 0);
-		map.put("max", 5);
-		List<BlogJottings> jList=bJottingsService.findPageByRoll(map);
-		model.addAttribute("jList", jList);			
-		return "face/jottings";
-	}
-	
-	//获取个人积分数据
-	@ResponseBody
-	@RequestMapping("/queryMyIntegralRecord.html")
-	public Map<String,Object> queryMyIntegralRecord(HttpServletRequest request) {
-		System.out.println("进来没？");
-		int start = Integer.valueOf(request.getParameter("start")).intValue();
-		int max = Integer.valueOf(request.getParameter("max")).intValue();
+		PageView page = new PageView();
+		page.setPageSize(5);
+		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
 		Map map = new HashMap();
-		map.put("start", start);
-		map.put("max", max);
-		List<BlogJottings> jList=bJottingsService.findPageByRoll(map);
-		Map map1 = new HashMap();
-		map1.put("list", jList);
-		return map1;
+		map.put("createTime", request.getParameter("createTime"));
+		PageView pageView = bJottingsService.findByPage(page, map);
+		StringBuffer buffer = new StringBuffer();
+		if(!BlogUtil.isEmpty(request.getParameter("createTime"))){
+			buffer.append("&createTime=");
+			buffer.append(request.getParameter("createTime"));
+		}  
+		model.addAttribute("pager",pageView.getPagerStr(buffer));
+        model.addAttribute("jList", pageView.getItems());	
+		return "face/jottings";
 	}
 	
 	
