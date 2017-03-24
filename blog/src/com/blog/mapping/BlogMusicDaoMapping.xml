@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.dao.BlogMusicDao">
+	<!-- 查询所有的音乐 -->
+		<select id="queryAll" parameterType="com.blog.model.BlogMusic" resultType="com.blog.model.BlogMusic">		
+		 select * from blog_music where 1 = 1
+		<if test="id != null and id != ''">
+		and id = #{id}
+		</if>
+		ORDER BY createTime asc
+	</select> 
+		
+			<!-- 分页SQL语句 -->
+	<select id="findByPage" parameterType="java.util.HashMap" resultType="com.blog.model.BlogMusic">
+	   select *,(select u.name from user u where u.id = blog_music.createUserId ) createUser from blog_music  where 1 = 1
+		<if test="createTime != null and createTime != ''">
+		and createTime like '%${createTime}%'
+		</if>
+		ORDER BY createTime desc limit #{start}, #{max}
+	</select> 
+	<!-- 取得记录的总数 -->
+	<select id="getCount" parameterType="com.blog.model.BlogMusic" resultType="int">
+		select count(id) from blog_music where 1 = 1
+		<if test="createTime != null and createTime != ''">
+		and createTime like '%${createTime}%'
+		</if>
+		ORDER BY createTime desc 
+	</select>
+		
+	<!-- 增加音乐-->	
+	  <insert id="addEntity" parameterType="com.blog.model.BlogMusic">
+	INSERT into blog_music (id,title,musicUrl,createUserId,createTime,updateTime,isPublish) VALUES 
+	(
+	#{id},	
+	#{title},
+	#{musicUrl},				
+	#{createUserId},
+	NOW(),
+    NOW(),
+    #{isPublish},
+    
+	)
+	</insert>	
+	<!-- 根据id查当前音乐对象 -->
+	<select id="queryBlogMusicById" parameterType="String" resultType="com.blog.model.BlogMusic">
+		select * from blog_music where id=#{id}
+	</select>
+	
+		<!-- 修改音乐-->
+		<update id="editEntity"  parameterType="com.blog.model.BlogMusic" >
+	  UPDATE blog_music set  updateTime = NOW(),
+	  <if test="title != null and title != ''">
+		 title= #{title},
+		</if>
+		 <if test="musicUrl != null and musicUrl != ''">
+		 musicUrl= #{musicUrl},
+		</if>
+		<if test="isPublish != null and isPublish !=''">
+		 isPublish= #{isPublish}
+		</if>
+	  where id = #{id}
+	</update>	
+	
+		<!-- 删除音乐 -->
+		<delete id="deleteEntity" parameterType="String">
+		delete from blog_music where id=#{id}
+	</delete>
+	
+</mapper> 

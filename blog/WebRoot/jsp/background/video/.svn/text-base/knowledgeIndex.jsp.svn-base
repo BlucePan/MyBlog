@@ -1,0 +1,240 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@include file="/jsp/common/common.jsp"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<title>行业交流列表</title>
+<link href="${oa }/css/page.css" rel="stylesheet" type="text/css" />
+<link href="${oa }/css/scrollbar.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${oa }/scripts/iscroll.js"></script>
+<script type="text/javascript">
+
+var myScroll,
+	pullUpEl, pullUpOffset,
+	generatedCount = 0;
+
+
+/**
+ * 滚动翻页 （自定义实现此方法）
+ * myScroll.refresh();		// 数据加载完成后，调用界面更新方法
+ */
+function pullUpAction () {
+	setTimeout(function () {	// <-- Simulate network congestion, remove setTimeout from production!
+		var el, li, i;
+		el = document.getElementById('thelist');
+		
+		var start = $("#max").val();
+		var max = 12;//表示每次加载六条
+		var result = '';
+		$.ajax({
+			     type : "POST",
+			     data:{max:max,start:start},
+			     url: "${oa}/main/queryKnowledgeIndex.html",
+			     dataType:'json',
+				 async:false,
+			     success: function(data){
+				     if(data.list.length>0){
+					     var list = data.list;
+					     var html = "";
+					     for(var i = 0 ; i <list.length; i ++){
+								if(list[i].img != "" && list[i].img != null){
+									var arr = list[i].img.split(/,/);
+									if(arr.length >= 3){
+										html += '<dl class="three"><a href="${oa}/jsp/knowledge/knowledgeInfo.jsp?id='+list[i].id;
+										html += '"><dt>'+list[i].title+'</dt><p>';
+										for(c in arr){
+											if(c < 3){
+												html += '<span><img src="/imageService/uploadFiles/'+arr[c]+'" date-src="${oa}/img/small.png"/></span>'
+											}
+										}
+										html += '</p><dd class="times"><i class="fl">';
+										if(list[i].integral != 0){
+											html += '<span class="jifen">分享得积分</span>'
+										}
+										if(list[i].top == '1'){
+											html += '<span class="zd">置顶</span>';
+										}
+										html += '</i><i class="fr">'+list[i].createTime.substring(0,10)+'</i></dd></a></dl>'
+									}else if(arr.length < 3 && arr.length >= 1){
+										html += '<dl class="one"><a href="${oa}/jsp/knowledge/knowledgeInfo.jsp?id='+list[i].id;
+										html += '">';
+										html += '<img src="/imageService/uploadFiles/'+arr[0]+'" date-src="${oa}/img/small.png"/>'
+										html += '<dt>'+list[i].title+'</dt><dd class="times"><i class="fl">'
+										if(list[i].integral != 0){
+											html += '<span class="jifen">分享得积分</span>'
+										}
+										if(list[i].top == '1'){
+											html += '<span class="zd">置顶</span>';
+										}
+										html += '</i><i class="fr">'+list[i].createTime.substring(0,10)+'</i></dd></a></dl>'
+										}
+									}else{
+										html += '<dl><a href="${oa}/jsp/knowledge/knowledgeInfo.jsp?id='+list[i].id;
+										html += '"> <dt>'+list[i].title+'</dt><dd class="times"><i class="fl">'
+										if(list[i].integral != 0){
+											html += '<span class="jifen">分享得积分</span>'
+										}
+										html += '<span>'+list[i].createTime.substring(0,10)+'</span>';
+										if(list[i].top == '1'){
+											html += '<span class="zd">置顶</span>';
+										}
+										html += '</i><i class="fr"></i></dd></a></dl>'
+									}
+				      		/*result +='<a href="${oa}/jsp/knowledge/knowledgeInfo.jsp?id='+data.list[i].id+'">'
+				      			+'<img src="${oa}/img/small.png" date-src="/imageService/uploadFiles/'+data.list[i].img+'">'
+								+'<dt>'+data.list[i].title+'</dt>'
+								+'<dd class="times"><i class="fl"><span class="jifen">积</span>'
+								+'<dd class="times"><i class="fl">'+data.list[i].createTime.substring(0,10)+'</i></dd>'
+								+'</a>';*/
+				      	 }
+				      	//动态给分页开始条数赋值
+				      	document.getElementById("max").value= data.start;
+						li = document.createElement("div");
+						li.innerHTML = html;
+						el.appendChild(li, el.childNodes[0]);
+					 }
+			     }
+	      	});	
+           
+/*		for (i=0; i<6; i++) {
+			li = document.createElement('div');
+			li.innerHTML = '<dl class="one"><a href="/jsp/knowledge/knowledgeInfo.jsp?id=0b5c2583c4cd4008a39d4385a3412c29"><p><span><img src="/imageService/uploadFiles/201609/20160920095109_249.jpg" date-src="/img/small.png"></span></p><dt>【暖通头条】2016第四届国际制冷空调技术交流会 第二轮通知</dt><dd class="times"><i class="fl"><span class="jifen">积</span><span>2016-09-20</span></i><i class="fr"></i></dd></a></dl>';
+			el.appendChild(li, el.childNodes[0]);
+		}*/
+		
+		myScroll.refresh();		// 数据加载完成后，调用界面更新方法 Remember to refresh when contents are loaded (ie: on ajax completion)
+		loadingStep = 0; 
+	}, 1000);	// <-- Simulate network congestion, remove setTimeout from production!
+}
+
+/**
+ * 初始化iScroll控件
+ */
+function loaded() {
+	pullUpEl = document.getElementById('pullUp');	
+	pullUpOffset = pullUpEl.offsetHeight;
+	loadingStep = 0;//加载状态0默认，1显示加载状态，2执行加载数据，只有当为0时才能再次加载，这是防止过快拉动刷新 
+	
+	myScroll = new iScroll('wrapper2', {
+		scrollbarClass: 'myScrollbar', /* 重要样式 */
+		useTransition: false, /* 此属性不知用意，本人从true改为false */
+		onRefresh: function () {
+			if (pullUpEl.className.match('loading')) {
+				pullUpEl.className = '';
+				pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
+			}
+		},
+		onScrollMove: function () {
+			if(loadingStep == 0){
+				if (this.y < (this.maxScrollY - 5) && !pullUpEl.className.match('flip')) {
+					pullUpEl.className = 'flip';
+					pullUpEl.querySelector('.pullUpLabel').innerHTML = '松手开始更新...';
+					loadingStep = 1;  
+					this.maxScrollY = this.maxScrollY;
+				} else if (this.y > (this.maxScrollY + 5) && pullUpEl.className.match('flip')) {
+					pullUpEl.className = '';
+					pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉加载更多...';
+					loadingStep = 1;  
+					this.maxScrollY = pullUpOffset;
+				}
+			}	
+		},
+		onScrollEnd: function () {
+			 if(loadingStep == 1){ 
+				if (pullUpEl.className.match('flip')) {
+					pullUpEl.className = 'loading';
+					pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';	
+					loadingStep = 2;  			
+					pullUpAction();	// Execute custom function (ajax call?)
+				}
+			}	
+		}
+	});
+	
+	setTimeout(function () { document.getElementById('wrapper2').style.left = '0'; }, 800);
+}
+
+//初始化绑定iScroll控件 
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+document.addEventListener('DOMContentLoaded', loaded, false); 
+
+</script>
+</head>
+<body class="index">
+<input type="hidden" id="start" value="${start }">
+<input type="hidden" id="max" value="${max }">
+<header class="headers"> <a href="${oa }/main/home.html" class="back"></a>
+  <h2>行业头条</h2>
+  <a href="${oa}/share/myShare.html" class="z_c">我的分享</a>
+</header>
+<div id="wrapper2">
+  <div id="scroller" class="newlist">
+    <div id="thelist" class="inner">
+      <c:forEach var="r" items="${list}">
+        <c:set var="arr" value="${r.img.split(',')}">
+        </c:set>
+        <c:set var="imglength" value="${fn:length(arr)}">
+        </c:set>
+        <c:choose>
+          <c:when test="${imglength >= 3}">
+            <dl class="three">
+              <a href="${oa }/jsp/knowledge/knowledgeInfo.jsp?id=${r.id}">
+              <dt>${r.title}</dt>
+              <p>
+                <c:forEach var="a" items="${arr }"> <span><img src="/imageService/uploadFiles/${a}" date-src="${oa}/img/small.png"></span> </c:forEach>
+              </p>
+              <dd class="times"><i class="fl">
+                <span>
+                <c:if test="${r.integral != 0 }"><span class="jifen">分享得积分</span></c:if>
+                <c:if test="${r.top == '1' }"><span class="zd">置顶</span> </c:if>
+                </i><i class="fr">
+                <fmt:parseDate value='${r.createTime}' var="yearMonth" pattern="yyyy-MM-dd"/>
+                <fmt:formatDate value="${yearMonth}" pattern="yyyy-MM-dd" />
+                </i></dd>
+              </a>
+            </dl>
+          </c:when>
+          <c:when test="${imglength >= 1 && imglength < 3}">
+            <dl class="one">
+              <a href="${oa }/jsp/knowledge/knowledgeInfo.jsp?id=${r.id}">
+              <p><span><img src="/imageService/uploadFiles/${r.img}" date-src="${oa}/img/small.png"></span></p>
+              <dt>${r.title}</dt>
+              <dd class="times"><i class="fl">
+                <c:if test="${r.integral != 0}"><span class="jifen">分享得积分</span></c:if>
+                <c:if test="${r.top == '1'}"><span class="zd">置顶</span> </c:if>
+                </i><i class="fr">
+                <fmt:parseDate value='${r.createTime}' var="yearMonth" pattern="yyyy-MM-dd"/>
+                <fmt:formatDate value="${yearMonth}" pattern="yyyy-MM-dd" />
+                </i></dd>
+              </a>
+            </dl>
+          </c:when>
+          <c:otherwise>
+            <dl>
+              <a href="${oa}/jsp/knowledge/knowledgeInfo.jsp?id=${r.id}">
+              <dt>${r.title}</dt>
+              <dd class="times"><i class="fl">
+                <c:if test="${r.integral != 0 }"><span class="jifen">分享得积分</span></c:if>
+                <c:if test="${r.top == '1' }"><span class="zd">置顶</span> </c:if>
+                </i><i class="fr">
+                <fmt:parseDate value='${r.createTime}' var="yearMonth" pattern="yyyy-MM-dd"/>
+                <fmt:formatDate value="${yearMonth}" pattern="yyyy-MM-dd" />
+                </i></dd>
+              </a>
+            </dl>
+          </c:otherwise>
+        </c:choose>
+      </c:forEach>
+    </div>
+    <div id="pullUp"> <span class="pullUpIcon"></span><span class="pullUpLabel">上拉加载更多...</span> </div>
+  </div>
+</div>
+</body>
+</html>

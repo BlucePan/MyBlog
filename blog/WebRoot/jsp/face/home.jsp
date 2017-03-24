@@ -39,16 +39,14 @@
 <div class="template">
   <div class="box">
     <h3>
-      <p><span></span>美图欣赏</p>
+      <p><span></span>推荐视频</p>
     </h3>
     <ul>
-      <li><a href="/"  target="_blank"><img src="${blog}/img/01.jpg"></a><span>小帅哥</span></li>
-      <li><a href="/" target="_blank"><img src="${blog}/img/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
-      <li><a href="/"  target="_blank"><img src="${blog}/img/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
-      <li><a href="/" target="_blank"><img src="${blog}/img/04.jpg"></a><span>女生清新个人博客网站模板</span></li>
-      <li><a href="/"  target="_blank"><img src="${blog}/img/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
-      <li><a href="/"  target="_blank"><img src="${blog}/img/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
-    </ul>
+  <%--     <li><a href="/"  ><img src="${blog}/img/01.jpg"></a><span>小帅哥</span></li>--%>   
+ 	 <c:forEach var="v" items="${bVideoList}">
+ 	   <li><a href="${blog}/voice/manage/faceVideoDetail.html?id=${v.id}"><img src="/imageService/uploadFiles/${v.image}"></a><span>${v.title}</span></li>
+     </c:forEach>
+  </ul>
   </div>
 </div>
 

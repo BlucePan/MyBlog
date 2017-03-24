@@ -1,22 +1,18 @@
 10
 
 dir
-1009
-http://192.168.0.114/svn/OA/WebRoot/ueditor/jsp
-http://192.168.0.114/svn/OA
+211
+http://192.168.0.114/svn/CIA/cia/WebRoot/ueditor/jsp
+http://192.168.0.114/svn/CIA
 
 
 
-2016-10-14T05:14:24.050583Z
-997
-yangqj
+2016-12-26T02:51:15.767365Z
+2
+zhaoxh
 
 
-
-
-
-
-
+svn:special svn:externals svn:needs-lock
 
 
 
@@ -24,10 +20,11 @@ yangqj
 
 
 
-a61db3fd-7330-dd42-949a-cc00ac101f03
-
-upload
-dir
+
+
+
+
+b9d793e6-ab41-9f44-9942-63d97b25a992
 
 config.json
 file
@@ -35,11 +32,11 @@ file
 
 
 
-2016-10-14T08:49:53.008082Z
-a5bec1a055a74aa6043beca19179600b
-2016-10-14T05:14:24.050583Z
-997
-yangqj
+2016-12-26T02:55:21.043000Z
+511a7bfaffba9a08adeda6e81e8c47f2
+2016-12-26T02:51:15.767365Z
+2
+zhaoxh
 
 
 
@@ -61,7 +58,7 @@ yangqj
 
 
 
-6349
+6344
 
 controller.jsp
 file
@@ -69,10 +66,10 @@ file
 
 
 
-2016-08-04T06:05:19.021346Z
+2016-12-26T02:55:21.046000Z
 8a0e805d567468faccee88677c03d51c
-2016-05-18T03:34:15.872899Z
-97
+2016-12-26T02:51:15.767365Z
+2
 zhaoxh
 
 
@@ -96,4 +93,7 @@ zhaoxh
 
 
 406
+
+upload
+dir
 

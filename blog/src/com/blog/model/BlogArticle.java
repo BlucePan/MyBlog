@@ -2,7 +2,7 @@ package com.blog.model;
 
 import java.io.Serializable;
 /**
- * 
+ * 文章博客表
  * @author panzhi
  * @date 2017-3-15  
  * @version 1.0.0

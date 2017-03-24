@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.dao.BlogVideoDao">
+	<!-- 查询所有的视频 -->
+		<select id="queryAll" parameterType="com.blog.model.BlogVideo" resultType="com.blog.model.BlogVideo">		
+		 select * from blog_video where 1 = 1
+		<if test="id != null and id != ''">
+		and id = #{id}
+		</if>
+		ORDER BY createTime asc
+	</select> 
+		
+			<!-- 分页SQL语句 -->
+	<select id="findByPage" parameterType="java.util.HashMap" resultType="com.blog.model.BlogVideo">
+	   select *,(select u.name from user u where u.id = blog_video.createUserId ) createUser from blog_video  where 1 = 1
+		<if test="title != null and title != ''">
+		and title like '%${title}%'
+		</if>
+		<if test="isPublish != null and isPublish != ''">
+		and isPublish = #{isPublish}
+		</if>
+		ORDER BY createTime desc limit #{start}, #{max}
+	</select> 
+	<!-- 取得记录的总数 -->
+	<select id="getCount" parameterType="com.blog.model.BlogVideo" resultType="int">
+		select count(id) from blog_video where 1 = 1
+		<if test="createTime != null and createTime != ''">
+		and createTime like '%${createTime}%'
+		</if>
+		ORDER BY createTime desc 
+	</select>
+		
+	<!-- 增加视频-->	
+	  <insert id="addEntity" parameterType="com.blog.model.BlogVideo">
+	INSERT into blog_video (id,title,image,videoUrl,createUserId,createTime,updateTime,isPublish,keyWord,browse) VALUES 
+	(
+	#{id},	
+	#{title},
+	#{image},
+	#{videoUrl},				
+	#{createUserId},
+	NOW(),
+    NOW(),
+    #{isPublish},
+    #{keyWord},
+     0    
+	)
+	</insert>	
+	<!-- 根据id查当前视频对象 -->
+	<select id="queryBlogVideoById" parameterType="String" resultType="com.blog.model.BlogVideo">
+		select a.*,(select name from user where id=a.createUserId) createUser from blog_video a where a.id=#{id}
+	</select>
+	
+		<!-- 修改视频-->
+		<update id="editEntity"  parameterType="com.blog.model.BlogVideo" >
+	  UPDATE blog_video set  updateTime = NOW()
+	  <if test="title != null and title != ''">
+		 ,title= #{title}
+		</if>
+		 <if test="image != null and image != ''">
+		 ,image= #{image}
+		</if>
+		 <if test="videoUrl != null and videoUrl != ''">
+		 ,videoUrl= #{videoUrl}
+		</if>
+		<if test="isPublish != null and isPublish !=''">
+		 ,isPublish= #{isPublish}
+		</if>
+		<if test="browse != null and browse != ''">
+		, browse = #{browse}
+		</if>
+		 <if test="keyWord != null and keyWord != ''">
+		, keyWord= #{keyWord}
+		</if>
+	  where id = #{id}
+	</update>	
+	
+		<!-- 删除视频 -->
+		<delete id="deleteEntity" parameterType="String">
+		delete from blog_video where id=#{id}
+	</delete>
+	
+				<!-- 首页推荐视频   暂时根据时间,浏览量来排序 -->			
+	<select id="getRecommendVideo" resultType="com.blog.model.BlogVideo">
+	  SELECT * from blog_video  ORDER BY browse asc,createTime desc limit 6
+	</select>
+	
+		<!-- 获取相关视频-->
+	<select id="getLikeVideo" resultType="com.blog.model.BlogVideo" parameterType="java.util.HashMap">
+	SELECT * from blog_video where id!=#{id} and FIND_IN_SET(#{keyWord},keyWord) limit 6
+	</select>
+	
+	
+</mapper> 

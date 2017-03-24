@@ -6,8 +6,8 @@
 <head>
 <meta charset="utf-8">
 <title>个人博客 BlucePan</title>
-<meta name="keywords" content="个人博客,杨青个人博客,个人博客模板,杨青" />
-<meta name="description" content="杨青个人博客，是一个站在web前端设计之路的女程序员个人网站，提供个人博客模板免费资源下载的个人原创网站。" />
+<meta name="keywords" content="个人博客模板,博客模板"/>
+<meta name="description" content="寻梦主题的个人博客模板，优雅、稳重、大气,低调。" />
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/learn.css" rel="stylesheet">
 <link href="${blog}/css/page.css" rel="stylesheet">

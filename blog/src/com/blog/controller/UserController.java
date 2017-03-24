@@ -11,8 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.blog.BaseController;
+import com.blog.dao.BlogVideoDao;
 import com.blog.model.BlogArticle;
 import com.blog.model.BlogMenu;
+import com.blog.model.BlogVideo;
 import com.blog.model.User;
 import com.blog.service.BlogArticleService;
 import com.blog.service.BlogMenuService;
@@ -28,7 +30,8 @@ public class UserController extends BaseController{
 	private BlogMenuService blogMenuService;
 	@Resource
 	private BlogArticleService bArticleService;
-	
+	@Resource
+	private BlogVideoDao bVideoDao;
 	private String message;
 	
 	//跳往主页面
@@ -41,7 +44,8 @@ public class UserController extends BaseController{
 		  model.addAttribute("nArticleList", nArticleList);  //首页最新文章
 		  List<BlogArticle>  sArticleList=bArticleService.getSeniorityArticle();
 		  model.addAttribute("sArticleList", sArticleList);  //首页排行文章
-		  
+		  List<BlogVideo> bVideoList=bVideoDao.getRecommendVideo();
+		  model.addAttribute("bVideoList", bVideoList);  //首页推荐视频
 		return "face/home";
 	}
 	

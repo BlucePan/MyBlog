@@ -5,44 +5,49 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>杨青个人博客网站—一个站在web前段设计之路的女技术员个人博客网站</title>
-<meta name="keywords" content="个人博客,杨青个人博客,个人博客模板,杨青" />
-<meta name="description" content="杨青个人博客，是一个站在web前端设计之路的女程序员个人网站，提供个人博客模板免费资源下载的个人原创网站。" />
+<title>个人博客 BlucePan</title>
+<meta name="keywords" content="个人博客模板,博客模板"/>
+<meta name="description" content="寻梦主题的个人博客模板，优雅、稳重、大气,低调。" />
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/case.css" rel="stylesheet">
+<link href="${blog}/css/page.css" rel="stylesheet">
 <!--[if lt IE 9]>
 <script src="js/modernizr.js"></script>
 <![endif]-->
+
+<style type="text/css">
+.vTitle{
+	text-align: center;
+}
+</style>
+
 </head>
 <body>
 <%@ include file="faceTop.jsp"%>
 <article class="blogs">
-<h1 class="t_nav"><span>好咖啡要和朋友一起品尝，好“模板”也要和同样喜欢它的人一起分享。 </span><a href="${blog}/user/main.html" class="n1">网站首页</a><a href="${blog}/jsp/face/photoList.jsp" class="n2">图集欣赏</a></h1>
+<h1 class="t_nav"><span>好咖啡要和朋友一起品尝，好“模板”也要和同样喜欢它的人一起分享。 </span><a href="${blog}/user/main.html" class="n1">网站首页</a><a href="${blog}/voice/manage/faceVideoList.html" class="n2">娱乐视频</a></h1>
 <div class="caselist left">
-<ul>
-<li><a href="#"><img src="${blog}/img/01.jpg"></a></li>
-<li><a href="#"><img src="${blog}/img/02.jpg"></a></li>
-<li><a href="#"><img src="${blog}/img/03.jpg"></a></li>
-<li><a href="#"><img src="${blog}/img/04.jpg"></a></li>
-
-<li><a href="#"><img src="${blog}/img/03.jpg"></a></li>
-<li><a href="#"><img src="${blog}/img/04.jpg"></a></li>
-<li><a href="#"><img src="${blog}/img/01.jpg"></a></li>
-<li><a href="#"><img src="${blog}/img/02.jpg"></a></li>
-<li><a href="#"><img src="${blog}/img/01.jpg"></a></li>
-<li><a href="#"><img src="${blog}/img/02.jpg"></a></li>
-<li><a href="#"><img src="${blog}/img/03.jpg"></a></li>
-<li><a href="#"><img src="${blog}/img/04.jpg"></a></li>
-
-<li><a href="#"><img src="${blog}/img/03.jpg"></a></li>
-<li><a href="#"><img src="${blog}/img/04.jpg"></a></li>
-<li><a href="#"><img src="${blog}/img/01.jpg"></a></li>
-<li><a href="#"><img src="${blog}/img/02.jpg"></a></li>
-</ul>
-    <div class="blank"></div>
-   
-    <div class="page"><a title="Total record"><b>41</b></a><b>1</b><a href="/news/s/index_2.html">2</a><a href="/news/s/index_2.html">&gt;</a><a href="/news/s/index_2.html">&gt;&gt;</a></div>
+ <ul>
+ <c:forEach var="v" items="${list}">
+    <li><a href="${blog}/voice/manage/faceVideoDetail.html?id=${v.id}"><img src="/imageService/uploadFiles/${v.image}">
+   	 <span class="vTitle">${v.title}</span>	
+    </a></li>
+ </c:forEach>
+ 
+<%-- <li><a href="#"><img src="${blog}/img/01.jpg"></a></li>
+<li><a href="#"><img src="${blog}/img/02.jpg"></a></li> --%>  
+ </ul>
+ 		
+  	 <!-- 分页信息 -->  	
+ 	<div id="page" class="pagelistFace">
+      <ul>
+        ${pager}
+      </ul>
+    </div>  
+ 	
 </div>
+
+
 <aside class="right">
    <div class="rnav">
       <h2>栏目导航</h2>

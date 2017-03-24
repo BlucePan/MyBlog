@@ -17475,7 +17475,7 @@ UE.plugins['autofloat'] = function() {
     function fixIE6FixedPos(){
         var docStyle = document.body.style;
         docStyle.backgroundImage = 'url("about:blank")';
-        docStyle.backgroundAttachment = 'fixed';
+        //docStyle.backgroundAttachment = 'fixed';
     }
     var	bakCssText,
         placeHolder = document.createElement('div'),
@@ -17488,7 +17488,7 @@ UE.plugins['autofloat'] = function() {
             origalLeft = domUtils.getComputedStyle(toolbarBox,'left');
         toolbarBox.style.width = toolbarBox.offsetWidth + 'px';
         toolbarBox.style.zIndex = me.options.zIndex * 1 + 1;
-        toolbarBox.parentNode.insertBefore(placeHolder, toolbarBox);
+        //toolbarBox.parentNode.insertBefore(placeHolder, toolbarBox);
         if (LteIE6 || (quirks && browser.ie)) {
             if(toolbarBox.style.position != 'absolute'){
                 toolbarBox.style.position = 'absolute';
@@ -17500,7 +17500,7 @@ UE.plugins['autofloat'] = function() {
                 toolbarBox.style.left =  domUtils.getXY(toolbarBox).x - document.documentElement.getBoundingClientRect().left+2  + 'px';
             }
             if(toolbarBox.style.position != 'fixed'){
-                toolbarBox.style.position = 'fixed';
+               // toolbarBox.style.position = 'fixed';
                 toolbarBox.style.top = topOffset +"px";
                 ((origalFloat == 'absolute' || origalFloat == 'relative') && parseFloat(origalLeft)) && (toolbarBox.style.left = toobarBoxPos.x + 'px');
             }

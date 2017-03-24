@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>杨青个人博客网站—一个站在web前段设计之路的女技术员个人博客网站</title>
-<meta name="keywords" content="个人博客,杨青个人博客,个人博客模板,杨青" />
-<meta name="description" content="杨青个人博客，是一个站在web前端设计之路的女程序员个人网站，提供个人博客模板免费资源下载的个人原创网站。" />
+<title>个人博客 BlucePan</title>
+<meta name="keywords" content="个人博客模板,博客模板"/>
+<meta name="description" content="寻梦主题的个人博客模板，优雅、稳重、大气,低调。" />
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/new.css" rel="stylesheet">
 <!--[if lt IE 9]>
@@ -44,7 +44,19 @@
          </c:forEach>
       </ul>
     </div>
+    
+<!--PC版-->
+<div id="SOHUCS" sid="${article.id}"></div>
+<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+window.changyan.api.config({
+appid: 'cysU9ouu1',
+conf: 'prod_f7b4b4284527f7d0ac5eb32a6acb6ae5'
+});
+</script>
+    
   </div>
+  
   <aside class="right">
     <!-- Baidu Button BEGIN -->
     <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><a class="bds_qzone"></a><a class="bds_tqq"></a><a class="bds_renren"></a><span class="bds_more"></span><a class="shareCount"></a></div>

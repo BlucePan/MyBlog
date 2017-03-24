@@ -1,23 +1,23 @@
 K 25
 svn:wc:ra_dav:version-url
-V 61
-/svn/OA/!svn/ver/97/WebRoot/ueditor/third-party/zeroclipboard
-END
-ZeroClipboard.js
-K 25
-svn:wc:ra_dav:version-url
-V 78
-/svn/OA/!svn/ver/97/WebRoot/ueditor/third-party/zeroclipboard/ZeroClipboard.js
-END
-ZeroClipboard.min.js
-K 25
-svn:wc:ra_dav:version-url
-V 82
-/svn/OA/!svn/ver/97/WebRoot/ueditor/third-party/zeroclipboard/ZeroClipboard.min.js
+V 65
+/svn/CIA/!svn/ver/2/cia/WebRoot/ueditor/third-party/zeroclipboard
 END
 ZeroClipboard.swf
 K 25
 svn:wc:ra_dav:version-url
-V 79
-/svn/OA/!svn/ver/97/WebRoot/ueditor/third-party/zeroclipboard/ZeroClipboard.swf
+V 83
+/svn/CIA/!svn/ver/2/cia/WebRoot/ueditor/third-party/zeroclipboard/ZeroClipboard.swf
+END
+ZeroClipboard.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/CIA/!svn/ver/2/cia/WebRoot/ueditor/third-party/zeroclipboard/ZeroClipboard.min.js
+END
+ZeroClipboard.js
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/CIA/!svn/ver/2/cia/WebRoot/ueditor/third-party/zeroclipboard/ZeroClipboard.js
 END

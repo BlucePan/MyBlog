@@ -97,7 +97,7 @@ public class BlogJottingsController extends BaseController {
 	@RequestMapping("/faceJottingsList.html")
 	public String faceJottingsList(HttpServletRequest request, Model model) {
 		PageView page = new PageView();
-		page.setPageSize(5);
+		page.setPageSize(10);
 		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
 		Map map = new HashMap();
 		map.put("createTime", request.getParameter("createTime"));

@@ -3,7 +3,7 @@ package com.blog.model;
 import java.io.Serializable;
 
 /**
- * 
+ * 闲谈随笔
  * @author panzhi
  * @date 2017-3-16  
  * @version 1.0.0

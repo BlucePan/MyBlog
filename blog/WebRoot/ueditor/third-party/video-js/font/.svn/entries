@@ -1,17 +1,18 @@
 10
 
 dir
-1009
-http://192.168.0.114/svn/OA/WebRoot/ueditor/third-party/video-js/font
-http://192.168.0.114/svn/OA
+211
+http://192.168.0.114/svn/CIA/cia/WebRoot/ueditor/third-party/video-js/font
+http://192.168.0.114/svn/CIA
 
 
 
-2016-05-18T03:34:15.872899Z
-97
+2016-12-26T02:51:15.767365Z
+2
 zhaoxh
 
 
+svn:special svn:externals svn:needs-lock
 
 
 
@@ -23,76 +24,7 @@ zhaoxh
 
 
 
-
-a61db3fd-7330-dd42-949a-cc00ac101f03
-
-vjs.svg
-file
-
-
-
-
-2016-08-04T06:05:18.494316Z
-0eb58bb31b855635ebd80e65d797e2c2
-2016-05-18T03:34:15.872899Z
-97
-zhaoxh
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-9874
-
-vjs.woff
-file
-
-
-
-
-2016-08-04T06:05:18.496316Z
-d2c9d1cc2171bd79a1bcf6ba14f01585
-2016-05-18T03:34:15.872899Z
-97
-zhaoxh
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4228
+b9d793e6-ab41-9f44-9942-63d97b25a992
 
 vjs.eot
 file
@@ -100,10 +32,10 @@ file
 
 
 
-2016-08-04T06:05:18.500316Z
+2016-12-26T02:55:20.149000Z
 f9c63739c4e5163ab00e257bd4e8a461
-2016-05-18T03:34:15.872899Z
-97
+2016-12-26T02:51:15.767365Z
+2
 zhaoxh
 has-props
 
@@ -128,16 +60,50 @@ has-props
 
 3536
 
+vjs.svg
+file
+
+
+
+
+2016-12-26T02:55:20.136000Z
+0eb58bb31b855635ebd80e65d797e2c2
+2016-12-26T02:51:15.767365Z
+2
+zhaoxh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9874
+
 vjs.ttf
 file
 
 
 
 
-2016-08-04T06:05:18.503316Z
+2016-12-26T02:55:20.156000Z
 600c44c3d87f2893277dd93bf02b3e50
-2016-05-18T03:34:15.872899Z
-97
+2016-12-26T02:51:15.767365Z
+2
 zhaoxh
 has-props
 
@@ -161,4 +127,38 @@ has-props
 
 
 3372
+
+vjs.woff
+file
+
+
+
+
+2016-12-26T02:55:20.142000Z
+d2c9d1cc2171bd79a1bcf6ba14f01585
+2016-12-26T02:51:15.767365Z
+2
+zhaoxh
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4228
 

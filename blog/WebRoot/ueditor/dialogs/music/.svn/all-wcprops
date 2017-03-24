@@ -1,23 +1,23 @@
 K 25
 svn:wc:ra_dav:version-url
-V 49
-/svn/OA/!svn/ver/97/WebRoot/ueditor/dialogs/music
-END
-music.html
-K 25
-svn:wc:ra_dav:version-url
-V 60
-/svn/OA/!svn/ver/97/WebRoot/ueditor/dialogs/music/music.html
-END
-music.css
-K 25
-svn:wc:ra_dav:version-url
-V 59
-/svn/OA/!svn/ver/97/WebRoot/ueditor/dialogs/music/music.css
+V 53
+/svn/CIA/!svn/ver/2/cia/WebRoot/ueditor/dialogs/music
 END
 music.js
 K 25
 svn:wc:ra_dav:version-url
-V 58
-/svn/OA/!svn/ver/97/WebRoot/ueditor/dialogs/music/music.js
+V 62
+/svn/CIA/!svn/ver/2/cia/WebRoot/ueditor/dialogs/music/music.js
+END
+music.html
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/CIA/!svn/ver/2/cia/WebRoot/ueditor/dialogs/music/music.html
+END
+music.css
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/CIA/!svn/ver/2/cia/WebRoot/ueditor/dialogs/music/music.css
 END
