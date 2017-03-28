@@ -18,6 +18,7 @@ public class User implements Serializable {
 	private String password; // 密码
 	private String createTime; // 创建时间
 	private String updateTime; // 修改时间
+	private String status; //1.有效 0.禁止登录
 	
 	public String getCreateTime() {
 		return createTime;
@@ -66,7 +67,13 @@ public class User implements Serializable {
 	}public void setJob(String job) {
 		this.job = job;
 	}
-
+	
+	public String getStatus() {
+		return status;
+	}public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	@Override
 	public String toString() {
 		return id + "\t" + name + "\t" + qq + "\t" + job;

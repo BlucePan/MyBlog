@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.dao.RoleDao">
+
+	<select id="queryRoleById" parameterType="String" resultType="com.blog.model.Role">
+		select * from role where id=#{id}
+	</select>
+
+	<select id="queryEntity" parameterType="com.blog.model.Role"
+		resultType="com.blog.model.Role">
+		select * from role where 1 = 1
+		<if test="name != null and name != ''">
+			and account = #{name}
+		</if>
+	</select>
+
+	<insert id="addEntity" parameterType="com.blog.model.User">
+		insert into role
+		(
+		id,account,password,name,qq,job,createTime,updateTime
+		) values
+		(
+		#{id},#{account},#{password},#{name},#{qq},#{job},now(),now()
+		)
+	</insert>
+	<select id="queryAll" parameterType="com.blog.model.User"
+		resultType="com.blog.model.User">
+		select * from user where 1 = 1
+		<if test="name != null and name != ''">
+			and name = #{userTypeId}
+		</if>
+	</select>
+
+	<delete id="deleteEntity" parameterType="string">
+		DELETE FROM
+		user WHERE id
+		= #{id}
+	</delete>
+
+	<update id="editEntity" parameterType="com.blog.model.User">
+		UPDATE user set updateTime=now()
+		<if test="account != null and account != ''">
+			,account = #{account}
+		</if>
+		<if test="name != null and name != ''">
+			,name = #{name}
+		</if>
+		<if test="password != null and password != ''">
+			,password = #{password}
+		</if>
+		WHERE id = #{id}
+	</update>
+
+</mapper> 

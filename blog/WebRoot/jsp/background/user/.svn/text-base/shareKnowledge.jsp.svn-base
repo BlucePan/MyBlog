@@ -1,0 +1,27 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@include file="/jsp/common/common.jsp"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<title>${str.title }</title>
+<link href="${oa}/css/page.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="index">
+<div class="main-cont no-cont sharecont">
+  <div class="wbody">
+    <h1 id="title">${str.title }</h1>
+    <div id="ctime" class="infop">${str.createTime.substring(0,10) }<a href="${oa}" class="nsm">嘟嘟猫</a></div>
+    <div class="ctcont" id="content">${str.content }</div>
+  </div>
+  <div class="ad-img"><img src="${oa}/img/qcode.png"><p>扫一扫二维码关注</p></div>
+</div>
+</body>
+</html>

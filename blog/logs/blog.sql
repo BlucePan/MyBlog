@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2017-03-24 16:42:29
+Date: 2017-03-28 17:03:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -126,6 +126,11 @@ INSERT INTO `blog_menu` VALUES ('4e02403ba3dd40ed9797a7bfd93db605', 'sys_user_xt
 INSERT INTO `blog_menu` VALUES ('bd82bd1f2b2f4afd809e13c1270ca8d2', 'sys_user_ypgl', '音频管理', '', '', '1', '1', '8', '2017-03-21 16:10:24', '666666', '2017-03-22 10:12:08', '666666', '1', 'yes', '音频管理');
 INSERT INTO `blog_menu` VALUES ('1d5f0f415c3b4854929c6d03cebf672b', 'sys_user_spgl', '视频管理', '', '/voice/manage/videoList.html', '2', 'bd82bd1f2b2f4afd809e13c1270ca8d2', '9', '2017-03-22 10:09:59', '666666', '2017-03-22 14:23:01', '666666', '1', 'yes', '视频管理');
 INSERT INTO `blog_menu` VALUES ('e6224c7cd0dd40ebb5b7a3f3883b90a9', 'sys_user_yygl', '音乐管理', '', '', '2', 'bd82bd1f2b2f4afd809e13c1270ca8d2', '10', '2017-03-22 10:10:44', '666666', null, '666666', '1', 'yes', '音乐管理');
+INSERT INTO `blog_menu` VALUES ('b9e50a20c0484187a27e2f5cbd94eb74', 'sys_user_qxgl', '权限管理', '', '', '1', '1', '11', '2017-03-28 14:20:13', '666666', null, '666666', '1', 'yes', '');
+INSERT INTO `blog_menu` VALUES ('ac376c09a8a04fc0a5f11c23a9fb5893', 'sys_user_jslb', '角色列表', '', '', '2', 'b9e50a20c0484187a27e2f5cbd94eb74', '12', '2017-03-28 14:20:58', '666666', null, '666666', '1', 'yes', '');
+INSERT INTO `blog_menu` VALUES ('b8ac032e0cb046eea34c990a52991019', 'sys_user_jsfp', '角色分配', '', '', '2', 'b9e50a20c0484187a27e2f5cbd94eb74', '13', '2017-03-28 14:21:37', '666666', null, '666666', '1', 'yes', '');
+INSERT INTO `blog_menu` VALUES ('e457339f2da645a582425a51c88e14fb', 'sys_user_qxfp', '权限分配', '', '', '2', 'b9e50a20c0484187a27e2f5cbd94eb74', '14', '2017-03-28 14:22:12', '666666', null, '666666', '1', 'yes', '');
+INSERT INTO `blog_menu` VALUES ('4bc57e2831de4470b75388cf28b10617', 'sys_user_qxlb', '权限列表', '', '', '2', 'b9e50a20c0484187a27e2f5cbd94eb74', '15', '2017-03-28 14:22:43', '666666', null, '666666', '1', 'yes', '');
 
 -- ----------------------------
 -- Table structure for blog_music
@@ -177,6 +182,38 @@ INSERT INTO `blog_video` VALUES ('e371a326784f4df7bde24dd720411e0f', '测试视�
 INSERT INTO `blog_video` VALUES ('4cb17716272e4859aaaa0ab8169f78eb', '测试视频10', '201703/20170324153748_460.jpg', '<p><video class=\"edui-upload-video  vjs-default-skin video-js\" controls=\"\" preload=\"none\" width=\"420\" height=\"280\" src=\"/upload/video/20170323/1490253909414042832.mp4\" data-setup=\"{}\"><source src=\"/upload/video/20170323/1490253909414042832.mp4\" type=\"video/mp4\"/></video></p>', '666666', '2017-03-24 15:37:55', '2017-03-24 15:55:40', '0', '测试,花火', '0');
 
 -- ----------------------------
+-- Table structure for role
+-- ----------------------------
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE `role` (
+  `id` varchar(50) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL COMMENT '角色名称',
+  `createUserId` varchar(50) DEFAULT NULL,
+  `createTime` datetime DEFAULT NULL,
+  `updateTime` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of role
+-- ----------------------------
+INSERT INTO `role` VALUES ('111', '管理员', null, null, null);
+INSERT INTO `role` VALUES ('222', '普通用户', null, null, null);
+
+-- ----------------------------
+-- Table structure for role_permission
+-- ----------------------------
+DROP TABLE IF EXISTS `role_permission`;
+CREATE TABLE `role_permission` (
+  `id` varchar(225) DEFAULT NULL,
+  `rid` varchar(225) DEFAULT NULL,
+  `pid` varchar(255) DEFAULT NULL COMMENT '权限id(也就是菜单id)'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of role_permission
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
@@ -188,12 +225,31 @@ CREATE TABLE `user` (
   `qq` varchar(50) DEFAULT NULL,
   `job` varchar(50) DEFAULT NULL,
   `createTime` datetime DEFAULT NULL,
-  `updateTime` datetime DEFAULT NULL
+  `updateTime` datetime DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL COMMENT '1.有效 0.禁止登录'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('666666', 'root', '123456', '小盘子', '1548498126', 'Java工程师', null, '2017-03-10 10:05:34');
-INSERT INTO `user` VALUES ('555555', 'abc', null, '小花', null, null, '2017-03-10 09:55:59', '2017-03-10 09:55:59');
-INSERT INTO `user` VALUES ('444444', 'bcd', null, '小梅', null, null, '2017-03-10 09:56:43', '2017-03-10 09:56:43');
+INSERT INTO `user` VALUES ('666666', 'root', '123456', '小盘子', '1548498126', 'Java工程师', null, '2017-03-10 10:05:34', null);
+INSERT INTO `user` VALUES ('555555', 'abc', '123456', '小花', null, null, '2017-03-10 09:55:59', '2017-03-10 09:55:59', null);
+INSERT INTO `user` VALUES ('444444', 'bcd', '123456', '小梅', null, null, '2017-03-10 09:56:43', '2017-03-10 09:56:43', null);
+
+-- ----------------------------
+-- Table structure for user_role
+-- ----------------------------
+DROP TABLE IF EXISTS `user_role`;
+CREATE TABLE `user_role` (
+  `id` varchar(225) NOT NULL,
+  `uid` varchar(225) DEFAULT NULL COMMENT '用户id',
+  `rid` varchar(225) DEFAULT NULL COMMENT '角色id',
+  `createUserId` varchar(50) DEFAULT NULL,
+  `createTime` datetime DEFAULT NULL,
+  `updateTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of user_role
+-- ----------------------------
