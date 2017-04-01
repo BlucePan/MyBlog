@@ -14,4 +14,7 @@ public interface BlogMenuService {
 	  BlogMenu queryBlogMenuById(String id);
 	  void updateBlogMenu(BlogMenu menu);
 	  void deleteBlogMenu(String id);
+	  List<BlogMenu> queryBlogMenuByRoleId(String roleId); //获取当前角色所拥有的菜单权限
+	  List<BlogMenu> queryBlogMenuByUserId(String userId); //根据用户查权限
+
 }

@@ -11,6 +11,10 @@ public class Role implements Serializable {
 	private static final long serialVersionUID = -7268447341437887462L;	
 	private String id;
 	private String name;
+	private String createUserId;
+	private String createTime;
+	private String updateTime;
+	private String createUser;	
 	
 	public String getId() {
 		return id;
@@ -23,5 +27,31 @@ public class Role implements Serializable {
 	}public void setName(String name) {
 		this.name = name;
 	}
+	
+	public String getCreateUserId() {
+		return createUserId;
+	}public void setCreateUserId(String createUserId) {
+		this.createUserId = createUserId;
+	}
+	
+	public String getCreateTime() {
+		return createTime;
+	}public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+	
+	public String getUpdateTime() {
+		return updateTime;
+	}public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
+	
+	public String getCreateUser() {
+		return createUser;
+	}public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+	
+	
 
 }

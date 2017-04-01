@@ -62,7 +62,6 @@ public class UserController extends BaseController{
 	//后台登录页面
 	@RequestMapping("/admin.html")
 	public String login(HttpServletRequest request){
-		
 		//User user=(User) userService.queryUserById("666666");
 		String account = request.getParameter("account");
 		String password = request.getParameter("password");
@@ -84,12 +83,6 @@ public class UserController extends BaseController{
 		request.setAttribute("message", message);
 		return "background/login";
 	}
-	
-	
-	
-	
-	
-	
 	
 //后台访问页面	
 	@RequestMapping ("/index.html")
@@ -113,11 +106,8 @@ public class UserController extends BaseController{
 	public String left(Model model,HttpServletRequest request){
 		User user = getLoginUser(request);
 		if(user!=null){
-	
-				BlogMenu bMenu = new BlogMenu();
-				bMenu.setFlag("1");
 				try {
-				List<BlogMenu> list = blogMenuService.getAllMenuList(bMenu);
+				List<BlogMenu> list = blogMenuService.queryBlogMenuByUserId(user.getId());
 		
 					model.addAttribute("list", list);
 				} catch (Exception e) {
@@ -141,10 +131,7 @@ public class UserController extends BaseController{
 	{
 		return "background/framework/center";
 	}
-	
-	
-	
-	
+
 	//右边公共文章展示
 	@RequestMapping("/faceRightArticleList.html")
 	public String faceRightArticleList(HttpServletRequest request,Model model){
@@ -156,6 +143,9 @@ public class UserController extends BaseController{
 		  
 		return "face/faceRight";
 	}
+	
+	
+	
 	
 	
 }

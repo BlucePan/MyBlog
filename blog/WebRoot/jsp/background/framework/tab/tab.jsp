@@ -15,12 +15,13 @@
 </div>
 <div class="tiaochuan">
   <div class="tc-title">
-    <h3>待办事项</h3>
+    <h3>公告</h3>
     <span class="anniu">-</span></div>
-  <ul>  
-    <li><span>·</span><a href="#">全民经济人当月注册人数</a></li>
-    <li><span>·</span><a href="#">家装设计师当月注册人数</a></li>
-    <li><span>·</span><a href="#">客户当月的注册人数</a></li>
+  <ul>
+    <li><span>·</span><a href="#">说书唱戏劝人方</a></li>
+    <li><span>·</span><a href="#">三条大陆走中央</a></li>
+    <li><span>·</span><a href="#">善恶到头终有报</a></li>
+    <li><span>·</span><a href="#">人间正道是沧桑</a></li>
  </ul>
 </div>
 <script type="text/javascript">

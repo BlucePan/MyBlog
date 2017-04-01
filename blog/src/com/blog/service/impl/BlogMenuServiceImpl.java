@@ -52,4 +52,14 @@ public class BlogMenuServiceImpl implements BlogMenuService {
 		
 	}
 
+	@Override
+	public List<BlogMenu> queryBlogMenuByRoleId(String roleId) {
+		return bMenuDao.queryBlogMenuByRoleId(roleId);
+	}
+
+	@Override
+	public List<BlogMenu> queryBlogMenuByUserId(String userId) {
+		return bMenuDao.queryBlogMenuByUserId(userId);
+	}
+
 }

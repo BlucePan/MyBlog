@@ -246,7 +246,7 @@ public class BlogUtil{
 		public static List<String> removeSameItem(List<String> list) {
 			List<String> difList = new ArrayList<String>();
 			for (String t : list) {
-				if (t != null && !difList.contains(t)) {
+				if (t != null && !difList.contains(t) && !t.equals("1")) {
 					difList.add(t);
 				}
 			}

@@ -1,6 +1,7 @@
 package com.blog.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -11,7 +12,9 @@ import org.springframework.stereotype.Service;
 
 import com.blog.dao.UserDao;
 import com.blog.model.User;
+import com.blog.model.UserAllRole;
 import com.blog.service.UserService;
+import com.blog.util.PageView;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -79,6 +82,30 @@ public class UserServiceImpl implements UserService {
 	public String getTimestamp(String param) {
 		   Long timestamp = System.currentTimeMillis();
 	        return timestamp.toString();
+	}
+
+
+
+	@Override
+	public PageView findByPage(PageView page, Map map) {
+		page.setTotalCount(userDao.getCount(map));
+		map.put("start", page.getStart());
+		map.put("max",page.getPageSize());
+		 List<UserAllRole>  userAllRoleList=userDao.findByPage(map);
+		 page.setItems(userAllRoleList);
+		return page;
+	}
+
+
+
+	@Override
+	public PageView findUserByPage(PageView page, Map map) {
+		page.setTotalCount(userDao.getUserCount(map));
+		map.put("start", page.getStart());
+		map.put("max",page.getPageSize());
+		 List<User>  userList=userDao.findUserByPage(map);
+		 page.setItems(userList);
+		return page;
 	}
 
 }

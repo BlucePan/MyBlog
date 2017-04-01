@@ -110,4 +110,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<delete id="deleteEntity" parameterType="String">
 		delete from blog_menu where id=#{id}
 	</delete>
+	
+		<!-- 获取当前角色所拥有的菜单权限 -->
+	<select id="queryBlogMenuByRoleId" parameterType="String" resultType="com.blog.model.BlogMenu">
+	select * from blog_menu where id in
+	(select pid from  role_permission where rid=
+	(select id from  role where id=#{roleId} ))
+	
+	<!--   select p.* from blog_menu p ,role_permission rp
+	where rp.rid = #{roleId} and p.id=rp.pid -->
+	</select>
+	
+	<!-- 前台根据用户id查权限 -->
+	<select id="queryBlogMenuByUserId" parameterType="String" resultType="com.blog.model.BlogMenu">
+	select p.*
+	from blog_menu p , role_permission rp, user_role ur 
+	where uid = #{userId} and p.id = rp.pid and rp.rid = ur.rid	
+	</select>
+	
 </mapper> 

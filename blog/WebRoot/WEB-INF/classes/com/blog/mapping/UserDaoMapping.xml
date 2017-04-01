@@ -4,6 +4,62 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.blog.dao.UserDao">
 
+
+	 <!-- 分页SQL语句 -->
+	 <!-- group_concat(name)函数,根据相同的name组合起来 -->
+	<select id="findByPage" parameterType="java.util.HashMap" resultType="com.blog.model.UserAllRole">
+	    select u.*,group_concat(r.name) roleNames,group_concat(r.id) roleIds from 
+           user u LEFT JOIN user_role ur ON u.id=ur.uid LEFT JOIN role r on r.id=ur.rid 
+        <where>
+		<if test="findContent != null and findContent !='' " >
+        and (
+        u.name like   '%${findContent}%' or
+        u.account like  '%${findContent}%'
+        )
+      </if>
+      </where>
+        group by u.id 
+		ORDER BY createTime desc limit #{start}, #{max}
+	</select> 
+
+	<!-- 取得记录的总数 -->
+	<select id="getCount" parameterType="com.blog.model.User" resultType="int">
+		select count(id) from user u where 1 = 1
+		<if test="findContent != null and findContent !='' " >
+         and (
+        u.name like   '%${findContent}%' or
+        u.account like  '%${findContent}%'
+        )
+      </if>
+	</select>
+	
+	 <!-- 查询用户表分页SQL语句 -->
+	<select id="findUserByPage" parameterType="java.util.HashMap" resultType="com.blog.model.User">
+	   select * from user  where 1 = 1
+		<if test="name != null and name != ''">
+		and name like '%${name}%'
+		</if>
+		<if test="account != null and account != ''">
+		and account like '%${account}%'
+		</if>
+		ORDER BY createTime desc limit #{start}, #{max}
+	</select> 
+	<!--查询用户表 取得记录的总数 -->
+	 <select id="getUserCount" parameterType="com.blog.model.User" resultType="int">
+		select count(id) from user where 1 = 1
+		<if test="name != null and name != ''">
+		and name like '%${name}%'
+		</if>
+		<if test="account != null and account != ''">
+		and account like '%${account}%'
+		</if>
+		ORDER BY createTime desc 
+	</select>
+	
+	
+	
+	
+
 	<select id="queryUserById" parameterType="String" resultType="com.blog.model.User">
 		select * from user where id=#{id}
 	</select>
@@ -22,10 +78,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="addEntity" parameterType="com.blog.model.User">
 		insert into user
 		(
-		id,account,password,name,qq,job,createTime,updateTime
+		id,account,password,name,qq,job,createTime,updateTime,status
 		) values
 		(
-		#{id},#{account},#{password},#{name},#{qq},#{job},now(),now()
+		#{id},#{account},#{password},#{name},#{qq},#{job},now(),now(),'1'
 		)
 	</insert>
 	<select id="queryAll" parameterType="com.blog.model.User"

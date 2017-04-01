@@ -14,62 +14,33 @@
 <body>
 <div class="maincont">
   <form name="listForm" action="" method="post">
-    <div class="operation customer"> <span>标题</span>
-      <input type="text" name="title" placeholder="请输入标题" value="${param.title}"/>
-      
-          <div class="sel_wrap">        
-         <label>请选择类型</label>
-       <select class="form-control">
-            <c:forEach var="a" items="${articleTypeList}">
-   			<option >${a.articleName}</option>
-   			</c:forEach>
-    </select>
-    <select id="type" name="type" class="form-control">
-   			<option  value="">请选择类型</option>
-   			 <c:forEach var="a" items="${articleTypeList}">
-   			<option  value="${a.id}"  <c:if test="${param.type==a.id}"> selected="selected" </c:if>>${a.articleName}</option>
-   			</c:forEach>
-   	</select>
-  </div>
-      
-      
-      <a href="#" class="btn goods" onclick="query()">查询</a> <a href="${blog}/article/manage/addToArticle.html" class="btn goods">新增</a> </div>
+    <div class="operation customer"> <span>账户</span>
+      <input type="text" name="account" placeholder="请输入帐号" value="${param.account}"/>
+      <span>姓名</span>
+      <input type="text" name="name" placeholder="请输入姓名" value="${param.name}"/>
+      <a href="#" class="btn goods" onclick="query()">查询</a> <a href="${blog}/role/manage/addToUser.html" class="btn goods">新增</a> </div>
   </form>
   <div class="aotable">
     <table class="table" cellpadding="0" cellspacing="0">
       <thead>
         <tr>
-          <th>知识标题</th>
+          <th>账户</th>
+          <th>姓名</th>
           <th>创建时间</th>
-          <th>预览图</th>
-          <th>所属类型</th>
-          <th>发布人</th>
+          <th>登录状态</th>
           <th>操作</th>
         </tr>
       </thead>
       <tbody>
-        <c:forEach var="r" items="${list}">
+        <c:forEach var="u" items="${list}">
           <tr>
-            <td>${r.title}</td>
-            <td ><fmt:parseDate value='${r.createTime}' var="yearMonth" pattern="yyyy-MM-dd HH:mm:ss"/>
+          	<td>${u.account}</td>
+            <td>${u.name}</td>
+            <td ><fmt:parseDate value='${u.createTime}' var="yearMonth" pattern="yyyy-MM-dd HH:mm:ss"/>
               <fmt:formatDate value="${yearMonth}" pattern="yyyy-MM-dd HH:mm" /></td>
-            <td><div class="gallery">
-                <ul>
-                  <c:if test="${not empty r.image}">
-                    <c:forEach items="${fn:split(r.image,',')}"  var="ig">
-                      <li><a href="/imageService/uploadFiles/${ig}"><img src="/imageService/uploadFiles/${ig}"/></a></li>
-                    </c:forEach>
-                  </c:if>
-                </ul>
-              </div></td>
-            <td>${r.articleName}</td>
-            <td>${r.createUser}</td>
+            <td>${u.status==1?'有效':'禁止'}</td>
             <td>
-            <c:choose>
-            <c:when test="${r.top == 1}"><a href="${blog}/article/manage/delTopArticle.html?id=${r.id}" class="btn goods">取消置顶</a></c:when>
-            <c:otherwise><a href="${blog}/article/manage/editTopArticle.html?id=${r.id}" class="btn goods">设为置顶</a></c:otherwise>
-            </c:choose>
-            <a href="${blog}/article/manage/articleDetail.html?id=${r.id}" class="btn goods">查看详情</a> <a href="javascript:del('${r.id}')" class="btn danger modelshow">删除</a></td>
+            <a href="${blog}/role/manage/userDetail.html?id=${u.id}" class="btn goods">查看详情</a><a href="javascript:del('${u.id}')" class="btn danger modelshow">删除</a></td>
           </tr>
         </c:forEach>
       </tbody>
@@ -86,7 +57,7 @@
 <script type="text/javascript">
 
     function query(){
-        document.listForm.action = "${blog}/article/manage/articleList.html";
+        document.listForm.action = "${blog}/role/manage/userList.html";
 		document.listForm.submit();
 	}
 
@@ -97,7 +68,7 @@
 			data : {
 				id : id
 			},
-			url : "${blog}/article/manage/delArticle.html",
+			url : "${blog}/role/manage/delUser.html",
 			success : function(data) {
 				var obj = eval("("+data+")");
 				if(obj.status == '100'){

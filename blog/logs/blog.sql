@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : blog
+Source Server         : amall_test
 Source Server Version : 50520
 Source Host           : localhost:3306
 Source Database       : blog
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2017-03-28 17:03:42
+Date: 2017-04-01 14:35:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -118,19 +118,17 @@ CREATE TABLE `blog_menu` (
 -- ----------------------------
 INSERT INTO `blog_menu` VALUES ('1b50392b3efa4fc08fd770b31ee4f4c9', 'sys_user_xtgl', '系统管理', null, null, '1', '1', '1', '2016-10-17 13:39:34', '666666', '2016-10-17 13:39:45', '666666', '1', 'yes', '系统管理，是管理整个项目的架构，风格极其他操作');
 INSERT INTO `blog_menu` VALUES ('1b50392b3efa4fc08fd770b31ee4f4c3', 'sys_user_cdgl', '菜单管理', '201610/20161019132253_570.png', '/menu/menuList.html', '2', '1b50392b3efa4fc08fd770b31ee4f4c9', '2', '2016-10-17 13:42:16', '666666', '2016-10-19 13:22:55', '666666', '1', 'yes', '菜单管理，添加系统菜单');
-INSERT INTO `blog_menu` VALUES ('1b50392b3efa4fc08fd770b31ee4f4c8', 'sys_user_lbgl', '轮播图管理', null, '/main/imgList.html', '2', '1b50392b3efa4fc08fd770b31ee4f4c9', '3', '2016-10-17 13:44:20', '666666', '2016-10-17 13:44:25', '666666', '1', 'yes', '管理前台展示的轮播图效果图片');
+INSERT INTO `blog_menu` VALUES ('1b50392b3efa4fc08fd770b31ee4f4c8', 'sys_user_lbgl', '轮播图管理', null, '/main/imgList.html', '2', '1b50392b3efa4fc08fd770b31ee4f4c9', '3', '2016-10-17 13:44:20', '666666', '2017-03-31 14:41:01', '666666', '1', 'yes', '管理前台展示的轮播图效果图片');
 INSERT INTO `blog_menu` VALUES ('40b9cc507bfe44b081a68b544095602b', 'sys_user_wzgl', '文章管理', '', '', '1', '1', '4', '2016-10-18 11:02:24', '666666', null, null, '1', 'yes', '文章管理可以的');
 INSERT INTO `blog_menu` VALUES ('486d855f130345b4a3b59042bb8f1749', 'sys_user_flgl', '博客管理', '201610/20161019133037_885.png', '/article/manage/articleList.html', '2', '40b9cc507bfe44b081a68b544095602b', '5', '2016-10-19 13:30:52', '666666', '2017-03-09 14:15:25', '666666', '1', 'yes', '文章分类等相关操作');
-INSERT INTO `blog_menu` VALUES ('b202615d0b1e4140955cea7132727f57', 'sys_user_yhgl', '用户管理', '', '', '2', '1b50392b3efa4fc08fd770b31ee4f4c9', '6', '2016-10-21 10:52:01', '666666', '2017-03-22 10:14:12', '666666', '1', 'yes', '');
+INSERT INTO `blog_menu` VALUES ('b202615d0b1e4140955cea7132727f57', 'sys_user_yhgl', '用户管理', '', '/role/manage/userList.html', '2', '1b50392b3efa4fc08fd770b31ee4f4c9', '6', '2016-10-21 10:52:01', '666666', '2017-03-31 17:33:38', '666666', '1', 'yes', '');
 INSERT INTO `blog_menu` VALUES ('4e02403ba3dd40ed9797a7bfd93db605', 'sys_user_xtsb', '闲谈随笔', '201703/20170317111115_844.jpg', '/jottings/manage/jottingsList.html', '2', '40b9cc507bfe44b081a68b544095602b', '7', '2017-03-17 11:11:42', '666666', '2017-03-17 11:12:16', '666666', '1', 'yes', '闲谈随笔');
 INSERT INTO `blog_menu` VALUES ('bd82bd1f2b2f4afd809e13c1270ca8d2', 'sys_user_ypgl', '音频管理', '', '', '1', '1', '8', '2017-03-21 16:10:24', '666666', '2017-03-22 10:12:08', '666666', '1', 'yes', '音频管理');
 INSERT INTO `blog_menu` VALUES ('1d5f0f415c3b4854929c6d03cebf672b', 'sys_user_spgl', '视频管理', '', '/voice/manage/videoList.html', '2', 'bd82bd1f2b2f4afd809e13c1270ca8d2', '9', '2017-03-22 10:09:59', '666666', '2017-03-22 14:23:01', '666666', '1', 'yes', '视频管理');
 INSERT INTO `blog_menu` VALUES ('e6224c7cd0dd40ebb5b7a3f3883b90a9', 'sys_user_yygl', '音乐管理', '', '', '2', 'bd82bd1f2b2f4afd809e13c1270ca8d2', '10', '2017-03-22 10:10:44', '666666', null, '666666', '1', 'yes', '音乐管理');
 INSERT INTO `blog_menu` VALUES ('b9e50a20c0484187a27e2f5cbd94eb74', 'sys_user_qxgl', '权限管理', '', '', '1', '1', '11', '2017-03-28 14:20:13', '666666', null, '666666', '1', 'yes', '');
-INSERT INTO `blog_menu` VALUES ('ac376c09a8a04fc0a5f11c23a9fb5893', 'sys_user_jslb', '角色列表', '', '', '2', 'b9e50a20c0484187a27e2f5cbd94eb74', '12', '2017-03-28 14:20:58', '666666', null, '666666', '1', 'yes', '');
-INSERT INTO `blog_menu` VALUES ('b8ac032e0cb046eea34c990a52991019', 'sys_user_jsfp', '角色分配', '', '', '2', 'b9e50a20c0484187a27e2f5cbd94eb74', '13', '2017-03-28 14:21:37', '666666', null, '666666', '1', 'yes', '');
-INSERT INTO `blog_menu` VALUES ('e457339f2da645a582425a51c88e14fb', 'sys_user_qxfp', '权限分配', '', '', '2', 'b9e50a20c0484187a27e2f5cbd94eb74', '14', '2017-03-28 14:22:12', '666666', null, '666666', '1', 'yes', '');
-INSERT INTO `blog_menu` VALUES ('4bc57e2831de4470b75388cf28b10617', 'sys_user_qxlb', '权限列表', '', '', '2', 'b9e50a20c0484187a27e2f5cbd94eb74', '15', '2017-03-28 14:22:43', '666666', null, '666666', '1', 'yes', '');
+INSERT INTO `blog_menu` VALUES ('ac376c09a8a04fc0a5f11c23a9fb5893', 'sys_user_jslb', '角色列表', '', '/role/manage/roleList.html', '2', 'b9e50a20c0484187a27e2f5cbd94eb74', '12', '2017-03-28 14:20:58', '666666', '2017-03-30 11:17:30', '666666', '1', 'yes', '');
+INSERT INTO `blog_menu` VALUES ('b8ac032e0cb046eea34c990a52991019', 'sys_user_jsfp', '用户角色分配', '', '/role/manage/userAllRoleList.html', '2', 'b9e50a20c0484187a27e2f5cbd94eb74', '13', '2017-03-28 14:21:37', '666666', '2017-03-30 15:06:14', '666666', '1', 'yes', '');
 
 -- ----------------------------
 -- Table structure for blog_music
@@ -196,8 +194,10 @@ CREATE TABLE `role` (
 -- ----------------------------
 -- Records of role
 -- ----------------------------
-INSERT INTO `role` VALUES ('111', '管理员', null, null, null);
-INSERT INTO `role` VALUES ('222', '普通用户', null, null, null);
+INSERT INTO `role` VALUES ('111', '普通用户', null, null, '2017-03-31 16:46:14');
+INSERT INTO `role` VALUES ('222', '游客', null, null, '2017-03-31 16:46:22');
+INSERT INTO `role` VALUES ('333', '管理员', '666666', '2017-03-30 13:15:06', '2017-03-31 16:46:00');
+INSERT INTO `role` VALUES ('26683c5eeb594363b155d134ee6c5b21', '超级管理员', '666666', '2017-03-30 13:16:37', '2017-03-31 16:45:49');
 
 -- ----------------------------
 -- Table structure for role_permission
@@ -212,6 +212,39 @@ CREATE TABLE `role_permission` (
 -- ----------------------------
 -- Records of role_permission
 -- ----------------------------
+INSERT INTO `role_permission` VALUES ('d90438c2712845c5a434cc2356b42582', '333', '1b50392b3efa4fc08fd770b31ee4f4c9');
+INSERT INTO `role_permission` VALUES ('07832584462d45f48f98d1d119c972b2', '333', '1b50392b3efa4fc08fd770b31ee4f4c3');
+INSERT INTO `role_permission` VALUES ('f6f70a3e13204be992522a7bca7a79d9', '333', '1b50392b3efa4fc08fd770b31ee4f4c8');
+INSERT INTO `role_permission` VALUES ('49d1c67924514ebd8dfd60495e7475b7', '333', 'b202615d0b1e4140955cea7132727f57');
+INSERT INTO `role_permission` VALUES ('d207740fbc744327a631c61a02b21a24', '333', 'b9e50a20c0484187a27e2f5cbd94eb74');
+INSERT INTO `role_permission` VALUES ('ce1285ca36cc4cceb8e109648f7b648d', '333', 'ac376c09a8a04fc0a5f11c23a9fb5893');
+INSERT INTO `role_permission` VALUES ('a15139632662488d8a28ed3b439a3051', '333', 'b8ac032e0cb046eea34c990a52991019');
+INSERT INTO `role_permission` VALUES ('b2fe32faf447488a9cc7538a9dfa84f2', '333', '40b9cc507bfe44b081a68b544095602b');
+INSERT INTO `role_permission` VALUES ('27592ef51f1d47c987cde9046aeb0e35', '333', '486d855f130345b4a3b59042bb8f1749');
+INSERT INTO `role_permission` VALUES ('b950b79b822344cc8e1e10d96a12abc4', '333', '4e02403ba3dd40ed9797a7bfd93db605');
+INSERT INTO `role_permission` VALUES ('cde580d8e2b04bef863a262678159b01', '111', '1b50392b3efa4fc08fd770b31ee4f4c9');
+INSERT INTO `role_permission` VALUES ('56354f11f74f43bfbb66f28dadfce47d', '111', '1b50392b3efa4fc08fd770b31ee4f4c3');
+INSERT INTO `role_permission` VALUES ('77b3f3101f2441859f8638158971311a', '111', '1b50392b3efa4fc08fd770b31ee4f4c8');
+INSERT INTO `role_permission` VALUES ('369c0808f7e348b8873cf51ffd44e4f8', '111', 'b202615d0b1e4140955cea7132727f57');
+INSERT INTO `role_permission` VALUES ('0e387e20ca4a475aa48c6203a227c65a', '111', 'b9e50a20c0484187a27e2f5cbd94eb74');
+INSERT INTO `role_permission` VALUES ('a61818219d8a48f4ba187ec7fb39134c', '111', 'ac376c09a8a04fc0a5f11c23a9fb5893');
+INSERT INTO `role_permission` VALUES ('af38837047454a3b9f9ed5d65ee188e5', '111', 'b8ac032e0cb046eea34c990a52991019');
+INSERT INTO `role_permission` VALUES ('eb27670b22e34d849ae6ffbca55d696d', '222', 'bd82bd1f2b2f4afd809e13c1270ca8d2');
+INSERT INTO `role_permission` VALUES ('cdac47ba7d1a4b44b9803638347371c3', '222', 'e6224c7cd0dd40ebb5b7a3f3883b90a9');
+INSERT INTO `role_permission` VALUES ('3d7544e957b84ff7aae69881cfacf3f7', '222', '1d5f0f415c3b4854929c6d03cebf672b');
+INSERT INTO `role_permission` VALUES ('32cfe2da94cd4f77b01795ccdb3daebb', '26683c5eeb594363b155d134ee6c5b21', '1b50392b3efa4fc08fd770b31ee4f4c9');
+INSERT INTO `role_permission` VALUES ('6be8f883088041538db06ac48311168c', '26683c5eeb594363b155d134ee6c5b21', '1b50392b3efa4fc08fd770b31ee4f4c3');
+INSERT INTO `role_permission` VALUES ('a6c23a4a032146ed8bc8915f5d5d6050', '26683c5eeb594363b155d134ee6c5b21', '1b50392b3efa4fc08fd770b31ee4f4c8');
+INSERT INTO `role_permission` VALUES ('74c14eacbf2542749d5cd4bc1b077a1f', '26683c5eeb594363b155d134ee6c5b21', 'b202615d0b1e4140955cea7132727f57');
+INSERT INTO `role_permission` VALUES ('4acb674d3cf14be4b32dc71ed36b8c93', '26683c5eeb594363b155d134ee6c5b21', 'b9e50a20c0484187a27e2f5cbd94eb74');
+INSERT INTO `role_permission` VALUES ('c48fa1e5505246b5b369e4f02d516263', '26683c5eeb594363b155d134ee6c5b21', 'ac376c09a8a04fc0a5f11c23a9fb5893');
+INSERT INTO `role_permission` VALUES ('6957209b61ed4294b93059f8177ad58c', '26683c5eeb594363b155d134ee6c5b21', 'b8ac032e0cb046eea34c990a52991019');
+INSERT INTO `role_permission` VALUES ('8c647d7002694213a2559a4fb0851917', '26683c5eeb594363b155d134ee6c5b21', '40b9cc507bfe44b081a68b544095602b');
+INSERT INTO `role_permission` VALUES ('3ca270ca10944fd98314d60d95803ff2', '26683c5eeb594363b155d134ee6c5b21', '486d855f130345b4a3b59042bb8f1749');
+INSERT INTO `role_permission` VALUES ('3bcf35c50cf84ca3a0cab865bff30f69', '26683c5eeb594363b155d134ee6c5b21', '4e02403ba3dd40ed9797a7bfd93db605');
+INSERT INTO `role_permission` VALUES ('6dca61a510404223a7c3449b2a771c51', '26683c5eeb594363b155d134ee6c5b21', 'bd82bd1f2b2f4afd809e13c1270ca8d2');
+INSERT INTO `role_permission` VALUES ('e20e7b2a22a54074b6c6ca4c266d8960', '26683c5eeb594363b155d134ee6c5b21', 'e6224c7cd0dd40ebb5b7a3f3883b90a9');
+INSERT INTO `role_permission` VALUES ('5b0a0257980647c795c79eac2019ac4a', '26683c5eeb594363b155d134ee6c5b21', '1d5f0f415c3b4854929c6d03cebf672b');
 
 -- ----------------------------
 -- Table structure for user
@@ -232,9 +265,10 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('666666', 'root', '123456', '小盘子', '1548498126', 'Java工程师', null, '2017-03-10 10:05:34', null);
-INSERT INTO `user` VALUES ('555555', 'abc', '123456', '小花', null, null, '2017-03-10 09:55:59', '2017-03-10 09:55:59', null);
-INSERT INTO `user` VALUES ('444444', 'bcd', '123456', '小梅', null, null, '2017-03-10 09:56:43', '2017-03-10 09:56:43', null);
+INSERT INTO `user` VALUES ('666666', 'root', '123456', '小盘子', '1548498126', 'Java工程师', '2017-03-31 08:51:32', '2017-03-10 10:05:34', '1');
+INSERT INTO `user` VALUES ('555555', 'abc', '123456', '小花', null, null, '2017-03-10 09:55:59', '2017-03-10 09:55:59', '1');
+INSERT INTO `user` VALUES ('444444', 'bcd', '123456', '小梅', null, null, '2017-03-10 09:56:43', '2017-03-10 09:56:43', '1');
+INSERT INTO `user` VALUES ('88962d5ca9404036831dfcde9f747b32', '15527668722', '123456', '测试1', null, null, '2017-04-01 08:58:05', '2017-04-01 08:58:05', '1');
 
 -- ----------------------------
 -- Table structure for user_role
@@ -244,12 +278,14 @@ CREATE TABLE `user_role` (
   `id` varchar(225) NOT NULL,
   `uid` varchar(225) DEFAULT NULL COMMENT '用户id',
   `rid` varchar(225) DEFAULT NULL COMMENT '角色id',
-  `createUserId` varchar(50) DEFAULT NULL,
-  `createTime` datetime DEFAULT NULL,
-  `updateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_role
 -- ----------------------------
+INSERT INTO `user_role` VALUES ('2176af8ff6da495995aa34cb53eb8c2b', '555555', '222');
+INSERT INTO `user_role` VALUES ('502b7d8f8c2b48dc9533a1719857f106', '444444', '333');
+INSERT INTO `user_role` VALUES ('7a9e0ee062b14cf8ae98d5bf54431be7', '444444', '111');
+INSERT INTO `user_role` VALUES ('97b4aabc5866414f947e46c802019e71', '444444', '222');
+INSERT INTO `user_role` VALUES ('b4d4bb9f48ab421f903c4b22f42db852', '666666', '26683c5eeb594363b155d134ee6c5b21');

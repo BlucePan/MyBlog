@@ -1,6 +1,7 @@
 package com.blog.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 用户表
@@ -18,7 +19,7 @@ public class User implements Serializable {
 	private String password; // 密码
 	private String createTime; // 创建时间
 	private String updateTime; // 修改时间
-	private String status; //1.有效 0.禁止登录
+	private String status; //1.有效 0.禁止登录	
 	
 	public String getCreateTime() {
 		return createTime;
