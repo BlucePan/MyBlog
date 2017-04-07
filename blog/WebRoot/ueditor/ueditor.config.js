@@ -45,7 +45,7 @@
             'background', '|','horizontal', 'date', 'time', 'spechars', '|',
             'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 
             'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 
-            'splittocells', 'splittorows', 'splittocols', 'charts', '|','print', 'preview'
+            'splittocells', 'splittorows', 'splittocols', 'charts', '|','print', 'preview','fullscreen'
         ]]
         //当鼠标放在工具栏上时显示的tooltip提示,留空支持自动多语言配置，否则以配置值为准
         //,labelMap:{
@@ -102,7 +102,7 @@
         //自动保存间隔时间， 单位ms
         //,saveInterval: 500
 
-        //,fullscreen : false //是否开启初始化时即全屏，默认关闭
+        //,fullscreen : true //是否开启初始化时即全屏，默认关闭
 
         //,imagePopup:true      //图片操作的浮层开关，默认打开
 
