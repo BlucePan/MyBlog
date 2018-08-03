@@ -1,6 +1,8 @@
 package com.blog.shiro;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -22,6 +24,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
 import com.blog.model.User;
+import com.blog.service.RoleService;
 import com.blog.service.UserService;
 import com.blog.util.PageData;
 
@@ -33,9 +36,11 @@ import com.blog.util.PageData;
  */
 public class MyShiroRealm extends AuthorizingRealm {
 	private static final Logger log=Logger.getLogger(MyShiroRealm.class);
+	
 	@Resource
-	private UserService userService;
-
+	private RoleService roleService;
+	@Resource
+    private UserService userService;
     /* 为当前登录的Subject授予角色和权限 
     * @see 经测试:本例中该方法的调用时机为需授权资源被访问时 
     * @see 经测试:并且每次访问需授权资源时都会执行该方法中的逻辑,这表明本例中默认并未启用AuthorizationCache 
@@ -45,16 +50,18 @@ public class MyShiroRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		log.info(">>>>>>>>>>>授予用户角色与权限");
-		Set<String> roleNames=new HashSet<String>();
-		Set<String> permissions=new HashSet<String>();
-		
-		
-		
-		roleNames.add("root"); //添加角色
-		permissions.add("newPage.html"); //添加权限
+		User user= (User) SecurityUtils.getSubject().getPrincipal();
+		//获取用户的角色
+		Set<String> roleNames=roleService.queryUserRole(user.getId());
+		//获取用户所有的权限
+		Map map=new HashMap();
+		map.put("userId", user.getId());
+		Set<String> permissions=roleService.loadUserResources(map);
+		log.info("该用户拥有的权限个数为："+permissions.size());
 		// 权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
-		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roleNames);  
-		info.setStringPermissions(permissions);
+		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(); 
+		info.addRoles(roleNames); //添加角色
+		info.setStringPermissions(permissions); //添加权限
 		return info;
 	}
 	 /** 

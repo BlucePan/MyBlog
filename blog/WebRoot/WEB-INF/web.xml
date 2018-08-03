@@ -10,7 +10,18 @@
         <param-value>classpath:spring-mybatis.xml,classpath:spring-shiro.xml</param-value>  
     </context-param>  
     
-<!--     配置shiro过滤器 -->
+    <!-- Spring MVC servlet -->  
+    <servlet>  
+        <servlet-name>SpringMVC</servlet-name>  
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  
+        <init-param>  
+            <param-name>contextConfigLocation</param-name>  
+            <param-value>classpath:spring-mvc.xml</param-value>
+        </init-param>  
+        <load-on-startup>1</load-on-startup>  
+    </servlet>  
+    
+    <!-- 配置shiro过滤器 -->
     <filter>
     	<filter-name>shiroFilter</filter-name>
     	<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -77,16 +88,6 @@
 		<param-name>webAppRootKey</param-name>
 		<param-value>webName.root</param-value>
    </context-param>
-    <!-- Spring MVC servlet -->  
-    <servlet>  
-        <servlet-name>SpringMVC</servlet-name>  
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  
-        <init-param>  
-            <param-name>contextConfigLocation</param-name>  
-            <param-value>classpath:spring-mvc.xml</param-value>
-        </init-param>  
-        <load-on-startup>1</load-on-startup>  
-    </servlet>  
 
     <welcome-file-list>  
         <welcome-file>/user/main.html</welcome-file>  

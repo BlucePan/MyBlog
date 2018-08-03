@@ -1,5 +1,9 @@
 package com.blog.dao;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import com.blog.BaseDao;
 import com.blog.model.Role;
 import com.blog.model.RolePermission;
@@ -16,5 +20,9 @@ public interface RoleDao extends BaseDao {
 	void delRolePermissionByRoleId(String roleId); //根据角色id删除角色所拥有的权限
 	
 	void addRolePermission(RolePermission rPermission); //增加角色权限表
+	
+	Set<String> queryUserRole(String userid); //获取当前用户的所有角色
+	Set<String> loadUserResources(Map map); //获取用户所有的权限
+	
 
 }

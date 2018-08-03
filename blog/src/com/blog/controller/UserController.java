@@ -48,7 +48,7 @@ public class UserController extends BaseController{
 		if (BlogUtil.isNotBlank(account)) {	
 		   User user=userService.queryUser(new User(account));
 		   if(user!=null){
-			 if(!user.getPassword().equals(DecriptCrmUtil.MD5(password))){
+			 if(!user.getPassword().equals(password)){
 				message="密码输入错误，请重试";
 			 }else{//登录成功以shiro来维护用户信息
 				 String username=account;
@@ -90,6 +90,13 @@ public class UserController extends BaseController{
 		}
 		return "background/login";
 	}
+	
+	 //后台访问页面	
+		@RequestMapping ("/error.html")
+		public String error(Model model,HttpServletRequest request){
+		
+			return "background/error";
+		}
 	
 	//跳往主页面
 	@RequestMapping("/main.html")

@@ -2,6 +2,7 @@ package com.blog.service.impl;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -80,6 +81,17 @@ public class RoleServiceImpl implements RoleService {
 			}
 		}
 		
+	}
+
+	@Override
+	public Set<String> queryUserRole(String userid) {
+		
+		return roleDao.queryUserRole(userid);
+	}
+
+	@Override
+	public Set<String> loadUserResources(Map map) {
+		return roleDao.loadUserResources(map);
 	}
 
 }

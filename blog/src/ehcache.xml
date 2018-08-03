@@ -28,7 +28,7 @@
             LRU ，Least Recently Used(最近最少使用). (ehcache 默认值).缓存的元素有一个时间戳，当缓存容量满了，而又需要腾出地方来缓存新的元素的时候，那么现有缓存元素中时间戳离当前时间最远的元素将被清出缓存。  
 -->  
     <!-- 指定一个文件目录，当EhCache把数据写到硬盘上时，将把数据写到这个文件目录下 -->    
-    <diskStore path="java.io.tmpdir"/>
+    <diskStore path="java.io.tmpdir/ehcache"/>
 
    <!-- 设定缓存的默认数据过期策略 -->
     <defaultCache

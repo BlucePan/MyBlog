@@ -11,17 +11,31 @@
     <bean id="myShiroRealm" class="com.blog.shiro.MyShiroRealm"/>
     
     <!-- 定义缓存管理器  -->  
-    <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"/>
-        <!--  <property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/> 
-    </bean> -->
+    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+          <property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/> 
+    </bean> 
     
     <!-- 定义session管理器 -->
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
 	     <!-- session的失效时长，单位毫秒 -->
+	     <!-- 设置全局会话超时时间，默认30分钟，即如果30分钟内没有访问会话将过期 1800000 -->
 	     <property name="globalSessionTimeout" value="600000"/>
 	     <!-- 删除失效的session -->
 	     <property name="deleteInvalidSessions" value="true"/>
+	     <!-- 是否开启会话验证器，默认是开启的 -->
+        <property name="sessionValidationSchedulerEnabled" value="true"/>
+        <!-- Shiro提供SessionDAO用于会话的CRUD -->
+        <property name="sessionDAO" ref="sessionDAO"/>
+        <property name="sessionIdCookie">
+            <bean class="org.apache.shiro.web.servlet.SimpleCookie">
+                <constructor-arg name="name" value="shiro.sesssion"/>
+                <property name="name" value="JSESSIONID" />
+            </bean>
+        </property>
+        
     </bean>
+    
+    <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.MemorySessionDAO"/>
    
         <!-- 配置shiro安全管理器 -->                  
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
@@ -35,9 +49,9 @@
     <!-- shiro过滤器 -->	
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
      	<property name="securityManager" ref="securityManager"/>
-     	<property name="loginUrl" value="/shiro/login.html" /> <!-- 未登录请求需登录页面跳转 -->
+     	<property name="loginUrl" value="/user/index.html" /> <!-- 未登录请求需登录页面跳转 -->
         <property name="successUrl" value="/loginsuccess.html" /><!-- 登录成功跳转页面 -->  
-        <property name="unauthorizedUrl" value="/error.html" />  <!-- 没有权限默认跳转页面 -->
+        <property name="unauthorizedUrl" value="/user/error.html" />  <!-- 没有权限默认跳转页面 -->
         <!-- Shiro连接约束配置,即过滤链的定义 -->  
         <!-- 此处可配合这篇文章来理解各个过滤连的作用http://blog.csdn.net/jadyer/article/details/12172839 -->  
         <!-- 下面value值的第一个'/'代表的路径是相对于HttpServletRequest.getContextPath()的值来的 -->  
@@ -46,11 +60,7 @@
         <property name="filterChainDefinitions">
         	<value>
         		/index.html = anon  
-                /login.html = authc
-                /*/test.html = authc  
-                /checkLogin.html = anon  
-                /loginsuccess.html = anon  
-                /logout.html = anon  
+                /**/manage/articleList.html = authc,roles[超级管理员]  
                 /** = anon  
         	</value>
         </property> 

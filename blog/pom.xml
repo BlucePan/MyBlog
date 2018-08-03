@@ -22,7 +22,7 @@
         <artifactId>junit</artifactId>  
         <version>4.11</version>  
         <!-- 表示开发的时候引入，发布的时候不会加载此包 -->  
-        <scope>test</scope>  
+       <!--  <scope>test</scope>  --> 
     </dependency> 
   	<!-- spring核心依赖包 -->
   	<dependency><!-- Spring的面向切面编程,提供AOP(面向切面编程)实现 -->
