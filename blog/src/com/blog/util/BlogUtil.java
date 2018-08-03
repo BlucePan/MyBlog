@@ -19,14 +19,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.alibaba.fastjson.JSONArray;
 
 
-/** 
- * @version 2016-1-28 上午11:04:08
- */
 /**
- * @author zhc
- * @Description:TODO<p></p>
- * @date  2016-1-28	上午11:04:08
- * @version V1.0
+ * 项目工具类
+ * @author  panzhi
+ * @date    2018年8月1日
+ * @version 1.0.0
  */
 public class BlogUtil{
 

@@ -73,7 +73,7 @@
 	            });
 	            return false;
 	        }
-	   	    document.listForm.action = "${blog}/user/admin.html";
+	   	    document.listForm.action = "${blog}/user/login.html";
             document.listForm.submit(); 
 	    });
 			    

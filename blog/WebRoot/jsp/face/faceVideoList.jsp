@@ -29,7 +29,7 @@
 <div class="caselist left">
  <ul>
  <c:forEach var="v" items="${list}">
-    <li><a href="${blog}/voice/manage/faceVideoDetail.html?id=${v.id}"><img src="/imageService/uploadFiles/${v.image}">
+    <li><a href="${blog}/voice/manage/faceVideoDetail.html?id=${v.id}"><img src="${imageService}/${v.image}">
    	 <span class="vTitle">${v.title}</span>	
     </a></li>
  </c:forEach>

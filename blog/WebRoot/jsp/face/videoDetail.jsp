@@ -47,7 +47,7 @@
 	$(".infosVideo video").attr("width","712");
 			$(".infosVideo video").attr("height","522"); 
 		   var video=$(".infosVideo video").attr("src"); 
-		$(".infosVideo video").attr("src","/imageService/uploadBaiduFiles/"+video); //拼接视频路径
+		$(".infosVideo video").attr("src","${imageServices}"+video); //拼接视频路径
 		$(".infosVideo video").attr("poster","/imageService/uploadFiles/${video.image}"); //拼接显示封面图片
 		$(".infosVideo video").attr("preload","auto"); //预加载播放
 	});

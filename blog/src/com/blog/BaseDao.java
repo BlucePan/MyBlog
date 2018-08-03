@@ -2,16 +2,16 @@ package com.blog;
 
 import java.util.List;
 import java.util.Map;
-
+/**
+ * 已经实现基本的 分页 增,删,改,查接口,不需要重复写
+ * 所有dao都继承这个BaseDao
+ * @author  panzhi
+ * @date    2018年8月1日
+ * @version 1.0.0
+ */
 public interface BaseDao {
 
-	/**
-	 * 公共dao接口，实现基本的增删改查
-	 * @param <T>
-	 * @param map
-	 * @return
-	 */
-public <T> List<T> findByPage(Map<?, ?> map);
+    public <T> List<T> findByPage(Map<?, ?> map);
 	
 	public int getCount(Map<?, ?> map);  
 	

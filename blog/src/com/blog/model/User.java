@@ -75,6 +75,13 @@ public class User implements Serializable {
 		this.status = status;
 	}
 	
+	public User() {
+		super();
+	}
+	public User(String account) {
+		super();
+		this.account = account;
+	}
 	@Override
 	public String toString() {
 		return id + "\t" + name + "\t" + qq + "\t" + job;

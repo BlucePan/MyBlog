@@ -57,7 +57,7 @@
   <div class="bloglist left">
   <c:forEach var="b" items="${bArticleList}">
     <h3>${b.title}</h3>
-    <figure><img src="/imageService/uploadFiles/${b.image}"></figure>
+    <figure><img src="${imageService}/${b.image}"></figure>
     <ul>
       <p>${b.remake}</p>
       <a title="/" href="${blog}/article/manage/seeArticleDetail.html?id=${b.id}&type=${b.type}"  class="readmore">阅读全文>></a>

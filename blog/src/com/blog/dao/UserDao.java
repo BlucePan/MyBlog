@@ -14,4 +14,6 @@ public interface UserDao extends BaseDao {
 	 
 	public int getUserCount(Map<?, ?> map); //用户表总数
 	
+	 User getUserByName(String username); //根据姓名获取用户
+	
 }

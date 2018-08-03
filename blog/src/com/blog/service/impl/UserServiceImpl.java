@@ -10,17 +10,20 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import com.blog.dao.DaoSupport;
 import com.blog.dao.UserDao;
 import com.blog.model.User;
 import com.blog.model.UserAllRole;
 import com.blog.service.UserService;
+import com.blog.util.PageData;
 import com.blog.util.PageView;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
 	@Resource
 	private UserDao userDao;
-	
+	@Resource(name = "daoSupport")
+	private DaoSupport dao;
 	
 	/**
 	 * @Cacheable 将结果加入缓存。下次调用时直接从缓存中读取
@@ -107,5 +110,16 @@ public class UserServiceImpl implements UserService {
 		 page.setItems(userList);
 		return page;
 	}
+
+
+
+	@Override
+	public User getUserByName(String username) {
+		return userDao.getUserByName(username);
+	}
+
+
+
+
 
 }

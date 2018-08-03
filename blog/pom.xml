@@ -9,173 +9,189 @@
    <properties>  
         <!-- spring版本号 -->  
         <spring.version>4.0.2.RELEASE</spring.version>  
+        <shiro.version>1.4.0</shiro.version>
+        <security.version>3.1.3.RELEASE</security.version>
         <!-- log4j日志文件管理包版本 -->  
         <slf4j.version>1.7.7</slf4j.version>  
         <log4j.version>1.2.17</log4j.version>  
   </properties> 
   
   <dependencies>
-   <dependency>  
-            <groupId>junit</groupId>  
-            <artifactId>junit</artifactId>  
-            <version>4.11</version>  
-            <!-- 表示开发的时候引入，发布的时候不会加载此包 -->  
-            <scope>test</scope>  
-        </dependency>  
-        <!-- spring核心包 -->  
-        <dependency>  
-            <groupId>org.springframework</groupId>  
-            <artifactId>spring-core</artifactId>  
-            <version>${spring.version}</version>  
-        </dependency>  
-  
-        <dependency>  
-            <groupId>org.springframework</groupId>  
-            <artifactId>spring-web</artifactId>  
-            <version>${spring.version}</version>  
-        </dependency>  
-        <dependency>  
-            <groupId>org.springframework</groupId>  
-            <artifactId>spring-oxm</artifactId>  
-            <version>${spring.version}</version>  
-        </dependency>  
-        <dependency>  
-            <groupId>org.springframework</groupId>  
-            <artifactId>spring-tx</artifactId>  
-            <version>${spring.version}</version>  
-        </dependency>  
-  
-        <dependency>  
-            <groupId>org.springframework</groupId>  
-            <artifactId>spring-jdbc</artifactId>  
-            <version>${spring.version}</version>  
-        </dependency>  
-  
-        <dependency>  
-            <groupId>org.springframework</groupId>  
-            <artifactId>spring-webmvc</artifactId>  
-            <version>${spring.version}</version>  
-        </dependency>  
-        <dependency>  
-            <groupId>org.springframework</groupId>  
-            <artifactId>spring-aop</artifactId>  
-            <version>${spring.version}</version>  
-        </dependency>  
-  
-        <dependency>  
-            <groupId>org.springframework</groupId>  
-            <artifactId>spring-context-support</artifactId>  
-            <version>${spring.version}</version>  
-        </dependency>  
-  
-        <dependency>  
-            <groupId>org.springframework</groupId>  
-            <artifactId>spring-test</artifactId>  
-            <version>${spring.version}</version>  
-        </dependency>  
-        
+    <dependency> <!-- junit测试类 --> 
+        <groupId>junit</groupId>  
+        <artifactId>junit</artifactId>  
+        <version>4.11</version>  
+        <!-- 表示开发的时候引入，发布的时候不会加载此包 -->  
+        <scope>test</scope>  
+    </dependency> 
+  	<!-- spring核心依赖包 -->
+  	<dependency><!-- Spring的面向切面编程,提供AOP(面向切面编程)实现 -->
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-aop</artifactId>
+	    <version>${spring.version}</version>
+    </dependency>
+    <dependency><!-- SpringIoc(依赖注入)的基础实现 -->
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-beans</artifactId>
+	    <version>${spring.version}</version>
+   </dependency>
+   <dependency><!-- Spring-context的扩展支持,用于MVC方面  -->
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context-support</artifactId>
+	    <version>${spring.version}</version>
+    </dependency>
+    <dependency><!-- Spring的核心组件 -->
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-core</artifactId>
+	    <version>${spring.version}</version>
+    </dependency>
+    <dependency><!-- 对象的XML映射，可以让Java与XML之间来回切换  -->  
+        <groupId>org.springframework</groupId>  
+        <artifactId>spring-oxm</artifactId>  
+        <version>${spring.version}</version>  
+     </dependency>
+     <dependency><!-- Spring事物操作  -->  
+        <groupId>org.springframework</groupId>  
+        <artifactId>spring-tx</artifactId>  
+        <version>${spring.version}</version>  
+     </dependency>
+     <dependency><!-- SpringMVC支持WEB端应用部署架构 -->  
+        <groupId>org.springframework</groupId>  
+        <artifactId>spring-web</artifactId>  
+        <version>${spring.version}</version>  
+      </dependency>
+      <dependency><!-- REST Web服务和Web应用的视图控制器的实现  -->  
+        <groupId>org.springframework</groupId>  
+        <artifactId>spring-webmvc</artifactId>  
+        <version>${spring.version}</version>  
+      </dependency> 
+      <dependency><!-- 对于单元测试和集成测试的简单封装  -->  
+        <groupId>org.springframework</groupId>  
+        <artifactId>spring-test</artifactId>  
+        <version>${spring.version}</version>  
+      </dependency> 
+      <dependency> <!-- Spring对数据操作 -->
+         <groupId>org.springframework</groupId>  
+         <artifactId>spring-jdbc</artifactId>  
+         <version>${spring.version}</version>  
+      </dependency> 
+      <dependency><!-- 日志文件管理包 -->  
+        <groupId>log4j</groupId>  
+        <artifactId>log4j</artifactId>  
+        <version>${log4j.version}</version>  
+      </dependency> 
+  	  <!-- spring整合shiro需要的依赖 -->
+  	  <dependency>
+	    <groupId>org.apache.shiro</groupId>
+	    <artifactId>shiro-spring</artifactId>
+	    <version>${shiro.version}</version>
+	  </dependency>
+	  <dependency>
+	    <groupId>org.apache.shiro</groupId>
+	    <artifactId>shiro-core</artifactId>
+	    <version>${shiro.version}</version>
+	  </dependency>
+	   <dependency>
+	    <groupId>org.apache.shiro</groupId>
+	    <artifactId>shiro-web</artifactId>
+	    <version>${shiro.version}</version>
+	  </dependency>
+	   <dependency>
+	    <groupId>org.apache.shiro</groupId>
+	    <artifactId>shiro-ehcache</artifactId>
+	    <version>${shiro.version}</version>
+	  </dependency> 
         <!-- spring security权限管理 -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-acl</artifactId>
-			<version>3.1.3.RELEASE</version>
+			<version>${security.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
-			<version>3.1.3.RELEASE</version>
+			<version>${security.version}</version>
 		</dependency>
         <dependency>  
             <groupId>org.springframework.security</groupId>  
             <artifactId>spring-security-config</artifactId>  
-            <version>3.1.3.RELEASE</version>  
+            <version>${security.version}</version>  
         </dependency> 
          <dependency>  
             <groupId>org.springframework.security</groupId>  
             <artifactId>spring-security-web</artifactId>  
-            <version>3.1.3.RELEASE</version>  
+            <version>${security.version}</version>  
         </dependency> 
         <dependency>
     		<groupId>org.springframework.security</groupId>
     		<artifactId>spring-security-taglibs</artifactId>
-    		<version>3.1.3.RELEASE</version>
+    		<version>${security.version}</version>
 		</dependency>
-        
-        <!-- shiro权限管理包 -->
-        
+      <!-- 导入Mysql数据库链接jar包 -->  
       <dependency>
-	      <groupId>org.apache.shiro</groupId>
-	      <artifactId>shiro-core</artifactId>
-	      <version>1.2.2</version>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.27</version>
+	  </dependency>
+	  <!-- mybatis核心包 -->  
+	  <dependency>
+	    <groupId>org.mybatis</groupId>
+	    <artifactId>mybatis</artifactId>
+	    <version>3.2.8</version>
+	  </dependency> 
+      <!-- mybatis/spring包 -->  
+      <dependency>  
+         <groupId>org.mybatis</groupId>  
+         <artifactId>mybatis-spring</artifactId>  
+         <version>1.2.2</version>  
       </dependency>
+      <!-- alibaba数据库连接池 -->
       <dependency>
-	      <groupId>org.apache.shiro</groupId>
-	      <artifactId>shiro-web</artifactId>
-	      <version>1.2.2</version>
-       </dependency>
-	 <dependency>
-			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-spring</artifactId>
-			<version>1.2.2</version>
-		</dependency>
-
-        
-        <!-- mybatis核心包 -->  
-		<dependency>
-		    <groupId>org.mybatis</groupId>
-		    <artifactId>mybatis</artifactId>
-		    <version>3.2.8</version>
-		</dependency> 
-        <!-- mybatis/spring包 -->  
-        <dependency>  
-            <groupId>org.mybatis</groupId>  
-            <artifactId>mybatis-spring</artifactId>  
-            <version>1.2.2</version>  
-        </dependency>  
-        
-        <!-- 导入Mysql数据库链接jar包 -->  
-        <dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.27</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-        <!-- 导入dbcp的jar包，用来在applicationContext.xml中配置数据库 -->  
-        <dependency>  
-            <groupId>commons-dbcp</groupId>  
-            <artifactId>commons-dbcp</artifactId>  
-            <version>1.2.2</version>  
-        </dependency>  
-        <!-- JSTL标签类 -->  
-        <dependency>  
-            <groupId>jstl</groupId>  
-            <artifactId>jstl</artifactId>  
-            <version>1.2</version>  
-        </dependency>  
-        <!-- 日志文件管理包 -->  
-        <!-- log start -->  
-        <dependency>  
-            <groupId>log4j</groupId>  
-            <artifactId>log4j</artifactId>  
-            <version>${log4j.version}</version>  
-        </dependency>  
-          
-          
+         <groupId>com.alibaba</groupId>
+         <artifactId>druid</artifactId>
+         <version>1.0.11</version>
+      </dependency>
+      	  <!-- servlet请求依赖 -->
+	  <dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>javax.servlet-api</artifactId>
+	    <version>3.1.0</version>
+	    <scope>provided</scope>
+	  </dependency>
+	  <!-- JSTL标签类 --> 
+	  <dependency>
+	    <groupId>jstl</groupId>
+	    <artifactId>jstl</artifactId>
+	    <version>1.2</version>
+	   </dependency>
+	  <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jsp-api</artifactId>
+        <version>2.0</version>
+        <scope>provided</scope>
+	   </dependency>
+	   <dependency>
+	    <groupId>commons-logging</groupId>
+	    <artifactId>commons-logging</artifactId>
+	    <version>1.2</version>
+	   </dependency>
+	  <dependency>
+      <groupId>org.apache.openejb</groupId>
+      <artifactId>javaee-api</artifactId>
+      <version>5.0-1</version>
+      <scope>provided</scope>
+     </dependency>
         <!-- 格式化对象，方便输出日志 -->  
         <dependency>  
             <groupId>com.alibaba</groupId>  
             <artifactId>fastjson</artifactId>  
             <version>1.1.41</version>  
         </dependency>  
-  
-  
         <dependency>  
             <groupId>org.slf4j</groupId>  
             <artifactId>slf4j-api</artifactId>  
             <version>${slf4j.version}</version>  
         </dependency>  
-  
         <dependency>  
             <groupId>org.slf4j</groupId>  
             <artifactId>slf4j-log4j12</artifactId>  
@@ -194,7 +210,6 @@
 			<artifactId>commons-fileupload</artifactId>
 			 <version>1.3.1</version>  
 		</dependency>
-
         <dependency>  
             <groupId>commons-io</groupId>  
             <artifactId>commons-io</artifactId>  
@@ -210,88 +225,24 @@
 			<artifactId>commons-pool</artifactId>
 			<version>1.6</version>
 		</dependency>
-		  <dependency>
-	      <groupId>junit</groupId>
-	      <artifactId>junit</artifactId>
-	      <version>4.11</version>
-	      <scope>test</scope>
-	    </dependency>
+    <!-- 百度编辑器 -->
     <dependency>
-      <groupId>org.apache.openejb</groupId>
-      <artifactId>javaee-api</artifactId>
-      <version>5.0-1</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.faces</groupId>
-      <artifactId>jsf-api</artifactId>
-      <version>1.2_04</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>jstl</artifactId>
-      <version>1.2</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet.jsp</groupId>
-      <artifactId>jsp-api</artifactId>
-      <version>2.1</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.faces</groupId>
-      <artifactId>jsf-impl</artifactId>
-      <version>1.2_04</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-	  <groupId>com.baidu</groupId>
-	  <artifactId>ueditor</artifactId>
-	  <version>1.1.1</version>
+		  <groupId>com.baidu</groupId>
+		  <artifactId>ueditor</artifactId>
+		  <version>1.1.1</version>
 	</dependency>
 	<dependency>
-	  <groupId>org.json</groupId>
-	  <artifactId>uedit_json</artifactId>
-	  <version>1.0</version>
-	  <type>jar</type>
-	  <scope>compile</scope>
+		  <groupId>org.json</groupId>
+		  <artifactId>uedit_json</artifactId>
+		  <version>1.0</version>
+		  <type>jar</type>
+		  <scope>compile</scope>
 	</dependency>
-    <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>2.6.0</version>
-            <type>jar</type>
-            <scope>compile</scope>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-redis</artifactId>
-        <version>1.5.0.RELEASE</version>
-    </dependency>
-	<dependency>
-    <groupId>javax.mail</groupId>
-    <artifactId>mail</artifactId>
-    <version>1.4.7</version>
-	</dependency>
-	<dependency>
-  		<groupId>org.directwebremoting</groupId>
-  		<artifactId>dwr</artifactId>
-  		<version>2.0.1</version>
-  		<type>jar</type>
-  		<scope>compile</scope>
-  	</dependency>
-  	<dependency>
-    <groupId>org.apache.ant</groupId>
-    <artifactId>ant</artifactId>
-    <version>1.7.1</version>
-   </dependency>
    <!-- 定时器包 -->
    	<dependency>
-	 <groupId>org.quartz-scheduler</groupId>
-	 <artifactId>quartz</artifactId>
-	 <version>1.8.4</version>
+		 <groupId>org.quartz-scheduler</groupId>
+		 <artifactId>quartz</artifactId>
+		 <version>1.8.4</version>
 	</dependency>
     <!-- ehcache 相关依赖  -->
      <dependency>
@@ -299,8 +250,7 @@
           <artifactId>ehcache</artifactId>
           <version>2.7.5</version>
      </dependency>
-   
-   <!-- 添加支付宝接口时需要的包 -->
+    <!-- 添加支付宝接口时需要的包 -->
    <dependency>
 	    <groupId>dom4j</groupId>
 	    <artifactId>dom4j</artifactId>
@@ -360,13 +310,16 @@
           <warSourceDirectory>${basedir}/WebRoot</warSourceDirectory>
         </configuration>
       </plugin>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.5</source>
-          <target>1.5</target>
-        </configuration>
-      </plugin>
+      <!-- maven编译级别改为jdk1.7 -->
+	    <plugin>  
+            <groupId>org.apache.maven.plugins</groupId>  
+            <artifactId>maven-compiler-plugin</artifactId>  
+            <version>2.3.2</version>  
+            <configuration>  
+                <source>1.7</source>  
+                <target>1.7</target>  
+            </configuration>  
+        </plugin>  
     </plugins>
   </build>
 </project>

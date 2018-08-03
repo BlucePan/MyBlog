@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.blog.model.User;
+import com.blog.util.PageData;
 import com.blog.util.PageView;
 
 public interface UserService {
@@ -16,6 +17,6 @@ public interface UserService {
 	 String getTimestamp(String param);  //测试缓存时间
 	 PageView findByPage(PageView page,Map map); //查询用户拥有的角色
 	 PageView findUserByPage(PageView page,Map map); //查询所有的用户
-	 
+	 User getUserByName(String username); //根据姓名获取用户
 				
 }

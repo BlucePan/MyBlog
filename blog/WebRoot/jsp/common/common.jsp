@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="blog" value="${pageContext.request.contextPath}" />
+<c:set var="imageService" value= 'http://118.31.32.110:8080/imageService/uploadFiles/'/>
+<c:set var="imageServices" value= 'http://118.31.32.110:8080/imageService/uploadBaiduFiles/'/>
 
 <link href="${blog}/zepto/mdialog.css" type="text/css" rel="stylesheet" />
 <script type='text/javascript' src="${blog}/zepto/zepto.min.js"></script>
