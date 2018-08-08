@@ -2,6 +2,7 @@ package com.blog.shiro;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -22,10 +23,13 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.springframework.stereotype.Service;
 
+import com.blog.model.BlogMenu;
 import com.blog.model.User;
 import com.blog.service.RoleService;
 import com.blog.service.UserService;
+import com.blog.util.BlogUtil;
 import com.blog.util.PageData;
 
 /**
@@ -56,7 +60,13 @@ public class MyShiroRealm extends AuthorizingRealm {
 		//获取用户所有的权限
 		Map map=new HashMap();
 		map.put("userId", user.getId());
-		Set<String> permissions=roleService.loadUserResources(map);
+		Set<String> permissions=new HashSet<String>();
+		List<BlogMenu>  blogList=roleService.loadUserResources(map);
+		for (BlogMenu blogMenu : blogList) {
+			if(BlogUtil.isNotBlank(blogMenu.getUrl())){
+				permissions.add(blogMenu.getUrl());
+			}
+		}
 		log.info("该用户拥有的权限个数为："+permissions.size());
 		// 权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(); 

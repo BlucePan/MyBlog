@@ -7,7 +7,7 @@ import com.blog.model.BlogMusic;
 import com.blog.util.PageView;
 
 public interface BlogMusicService {
-	 List<BlogMusic> getAllBlogMusic(BlogMusic bMusic);
+	  List<BlogMusic> getAllBlogMusic(BlogMusic bMusic);
 	  PageView findByPage(PageView page,Map map);
 	  void addBlogMusic(BlogMusic bMusic);
 	  BlogMusic queryBlogMusicById(String id);

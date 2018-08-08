@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.blog.BaseDao;
+import com.blog.model.BlogMenu;
 import com.blog.model.Role;
 import com.blog.model.RolePermission;
 import com.blog.model.UserRole;
@@ -22,7 +23,8 @@ public interface RoleDao extends BaseDao {
 	void addRolePermission(RolePermission rPermission); //增加角色权限表
 	
 	Set<String> queryUserRole(String userid); //获取当前用户的所有角色
-	Set<String> loadUserResources(Map map); //获取用户所有的权限
+	List<BlogMenu> loadUserResources(Map map); //获取用户所有的权限
+	List<BlogMenu> queryAllResources(Map map); //加载所有的权限
 	
 
 }

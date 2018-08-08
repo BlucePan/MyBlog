@@ -90,15 +90,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select r.name from user_role ur LEFT JOIN role r on ur.rid=r.id where ur.uid=#{userId}
 	</select>
 	
-	<select id="loadUserResources" parameterType="String" resultType="String">
-	select p.url
+	<select id="loadUserResources" parameterType="String" resultType="com.blog.model.BlogMenu">
+	select *
 	from blog_menu p , role_permission rp, user_role ur 
 	where uid = #{userId}
 	<if test="menuType != null and menuType != ''">
 		and menuType #{menuType}
     </if>
 	 and p.id = rp.pid and rp.rid = ur.rid	GROUP BY p.id  ORDER BY p.priority ASC
-
 	</select>
-
+	
+	<select id="queryAllResources" parameterType="String" resultType="com.blog.model.BlogMenu">
+	select *
+	from blog_menu p 
+	where 1=1
+	<if test="menuType != null and menuType != ''">
+		and menuType #{menuType}
+    </if>
+	  ORDER BY p.priority ASC
+	</select>
 </mapper> 

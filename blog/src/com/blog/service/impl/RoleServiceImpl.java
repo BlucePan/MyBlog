@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import com.blog.dao.RoleDao;
+import com.blog.model.BlogMenu;
 import com.blog.model.Role;
 import com.blog.model.RolePermission;
 import com.blog.model.UserRole;
@@ -90,8 +91,14 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
-	public Set<String> loadUserResources(Map map) {
+	public List<BlogMenu> loadUserResources(Map map) {
 		return roleDao.loadUserResources(map);
+	}
+
+	@Override
+	public List<BlogMenu> queryAllResources(Map map) {
+		return roleDao.queryAllResources(map);
+		
 	}
 
 }

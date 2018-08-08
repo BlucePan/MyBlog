@@ -6,22 +6,23 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import com.alibaba.fastjson.JSONArray;
-/** 
- * @version 2016-3-11 上午10:00:50
- */
 /**
- * @author zhc
- * @Description:TODO<p></p>
- * @date  2016-3-11	上午10:00:50
- * @version V1.0
+ * JSON工具分装类
+ * @author  panzhi
+ * @date    2018年8月7日
+ * @version 1.0.0
  */
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL) 
 public class JsonBeang {
 	private String message;  //消息
+	private String status;  //状态
 	private Object object;   
 	private List list;
 	private Map map;
-	private String status;  //状态
+	
 	
 	public JsonBeang() {
 		super();
@@ -30,17 +31,17 @@ public class JsonBeang {
 		this.object = null;
 		this.message = null;
 		status = "";
-		// TODO Auto-generated constructor stub
 	}
 
 	public JsonBeang(String message, Object object, List list,
 			Map map, String status) {
 		super();
 		this.message = message;
+		this.status = status;
 		this.object = object;
 		this.list = list;
 		this.map = map;
-		this.status = status;
+		
 	}
 	public String getStatus() {
 		return status;
