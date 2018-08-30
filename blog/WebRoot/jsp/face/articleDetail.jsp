@@ -50,8 +50,8 @@
 <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
 window.changyan.api.config({
-appid: 'cysU9ouu1',
-conf: 'prod_f7b4b4284527f7d0ac5eb32a6acb6ae5'
+appid: 'cytN4LNTj',
+conf: 'prod_aef07d70ca8ec23ae9bbbfb1bffff613'
 });
 </script>
     

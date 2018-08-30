@@ -30,6 +30,7 @@ import com.blog.model.User;
 import com.blog.service.RoleService;
 import com.blog.service.UserService;
 import com.blog.util.BlogUtil;
+import com.blog.util.DecriptCrmUtil;
 import com.blog.util.PageData;
 
 /**
@@ -93,7 +94,7 @@ public class MyShiroRealm extends AuthorizingRealm {
 		        AuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
 		                user, //用户
 		                user.getPassword(), //密码
-		                ByteSource.Util.bytes(username),//用户名
+		                ByteSource.Util.bytes(username),//加盐字段
 		                getName()  //realm name
 		        );
 		     // 当验证都通过后，把用户信息放在session里

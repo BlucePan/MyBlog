@@ -23,7 +23,7 @@
 </span>
 </div>
 
-<form action="${blog}/jottings/manage/jottingsUpdate.html" name="listForm" method="post" >
+<form action="${blog}/jottings/manage/jottingsUpdate.html" name="listForm" method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" value="${jottings.id}"/>
 <div class="maincont othercolor">
   <div class="addmenu">
@@ -33,11 +33,12 @@
         <li><span>关键词：</span>
          <input type="text"  name="keyWord" id="keyWord" value="${jottings.keyWord}" />
         </li>
+         <li><span>图片：</span>
+         <div id="preview"><img style="width:50px;height:50px;" id="imghead" src="/imageService/uploadFiles/${jottings.image}" /></div>
+         <input type="file" accept="image/*" id="file" name="imageFile" />
+        </li>
         <li><span>内容：</span>
-        	<textarea style="width:90%;height:300px;"  name="context" id ="workstatus">${jottings.context}</textarea>
-          	<script type="text/javascript">
-	        var editor = UE.getEditor('workstatus');
-	    	</script>
+        	<textarea name="context" id ="context" cols="47" rows="5" style="vertical-align: middle;" placeholder="请输入内容">${jottings.context}</textarea>
         </li>
         <li class="last-up">
         <a href="javascript:document.listForm.submit()" onclick="return verifyDate()" class="btn goods">保存</a>

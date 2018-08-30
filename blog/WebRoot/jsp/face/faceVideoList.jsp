@@ -58,31 +58,10 @@
        <li><a href="#" >作品展示</a></li>
      </ul>      
     </div>
-<div class="news">
-<h3>
-      <p>最新<span>模板</span></p>
-    </h3>
-    <ul class="rank">
-      <li><a href="#" title="Column 三栏布局 个人网站模板" >Column 三栏布局 个人网站模板</a></li>
-      <li><a href="#" title="with love for you 个人网站模板" >with love for you 个人网站模板</a></li>
-      <li><a href="#" title="免费收录网站搜索引擎登录口大全" >免费收录网站搜索引擎登录口大全</a></li>
-      <li><a href="#" title="做网站到底需要什么?" >做网站到底需要什么?</a></li>
-      <li><a href="#" title="企业做网站具体流程步骤" >企业做网站具体流程步骤</a></li>
-      <li><a href="#" title="建站流程篇——教你如何快速学会做网站" >建站流程篇——教你如何快速学会做网站</a></li>
-      <li><a href="#" title="box-shadow 阴影右下脚折边效果" >box-shadow 阴影右下脚折边效果</a></li>
-      <li><a href="#" title="打雷时室内、户外应该需要注意什么" >打雷时室内、户外应该需要注意什么</a></li>
-    </ul>
-    <h3 class="ph">
-      <p>点击<span>排行</span></p>
-    </h3>
-    <ul class="paih">
-      <li><a href="#" title="Column 三栏布局 个人网站模板" >Column 三栏布局 个人网站模板</a></li>
-      <li><a href="#" title="withlove for you 个人网站模板" >with love for you 个人网站模板</a></li>
-      <li><a href="#" title="免费收录网站搜索引擎登录口大全" >免费收录网站搜索引擎登录口大全</a></li>
-      <li><a href="#" title="做网站到底需要什么?" >做网站到底需要什么?</a></li>
-      <li><a href="#" title="企业做网站具体流程步骤" >企业做网站具体流程步骤</a></li>
-    </ul>
-    </div>
+	<div class="news"> 
+	  	<!-- 右边加载的数据 -->
+	      <iframe src="${blog}/user/faceRightArticleList.html" id="right"  scrolling="no" frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight"></iframe>    
+	</div>
     <div class="visitors">
       <h3><p>最近访客</p></h3>
       <ul>

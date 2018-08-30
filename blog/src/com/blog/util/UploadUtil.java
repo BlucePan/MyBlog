@@ -130,6 +130,9 @@ public class UploadUtil extends HttpServlet {
 	
 	public static String rootPath(HttpServletRequest request){
 		//图片服务器存储物理路径  E:/apache-tomcat-7.0.32/webapps/imageService
+		System.out.println(request.getParameter("context"));
+		System.out.println(request);
+		System.out.println(request.getSession());
 		String path=request.getSession().getServletContext().getRealPath("uploadFiles").replace("blog", "imageService");
 
 		return path;
@@ -144,6 +147,7 @@ public class UploadUtil extends HttpServlet {
 		
 	} 
 	public static String saveFile(MultipartFile file,HttpServletRequest request){
+
         String fileName = file.getOriginalFilename();  //获取图片的文件名
         String extensionName = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase(); // 获取图片的扩展名
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");  

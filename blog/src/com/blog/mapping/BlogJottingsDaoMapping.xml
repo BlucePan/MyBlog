@@ -31,11 +31,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	<!-- 增加随笔 -->	
 	  <insert id="addEntity" parameterType="com.blog.model.BlogJottings">
-	INSERT into blog_jottings (id,createUserId,keyWord,context,createTime,updateTime) VALUES 
+	INSERT into blog_jottings (id,createUserId,keyWord,image,context,createTime,updateTime) VALUES 
 	(
 	#{id},	
 	#{createUserId},
 	#{keyWord},
+	#{image},
 	#{context},
 	NOW(),
     NOW()
@@ -48,13 +49,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 		<!-- 修改随笔-->
 		<update id="editEntity"  parameterType="com.blog.model.BlogJottings" >
-	  UPDATE blog_jottings set  updateTime = NOW(),
+	  UPDATE blog_jottings set  
 	  <if test="keyWord != null and keyWord != ''">
 		 keyWord= #{keyWord},
 		</if>
 		<if test="context != null and context !=''">
-		 context= #{context}
+		 context= #{context},
 		</if>
+		<if test="image != null and image !=''">
+		 image= #{image},
+		</if>
+		updateTime = NOW()
 	  where id = #{id}
 	</update>	
 	

@@ -12,12 +12,19 @@ public class BlogJottings implements Serializable{
 	private static final long serialVersionUID = -4848594812356439420L;
 	private String id; //随笔id
 	private String keyWord; //关键字
+	private String image; //图片
 	private String context; //随笔内容
 	private String createUserId;//创建者id
 	private String createUser;//创建者
 	private String createTime;//创建时间
 	private String updateTime;//修改时间
 	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 	public String getId() {
 		return id;
 	}public void setId(String id) {

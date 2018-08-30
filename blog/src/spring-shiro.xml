@@ -8,7 +8,16 @@
        
   	<description> Shiro 配置</description>
   	 <!-- 自定义Realm -->    
-    <bean id="myShiroRealm" class="com.blog.shiro.MyShiroRealm"/>
+    <bean id="myShiroRealm" class="com.blog.shiro.MyShiroRealm">
+    	 <property name="credentialsMatcher">
+             <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                 <property name="hashAlgorithmName" value="MD5"></property>
+                 <property name="hashIterations" value="1024"></property>
+                 
+                 <property name="storedCredentialsHexEncoded" value="true"></property>            
+             </bean>
+         </property>
+    </bean>
     
     <!-- 定义缓存管理器  -->  
     <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">

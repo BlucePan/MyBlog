@@ -3,6 +3,10 @@ package com.blog.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.util.ByteSource;
+import org.junit.Test;
+
 /** 
  * @version 2016-1-27 下午02:07:32
  */
@@ -85,5 +89,32 @@ public class DecriptCrmUtil {
             e.printStackTrace();
         }
         return "";
+    }
+    
+    
+    public static String ShiroMD5(String password,String saltName) {
+        try {
+        	  //加密方式
+            String algorithmName="MD5";
+            //加密的字符串
+            String source=password;
+            //盐值，用于和密码混合起来用
+            ByteSource salt = ByteSource.Util.bytes(saltName);
+            //加密的次数,可以进行多次的加密操作
+            int hashIterations = 1024;
+            //通过SimpleHash 来进行加密操作
+            SimpleHash hash = new SimpleHash(algorithmName, source, salt, hashIterations);
+            return hash.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+    
+    @Test
+    public void MD5Test(){
+    	String password=ShiroMD5("123456","root");
+    	System.out.println(">>>>>>>>>"+password);
+    	
     }
 }

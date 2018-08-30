@@ -48,7 +48,7 @@ public class UserController extends BaseController{
 		if (BlogUtil.isNotBlank(account)) {	
 		   User user=userService.queryUser(new User(account));
 		   if(user!=null){
-			 if(!user.getPassword().equals(password)){
+			 if(!user.getPassword().equals(DecriptCrmUtil.ShiroMD5(password,account))){
 				message="密码输入错误，请重试";
 			 }else{//登录成功以shiro来维护用户信息
 				 String username=account;
@@ -63,13 +63,15 @@ public class UserController extends BaseController{
 		             //每个Realm都能在必要时对提交的AuthenticationTokens作出反应  
 		             //所以这一步在调用login(token)方法时,它会走到MyRealm.doGetAuthenticationInfo()方法中,具体验证方式详见此方法  
 					subject.login(token);
+					request.getSession(true).setAttribute("blog_user_info", user);
+					return "redirect:index.html";	
 				} catch (AuthenticationException e) {
 					log.info("对用户[" + username + "]进行登录验证..验证未通过,堆栈轨迹如下");
 					token.clear();
-					e.printStackTrace();
+					e.printStackTrace();	
+					message = "shiro验证错误";
 				}
-			    request.getSession(true).setAttribute("blog_user_info", user);
-				return "redirect:index.html";		
+			    	
 			 }
 		   }else{
 			message = "帐号不存在";
@@ -122,7 +124,14 @@ public class UserController extends BaseController{
 		return "face/myself";
 	}
 		
+	//我的详情
+	@RequestMapping("/about.html")
+	public String about(HttpServletRequest request){		
+	   User user=(User) userService.queryUserById("666666");		
 	
+		request.setAttribute("user", user);
+		return "face/about";
+	}
 	
 	
 	//头部链接

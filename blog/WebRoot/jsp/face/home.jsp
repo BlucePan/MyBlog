@@ -69,7 +69,7 @@
 </c:forEach>
    </div>
   <aside class="right">
-    <div class="weather"><iframe width="250" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=1"></iframe></div>
+    <div class="weather"></div>
     <div class="news">
     <h3>
       <p>最新<span>文章</span></p>

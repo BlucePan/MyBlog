@@ -28,7 +28,10 @@ text-align: center;
  <c:forEach var="j" items="${jList}">
  	   <ul class="arrow_box">
          <div class="sy">
-      <p> ${j.context}</p>
+      <p>
+      <img  src="/imageService/uploadFiles/${j.image}" />
+       ${j.context}
+      </p>
       <span class="dateview"><fmt:parseDate value='${j.createTime}' var="yearMonth" pattern="yyyy-MM-dd "/>
               <fmt:formatDate value="${yearMonth}" pattern="yyyy-MM-dd" /></span>
         </div>
