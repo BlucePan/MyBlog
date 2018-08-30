@@ -250,6 +250,12 @@
           <artifactId>ehcache</artifactId>
           <version>2.7.5</version>
      </dependency>
+     <!-- fastDFS上传文件 -->
+	<dependency>
+	    <groupId>cn.bestwu</groupId>
+	    <artifactId>fastdfs-client-java</artifactId>
+	    <version>1.27</version>
+	</dependency>
     <!-- 添加支付宝接口时需要的包 -->
    <dependency>
 	    <groupId>dom4j</groupId>
