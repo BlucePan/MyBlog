@@ -23,9 +23,11 @@ import com.blog.model.BlogVideo;
 import com.blog.model.User;
 import com.blog.service.BlogArticleService;
 import com.blog.service.BlogMenuService;
+import com.blog.service.BlogSlideService;
 import com.blog.service.UserService;
 import com.blog.util.BlogUtil;
 import com.blog.util.DecriptCrmUtil;
+import com.blog.util.PageData;
 
 @Controller
 @RequestMapping("/user")
@@ -37,6 +39,8 @@ public class UserController extends BaseController{
 	private BlogMenuService blogMenuService;
 	@Resource
 	private BlogArticleService bArticleService;
+	@Resource
+	private BlogSlideService bSlideService;
 	@Resource
 	private BlogVideoDao bVideoDao;
 	private String message;
@@ -110,8 +114,8 @@ public class UserController extends BaseController{
 		  model.addAttribute("nArticleList", nArticleList);  //首页最新文章
 		  List<BlogArticle>  sArticleList=bArticleService.getSeniorityArticle();
 		  model.addAttribute("sArticleList", sArticleList);  //首页排行文章
-		  List<BlogVideo> bVideoList=bVideoDao.getRecommendVideo();
-		  model.addAttribute("bVideoList", bVideoList);  //首页推荐视频
+		  List<PageData> bSlideList=bSlideService.queryAllSlide(new PageData());
+		  model.addAttribute("bSlideList", bSlideList);  //首页轮播图
 		return "face/home";
 	}
 	

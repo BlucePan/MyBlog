@@ -34,11 +34,12 @@
 	     <!-- 是否开启会话验证器，默认是开启的 -->
         <property name="sessionValidationSchedulerEnabled" value="true"/>
         <!-- Shiro提供SessionDAO用于会话的CRUD -->
-        <property name="sessionDAO" ref="sessionDAO"/>
+        <property name="sessionDAO" ref="sessionDAO"/>        
         <property name="sessionIdCookie">
             <bean class="org.apache.shiro.web.servlet.SimpleCookie">
-                <constructor-arg name="name" value="shiro.sesssion"/>
-                <property name="path" value="/" />
+                <!-- <constructor-arg name="name" value="shiro.sesssion"/>
+                <property name="path" value="/" /> -->
+                <constructor-arg name="name" value="jeesite.session.id"/>
             </bean>
         </property>
         

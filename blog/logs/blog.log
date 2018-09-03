@@ -4,6 +4,9 @@ background 后台页面
 
 后台访问：http://localhost:8080/blog/user/index.html
 前台访问：http://localhost:8080/blog/user/main.html 
+数据库连接池访问：http://localhost:8080/blog/druid
+程序监控平台：http://localhost:8080/blog/monitoring 
+
 
 菜单表
    blog_menu :

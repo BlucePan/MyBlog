@@ -11,6 +11,60 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			and title = #{title}
 		</if>
 	</select>
+	
+	<select id="findById" parameterType="String" resultType="pageData">
+		select * from blog_slide where id=#{id}
+	</select>
+	
+	<!-- 新增轮播图 -->
+	 <insert id="addSlide" parameterType="pageData">
+	    insert into blog_slide(
+		id,title,image,url,createTime,updateTime
+		)values
+		(#{id},#{title},#{image},#{url},now(),now())
+	 </insert>
+	 
+	 <!-- 修改轮播图 -->
+	<update id="updateSlide" parameterType="pageData">
+		UPDATE blog_slide set
+		    <if test="title != null and title != ''">
+				title = #{title},
+			</if>
+			<if test="image != null and image != ''">
+				image = #{image},
+			</if>	
+			 <if test="url != null and url != ''">
+				url = #{url},
+			</if>
+			<if test="projectName != null and projectName != ''">
+				projectName = #{projectName},
+			</if>
+		updateTime=now()
+		where id = #{id}
+	</update>
+	
+	<!-- 删除轮播图 -->
+	  <delete id="delSlide" parameterType="String">
+	 	DELETE FROM blog_slide WHERE id = #{id}
+	 </delete>
+	 
+	 <!-- 分页SQL语句 -->
+	 <select id="findByPage" parameterType="java.util.HashMap" resultType="pageData">
+	   select * from blog_slide  where 1 = 1
+		<if test="title != null and title != ''">
+		and title like '%${title}%'
+		</if>
+		ORDER BY createTime desc limit #{start}, #{max}
+	</select> 
+	<!-- 取得记录的总数 -->
+	<select id="getCount" parameterType="java.util.HashMap" resultType="int">
+		select count(id) from blog_slide where 1 = 1
+		<if test="title != null and title != ''">
+		and title like '%${title}%'
+		</if>
+		ORDER BY createTime desc 
+	</select>
+	
 
 
 </mapper> 

@@ -39,12 +39,12 @@
 <div class="template">
   <div class="box">
     <h3>
-      <p><span></span>推荐视频</p>
+      <p><span></span>猜你喜欢</p>
     </h3>
     <ul>
   <%--     <li><a href="/"  ><img src="${blog}/img/01.jpg"></a><span>小帅哥</span></li>--%>   
- 	 <c:forEach var="v" items="${bVideoList}">
- 	   <li><a href="${blog}/voice/manage/faceVideoDetail.html?id=${v.id}"><img src="/imageService/uploadFiles/${v.image}"></a><span>${v.title}</span></li>
+ 	 <c:forEach var="v" items="${bSlideList}">
+ 	   <li><a href="${v.url}"><img src="/imageService/uploadFiles/${v.image}"></a><span>${v.title}</span></li>
      </c:forEach>
   </ul>
   </div>
@@ -69,7 +69,7 @@
 </c:forEach>
    </div>
   <aside class="right">
-    <div class="weather"></div>
+    <div class="weather"><iframe width="250" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=1"></iframe></div>
     <div class="news">
     <h3>
       <p>最新<span>文章</span></p>

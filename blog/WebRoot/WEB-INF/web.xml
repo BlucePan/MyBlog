@@ -3,13 +3,8 @@
     xmlns="http://java.sun.com/xml/ns/javaee"  
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"  
     version="3.0">  
- <display-name>blog</display-name>  
-    <!-- Spring和mybatis的配置文件 -->  
-    <context-param>  
-        <param-name>contextConfigLocation</param-name>  
-        <param-value>classpath:spring-mybatis.xml,classpath:spring-shiro.xml</param-value>  
-    </context-param>  
-    
+ <display-name>blog</display-name>   
+ 
     <!-- Spring MVC servlet -->  
     <servlet>  
         <servlet-name>SpringMVC</servlet-name>  
@@ -19,8 +14,21 @@
             <param-value>classpath:spring-mvc.xml</param-value>
         </init-param>  
         <load-on-startup>1</load-on-startup>  
-    </servlet>  
+    </servlet> 
     
+      <!--MonitoringFilter用于监控http的Servlet Filter,确保JavaMelody的Filter第一个被执行-->
+	 <filter>
+		   <filter-name>monitoring</filter-name>
+		   <filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
+		   <async-supported>true</async-supported>
+	 </filter>
+	 <filter-mapping>
+		   <filter-name>monitoring</filter-name>
+		   <url-pattern>/*</url-pattern>
+	 </filter-mapping>
+	 <listener>
+		<listener-class>net.bull.javamelody.SessionListener</listener-class>
+	 </listener>
     <!-- 配置shiro过滤器 -->
     <filter>
     	<filter-name>shiroFilter</filter-name>
@@ -48,6 +56,26 @@
         <filter-name>encodingFilter</filter-name>  
         <url-pattern>/*</url-pattern>  
     </filter-mapping>  
+    
+    <!-- druid -->
+    <servlet>
+        <servlet-name>DruidStatView</servlet-name>
+        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DruidStatView</servlet-name>
+        <url-pattern>/druid/*</url-pattern>
+    </servlet-mapping>
+    
+       <!-- Spring和mybatis的配置文件 -->  
+    <context-param>  
+        <param-name>contextConfigLocation</param-name>  
+        <param-value>classpath:spring-mybatis.xml
+                   classpath:spring-shiro.xml
+		           classpath:net/bull/javamelody/monitoring-spring-datasource.xml
+                   classpath:net/bull/javamelody/monitoring-spring-aspectj.xml
+        </param-value>  
+    </context-param>  
 	
 	<!-- 设置session过期时间 -->
 	<session-config>
@@ -63,7 +91,13 @@
 	<servlet-mapping>
 		<servlet-name>UploadUtil</servlet-name>
 		<url-pattern>/UploadUtil</url-pattern>
-	</servlet-mapping><!-- Spring监听器 -->  
+	</servlet-mapping>
+	
+	  <!-- 用于监听HTTP Session的，另外也监听Servlet Context-->
+	  <listener>
+	    <listener-class>net.bull.javamelody.SessionListener</listener-class>
+	  </listener>
+	<!-- Spring监听器 -->  
     <listener>  
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  
     </listener>  
@@ -104,6 +138,10 @@
   <servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>/ueditor/dialogs/*</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+      <servlet-name>default</servlet-name>
+      <url-pattern>/monitoring</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>default</servlet-name>

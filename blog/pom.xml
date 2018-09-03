@@ -256,6 +256,22 @@
 	    <artifactId>fastdfs-client-java</artifactId>
 	    <version>1.27</version>
 	</dependency>
+	<!-- javamelody应用监控服务  -->
+	<dependency>
+	    <groupId>net.bull.javamelody</groupId>
+	    <artifactId>javamelody-core</artifactId>
+	    <version>1.73.1</version>
+   </dependency>
+   <dependency>
+	    <groupId>org.aspectj</groupId>
+	    <artifactId>aspectjrt</artifactId>
+	    <version>1.9.1</version>
+   </dependency>
+   <dependency>
+	    <groupId>org.aspectj</groupId>
+	    <artifactId>aspectjweaver</artifactId>
+	    <version>1.9.1</version>
+   </dependency>
     <!-- 添加支付宝接口时需要的包 -->
    <dependency>
 	    <groupId>dom4j</groupId>
