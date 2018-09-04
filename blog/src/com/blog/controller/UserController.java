@@ -190,6 +190,13 @@ public class UserController extends BaseController{
 	
 	
 	
-	
+	     //测试跳转vm
+		@RequestMapping("/toVm.html")
+		public String toVm(HttpServletRequest request){		
+		   User user=(User) userService.queryUserById("666666");		
+		
+			request.setAttribute("user", user);
+			return "view/404";
+		}
 	
 }

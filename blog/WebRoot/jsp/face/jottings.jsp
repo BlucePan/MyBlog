@@ -29,7 +29,7 @@ text-align: center;
  	   <ul class="arrow_box">
          <div class="sy">
       <p>
-      <img  src="/imageService/uploadFiles/${j.image}" />
+      <img  src="${imageService}/${j.image}" />
        ${j.context}
       </p>
       <span class="dateview"><fmt:parseDate value='${j.createTime}' var="yearMonth" pattern="yyyy-MM-dd "/>

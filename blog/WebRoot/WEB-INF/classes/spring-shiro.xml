@@ -28,7 +28,7 @@
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
 	     <!-- session的失效时长，单位毫秒 -->
 	     <!-- 设置全局会话超时时间，默认30分钟，即如果30分钟内没有访问会话将过期 1800000 -->
-	     <property name="globalSessionTimeout" value="600000"/>
+	     <property name="globalSessionTimeout" value="1800000"/>
 	     <!-- 删除失效的session -->
 	     <property name="deleteInvalidSessions" value="true"/>
 	     <!-- 是否开启会话验证器，默认是开启的 -->
@@ -37,9 +37,8 @@
         <property name="sessionDAO" ref="sessionDAO"/>        
         <property name="sessionIdCookie">
             <bean class="org.apache.shiro.web.servlet.SimpleCookie">
-                <!-- <constructor-arg name="name" value="shiro.sesssion"/>
-                <property name="path" value="/" /> -->
-                <constructor-arg name="name" value="jeesite.session.id"/>
+                <constructor-arg name="name" value="shiro.sesssion"/>
+                <property name="path" value="/" /> 
             </bean>
         </property>
         

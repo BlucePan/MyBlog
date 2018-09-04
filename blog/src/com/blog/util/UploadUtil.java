@@ -163,7 +163,7 @@ public class UploadUtil extends HttpServlet {
             dirFile.mkdirs();  
         }
         try {
-            FileOutputStream out = new FileOutputStream(savePath + "\\"
+            FileOutputStream out = new FileOutputStream(savePath + "/"
                     + newFileName);
             // 写入文件
             out.write(file.getBytes());

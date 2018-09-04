@@ -4,18 +4,6 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"  
     version="3.0">  
  <display-name>blog</display-name>   
- 
-    <!-- Spring MVC servlet -->  
-    <servlet>  
-        <servlet-name>SpringMVC</servlet-name>  
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  
-        <init-param>  
-            <param-name>contextConfigLocation</param-name>  
-            <param-value>classpath:spring-mvc.xml</param-value>
-        </init-param>  
-        <load-on-startup>1</load-on-startup>  
-    </servlet> 
-    
       <!--MonitoringFilter用于监控http的Servlet Filter,确保JavaMelody的Filter第一个被执行-->
 	 <filter>
 		   <filter-name>monitoring</filter-name>
@@ -130,6 +118,16 @@
     <welcome-file-list>  
         <welcome-file>/user/main.html</welcome-file>  
     </welcome-file-list>  
+     <!-- Spring MVC servlet -->  
+    <servlet>  
+        <servlet-name>SpringMVC</servlet-name>  
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  
+        <init-param>  
+            <param-name>contextConfigLocation</param-name>  
+            <param-value>classpath:spring-mvc.xml</param-value>
+        </init-param>  
+        <load-on-startup>1</load-on-startup>  
+    </servlet> 
    <servlet-mapping>
     <servlet-name>SpringMVC</servlet-name>
       <!-- 此处可以可以配置成*.html -->  
