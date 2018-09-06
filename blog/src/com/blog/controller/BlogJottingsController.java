@@ -30,10 +30,9 @@ import com.blog.util.UploadUtil;
 @Controller
 @RequestMapping("/jottings/manage/*")
 public class BlogJottingsController extends BaseController {
-	@Resource
-	private BlogJottingsService bJottingsService;
 	private JsonBeang jb = new JsonBeang();
-	//闲谈列表
+
+	// 闲谈列表
 	@RequestMapping("/jottingsList.html")
 	public String JottingsList(HttpServletRequest request, Model model) {
 		PageView page = new PageView();
@@ -43,88 +42,73 @@ public class BlogJottingsController extends BaseController {
 		map.put("createTime", request.getParameter("createTime"));
 		PageView pageView = bJottingsService.findByPage(page, map);
 		StringBuffer buffer = new StringBuffer();
-		if(!BlogUtil.isEmpty(request.getParameter("createTime"))){
+		if (!BlogUtil.isEmpty(request.getParameter("createTime"))) {
 			buffer.append("&createTime=");
 			buffer.append(request.getParameter("createTime"));
-		}  
-		model.addAttribute("pager",pageView.getPagerStr(buffer));
-        model.addAttribute("list", pageView.getItems());
-			
+		}
+		model.addAttribute("pager", pageView.getPagerStr(buffer));
+		model.addAttribute("list", pageView.getItems());
+
 		return "background/jottings/jottingsList";
 	}
-	//跳到增加页面	
+
+	// 跳到增加页面
 	@RequestMapping("/jottingsToAdd.html")
 	public String jottingsToAdd(HttpServletRequest request, Model model) {
 		return "background/jottings/addJottings";
 	}
-	//增加闲谈
+
+	// 增加闲谈
 	@RequestMapping("/jottingsAdd.html")
-	public String jottingsAdd(HttpServletRequest request, Model model,@RequestParam MultipartFile imageFile) {
+	public String jottingsAdd(HttpServletRequest request, Model model, @RequestParam MultipartFile imageFile) {
 		BlogJottings jottings = new BlogJottings();
 		jottings.setId(BlogUtil.getKey());
 		jottings.setCreateUserId(String.valueOf(getLoginUser(request).getId()));
 		jottings.setKeyWord(request.getParameter("keyWord"));
-		if(imageFile!=null && !imageFile.isEmpty()){//logo
-	        String path = UploadUtil.saveFile(imageFile, request);
-	        jottings.setImage(path);
+		if (imageFile != null && !imageFile.isEmpty()) {// logo
+			String path = UploadUtil.saveFile(imageFile, request);
+			jottings.setImage(path);
 		}
 		jottings.setContext(request.getParameter("context"));
 		bJottingsService.addBlogJottings(jottings);
 		return "forward:/jottings/manage/jottingsList.html";
 	}
-	//查看详情
+
+	// 查看详情
 	@RequestMapping("/jottingsDetail.html")
 	public String jottingsDetail(HttpServletRequest request, Model model) {
 		BlogJottings jottings = bJottingsService.queryBlogJottingsById(request.getParameter("id"));
 		model.addAttribute("jottings", jottings);
 		return "background/jottings/editJottings";
 	}
-	//修改闲谈
+
+	// 修改闲谈
 	@RequestMapping("/jottingsUpdate.html")
-	public String jottingsUpdate(BlogJottings jottings,HttpServletRequest request, Model model,@RequestParam MultipartFile imageFile) {
-		if(imageFile!=null && !imageFile.isEmpty()){//logo
-	        String path = UploadUtil.saveFile(imageFile, request);
-	        jottings.setImage(path);
+	public String jottingsUpdate(BlogJottings jottings, HttpServletRequest request, Model model,
+			@RequestParam MultipartFile imageFile) {
+		if (imageFile != null && !imageFile.isEmpty()) {// logo
+			String path = UploadUtil.saveFile(imageFile, request);
+			jottings.setImage(path);
 		}
 		bJottingsService.updateBlogJottings(jottings);
-		
+
 		return "forward:/jottings/manage/jottingsList.html";
-		//	return "redirect:activityList.html";
+		// return "redirect:activityList.html";
 	}
-	//删除闲谈
+
+	// 删除闲谈
 	@RequestMapping("/delJottings.html")
-	public void delJottings(HttpServletRequest request,HttpServletResponse response){
-		String id=request.getParameter("id");
-		if (id == null || id.equals("") ) {
-			 jb.setStatus("000");
-			 jb.setMessage("非法操作");
-		}else{		
+	public void delJottings(HttpServletRequest request, HttpServletResponse response) {
+		String id = request.getParameter("id");
+		if (id == null || id.equals("")) {
+			jb.setStatus("000");
+			jb.setMessage("非法操作");
+		} else {
 			bJottingsService.deleteBlogJottings(id);
 			jb.setStatus("100");
 			jb.setMessage("操作成功");
 		}
 		BlogUtil.fromPrintJson(jb, response);
 	}
-	
-	//前台分页加载闲谈列表
-	@RequestMapping("/faceJottingsList.html")
-	public String faceJottingsList(HttpServletRequest request, Model model) {
-		PageView page = new PageView();
-		page.setPageSize(10);
-		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
-		Map map = new HashMap();
-		map.put("createTime", request.getParameter("createTime"));
-		PageView pageView = bJottingsService.findByPage(page, map);
-		StringBuffer buffer = new StringBuffer();
-		if(!BlogUtil.isEmpty(request.getParameter("createTime"))){
-			buffer.append("&createTime=");
-			buffer.append(request.getParameter("createTime"));
-		}  
-		model.addAttribute("pager",pageView.getPagerStr(buffer));
-        model.addAttribute("jList", pageView.getItems());	
-		return "face/jottings";
-	}
-	
-	
-	
+
 }

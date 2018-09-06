@@ -5,11 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>个人博客 BlucePan</title>
-<meta name="keywords" content="个人博客模板,博客模板"/>
-<meta name="description" content="寻梦主题的个人博客模板，优雅、稳重、大气,低调。" />
+<title>盘子博客 BlucePan</title>
+<meta name="keywords" content="盘子博客 BlucePan"/>
+<meta name="description" content="个人博客模板,博客模板,盘子" />
+<link rel="icon" href="${blog}/img/favicon.gif">
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/index.css" rel="stylesheet">
+
 <!--[if lt IE 9]>
 <script src="js/modernizr.js"></script>
 <![endif]-->
@@ -21,7 +23,7 @@
   </nav>
 </header> --%>
 <!-- 引入公共头部 -->
-<%@ include file="faceTop.jsp"%>
+<%@ include file="/jsp/common/top.jsp"%>
 
 <!-- 滚动字幕 -->
 <div class="banner">
@@ -40,6 +42,12 @@
   <div class="box">
     <h3>
       <p><span></span>猜你喜欢</p>
+      <div class="gd" style="width:80.5%;float: right;font-size: 14px;height: 30px;line-height: 30px;color: #4E3E3E;position: absolute;bottom:0;right: 0;font-weight: 400">
+	   <!--  <script type="text/javascript" src="https://api.lwl12.com/hitokoto/main/get?encode=js&amp;charset=utf-8"></script> -->
+		<marquee scrollamount="5" direction="left" onmouseover="this.stop()" onmouseout="this.start()">
+		<span style="color:#2b97d5;font-weight:bold">偶遇佳句：一生中，总有那么一段时间，需要你自己走，自己扛。 不要感觉害怕，不要感觉孤单，这只不过是成长的代价。</span>
+		</marquee>
+	  </div> 
     </h3>
     <ul>
   <%--     <li><a href="/"  ><img src="${blog}/img/01.jpg"></a><span>小帅哥</span></li>--%>   
@@ -69,7 +77,13 @@
 </c:forEach>
    </div>
   <aside class="right">
-    <div class="weather"><iframe width="250" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="//i.tianqi.com/index.php?c=code&id=12&icon=1&num=1"></iframe></div>
+    <div class="weather"><iframe width="250" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=1"></iframe></div>
+    <div class="music">
+		<h3>
+		  <p>分享<span>音乐</span></p>
+		</h3>
+		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="300" height="110" src="https://music.163.com/outchain/player?type=2&amp;id=438903458&amp;auto=1&amp;height=90"></iframe>		
+	</div>
     <div class="news">
     <h3>
       <p>最新<span>文章</span></p>
@@ -98,8 +112,8 @@
       <p>友情<span>链接</span></p>
     </h3>
     <ul class="website">
-      <li><a href="http://www.aiyoseo.com" target="_blank">万易设计</a></li>
-      <li><a href="#" target="_blank">网易云音乐</a></li>
+      <li><a href="http://www.guduke.cn" target="_blank">微光博客</a></li>
+      <li><a href="http://www.yangqq.com" target="_blank">杨青博客</a></li>
       <li><a href="#" target="_blank">王者农药</a></li>
       <li><a href="#" target="_blank">皇室战争</a></li>
     </ul> 
@@ -115,46 +129,8 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
     <!-- <a href="/" class="weixin"> </a></aside> -->
 </article>
 
-<footer>
-  <p>Design by DanceSmile <a href="http://www.miitbeian.gov.cn/" target="_blank">蜀ICP备11002373号-1</a> <a href="/">网站统计</a></p>
-</footer>
-<script src="${blog}/js/silder.js"></script>
-
-<!-- 背景特效 -->
-<%-- <script type="text/javascript" src="${blog}/js/particle.js"></script> --%>
- <!-- 按需加载背景 -->
-  <!-- 识别手机或电脑的js开始 -->  
-  <script type="text/javascript">   
-  (function(){  
-    var res = GetRequest();  
-    var par = res['index'];  
-    if(par!='gfan'){  
-      var ua=navigator.userAgent.toLowerCase();  
-      var contains=function (a, b){  
-          if(a.indexOf(b)!=-1){return true;}  
-      };   
-   /*    if((contains(ua,"android") && contains(ua,"mobile"))||(contains(ua,"android") && contains(ua,"mozilla"))||(contains(ua,"android") && contains(ua,"opera"))||contains(ua,"ucweb7")||contains(ua,"iphone")){
-        return false;
-      } else {
-        $.getScript("${blog}/js/particle.js");
-      } */
-      $.getScript("${blog}/js/particle.js");
-    }  
-  })();  
-  function GetRequest() {  
-    var url = location.search;
-    var theRequest = new Object();  
-    if (url.indexOf("?") != -1) {  
-      var str = url.substr(1);  
-      strs = str.split("&");  
-      for(var i = 0; i < strs.length; i ++) {  
-        theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);  
-      }  
-    }  
-    return theRequest;  
-  }  
-  </script>  
-  <!-- 识别手机或电脑的js结束 -->  
+<!-- 引入公共头部 -->
+<%@include file="/jsp/common/bottom.jsp"%>
 
 </body>
 </html>

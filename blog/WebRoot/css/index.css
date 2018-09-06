@@ -180,12 +180,14 @@ opacity:.8;
 opacity:1;
 }
 }
-.avatar { float: right; margin: 40px; width: 130px; height: 130px; border-radius: 100%; overflow: hidden; border: #FFF 4px solid }
+.avatar { float: right; margin: 40px; width: 130px; height: 130px; border-radius: 100%; overflow: hidden; border: #FFF 4px solid ;transition: All 0.6s ease-in-out;-webkit-transition: All 0.6s ease-in-out;-moz-transition: All 0.6s ease-in-out;-o-transition: All 0.6s ease-in-out;}
 .avatar a { display: block; padding-top: 97px; width: 160px; background: url(../img/photos.jpg) no-repeat; background-size: 130px 130px }
+.avatar:hover {transform: rotate(360deg);-webkit-transform: rotate(360deg);-moz-transform: rotate(360deg);-o-transform: rotate(360deg);-ms-transform: rotate(360deg);}
 .avatar a span { display: block; margin-top: 63px; padding-top: 8px; width: 130px; height: 55px; text-align: center; line-height: 20px; color: #fff; background: rgba(0, 0, 0, .5); -webkit-transition: margin-top .2s ease-in-out; -moz-transition: margin-top .2s ease-in-out; -o-transition: margin-top .2s ease-in-out; transition: margin-top .2s ease-in-out; }
 .avatar a:hover span { display: block; margin-top: 0; }
+
 .template { background: #F1F0EE }
-.template h3 { border-bottom: #FFF 1px solid; width: 100%; overflow: hidden; font-size: 14px; margin: 0 0 10px; font-family: "Î¢ÈíÑÅºÚ"; display: block; clear: both; }
+.template h3 { position: relative;border-bottom: #FFF 1px solid; width: 100%; overflow: hidden; font-size: 14px; margin: 0 0 10px; font-family: "Î¢ÈíÑÅºÚ"; display: block; clear: both; }
 .template h3 p { background: #474645; width: 180px; height: 25px; margin: 15px 0 0 10px; line-height: 25px; color: #fff; text-align: center; box-shadow: #999 4px 5px 1px; }
 .template h3 p span { color: #38b3d4; }
 .template ul { overflow: hidden; }
@@ -206,6 +208,10 @@ h2.title_tj p { background: #fff; width: 90px }
 .dateview span a { color: #099B43; }
 a.readmore { background: #fd8a61; color: #fff; padding: 5px 10px; float: right; margin: 20px 0 0 0 }
 .weather { background: url(../img/weather_bg2.jpg) no-repeat; height: 88px; margin: 20px 0;padding: 20px 0 0 75px; }
+<!--ÒôÀÖ²å¼þ-->
+.music h3 { font-size: 14px; background: url(../img/r_title_bg.jpg) repeat-x center }
+.music h3 p {background: #fff;width: 70px;}
+.music h3 span { color: #FF4040 }
 .news h3 { font-size: 14px; background: url(../img/r_title_bg.jpg) repeat-x center }
 .news h3 p { background: #fff; width: 70px }
 .news h3 span { color: #65b020 }
@@ -221,4 +227,7 @@ a.readmore { background: #fd8a61; color: #fff; padding: 5px 10px; float: right; 
 .website { margin: 10px 0; background: #F3F3F3; border-radius: 50%; text-align: center; }
 .website li { line-height: 26px; text-shadow: #fff 1px 1px 1px; height: 26px; }
 .weixin { background: url(../img/weixin.jpg) no-repeat; width: 100%; display: inline-block; height: 274px; overflow: hidden; margin: 10px 0; clear: both }
-
+<!--ÈÈÃÅÆÀÂÛ-->
+.news h3, .visitors h3 { font-size: 14px; background: url(../img/r_title_bg.jpg) repeat-x center; }
+.news h3 p, .visitors h3 p { background: #fff; width: 70px }
+.visitors h3 span { color: #FF4040 }

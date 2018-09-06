@@ -16,9 +16,9 @@
 <link href='http://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<%@ include file="faceTop.jsp"%>
+<%@ include file="/jsp/common/top.jsp"%>
 <article class="aboutcon">
-<h1 class="t_nav"><span>我不知道该说些什么。</span><a href="${blog}/user/main.html" class="n1">网站首页</a><a href="${blog}/jsp/face/about.jsp" class="n2">关于我</a></h1>
+<h1 class="t_nav"><span>我不知道该说些什么。</span><a href="${blog}" class="n1">网站首页</a><a href="${blog}/jsp/face/about.jsp" class="n2">关于我</a></h1>
 <div class="about left">
   <h2>Just about me</h2>
     <ul> 
@@ -50,13 +50,9 @@
     <p>喜欢的书：《增广贤文》</p>
     <p>喜欢的音乐：《海阔天空》《探清水河》</p>
     <p><a href="http://wpa.qq.com/msgrd?V=3&amp;uin=1548498126&amp;Site=www.blucepan.top&amp;Menu=yes" target="_blank"><img border="0" src="http://wpa.qq.com/pa?p=1:1548498126:13" alt="交流点这里"></a></p>
-    <img src="http://pub.idqqimg.com/wpa/img/group.png" alt="盘子个人博客网站" title="盘子个人博客网站"></a>
 </div>     
 </aside>
 </article>
-<footer>
-  <p>Design by DanceSmile <a href="http://www.miitbeian.gov.cn/" target="_blank">浙ICP备18037226号</a> <a href="/">网站统计</a></p>
-</footer>
-<script src="${blog}/js/silder.js"></script>
+<%@include file="/jsp/common/bottom.jsp"%>
 </body>
 </html>

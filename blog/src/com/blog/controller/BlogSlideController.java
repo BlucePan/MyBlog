@@ -17,20 +17,19 @@ import com.blog.service.BlogSlideService;
 import com.blog.util.JsonBeang;
 import com.blog.util.PageData;
 import com.blog.util.PageView;
+
 @Controller
 public class BlogSlideController extends BaseController {
 	private JsonBeang jb;
-	@Resource
-	private BlogSlideService blogSlideService;
-	
-	//商户商品管理
+
+	// 商户商品管理
 	@ResponseBody
-	@RequestMapping(value="/api/slideList.html")
-	public JsonBeang goodsList(HttpServletRequest request){
-		jb=new JsonBeang();
+	@RequestMapping(value = "/api/slideList.html")
+	public JsonBeang goodsList(HttpServletRequest request) {
+		jb = new JsonBeang();
 		try {
-			PageData pd=new PageData();
-			List<PageData> slideList=blogSlideService.queryAllSlide(pd);
+			PageData pd = new PageData();
+			List<PageData> slideList = blogSlideService.queryAllSlide(pd);
 			jb.setList(slideList);
 			jb.setMessage("获取成功");
 			jb.setStatus("200");
@@ -39,7 +38,7 @@ public class BlogSlideController extends BaseController {
 			jb.setStatus("500");
 			e.printStackTrace();
 		}
-		return jb;		
+		return jb;
 	}
 
 }

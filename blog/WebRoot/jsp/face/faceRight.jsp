@@ -18,10 +18,10 @@
         <c:forEach var="n" items="${nArticleList}" varStatus="d">
    	<c:choose>		
 		<c:when test="${d.count==1}">
-            <li><a href="${blog}/article/manage/seeArticleDetail.html?id=${n.id}&type=${n.type}" title="${n.title}" style="color:red;" target="_blank">${n.title}</a></li>
+            <li><a href="${blog}/articleDetail.html?id=${n.id}&type=${n.type}" title="${n.title}" style="color:red;" target="_blank">${n.title}</a></li>
 	    </c:when>
 		<c:otherwise>		
-            <li><a href="${blog}/article/manage/seeArticleDetail.html?id=${n.id}&type=${n.type}" title="${n.title}"  target="_blank">${n.title}</a></li>
+            <li><a href="${blog}/articleDetail.html?id=${n.id}&type=${n.type}" title="${n.title}"  target="_blank">${n.title}</a></li>
 		</c:otherwise>
 	</c:choose>
       </c:forEach>   
@@ -32,9 +32,15 @@
     </h3>
     <ul class="paih">
         <c:forEach var="s" items="${sArticleList}">
-      <li><a href="${blog}/article/manage/seeArticleDetail.html?id=${s.id}&type=${s.type}" title="${s.title}" target="_blank">${s.title}</a></li>    
+      <li><a href="${blog}/articleDetail.html?id=${s.id}&type=${s.type}" title="${s.title}" target="_blank">${s.title}</a></li>    
     </c:forEach>
       <!-- <li><a href="/" title="Column 三栏布局 个人网站模板" target="_blank">Column 三栏布局 个人网站模板</a></li> -->
-    </ul>
-    
+    </ul>    
 </div>
+<!-- 畅言评论 -->
+<!-- <div class="visitors">
+     <h3><p>热门<span>评论</span></p></h3>
+     <div id="cyReping" role="cylabs" data-use="reping"></div>
+  	 <script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+	 <script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cythFk0gD"></script>  
+</div> -->

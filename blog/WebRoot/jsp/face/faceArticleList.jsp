@@ -14,25 +14,25 @@
 </head>
 <body>
 <!-- 引用公共头部 -->
-<%@ include file="faceTop.jsp"%>
+<%@ include file="/jsp/common/top.jsp"%>
 
 <article class="blogs">
-<h1 class="t_nav"><span>我们长路漫漫，只因学无止境。 </span><a href="${blog}/user/main.html" class="n1">网站首页</a>
+<h1 class="t_nav"><span>我们长路漫漫，只因学无止境。 </span><a href="${blog}" class="n1">网站首页</a>
 	<c:choose>		
 		<c:when test="${param.type=='1'}">
-			<a href="${blog}/article/manage/faceArticleList.html?type=1" class="n2">网站建设</a>
+			<a href="${blog}/article.html?type=1" class="n2">网站建设</a>
 		</c:when>
 		<c:when test="${param.type=='2'}">
-			<a href="${blog}/article/manage/faceArticleList.html?type=2" class="n2">心得笔记</a>
+			<a href="${blog}/article.html?type=2" class="n2">心得笔记</a>
 		</c:when>
 		<c:when test="${param.type=='3'}">
-			<a href="${blog}/article/manage/faceArticleList.html?type=3" class="n2">程序人生</a>
+			<a href="${blog}/article.html?type=3" class="n2">程序人生</a>
 		</c:when>
 		<c:when test="${param.type=='4'}">
-			<a href="${blog}/article/manage/faceArticleList.html?type=4" class="n2">web前端</a>
+			<a href="${blog}/article.html?type=4" class="n2">web前端</a>
 		</c:when>
 		<c:otherwise>		
-            <a href="${blog}/article/manage/faceArticleList.html" class="n2">我的博客</a>
+            <a href="${blog}/article.html" class="n2">我的博客</a>
 		</c:otherwise>
 	</c:choose>
 </h1>
@@ -43,11 +43,11 @@
      <h2>${r.title}</h2>
       <p class="dateview"><span>发布时间：<fmt:parseDate value='${r.createTime}' var="yearMonth" pattern="yyyy-MM-dd "/>
         <fmt:formatDate value="${yearMonth}" pattern="yyyy-MM-dd " /></span>
-    <span>作者：${r.createUser}</span><span>分类：[<a href="${blog}/article/manage/faceArticleList.html?type=${r.type}">${r.articleName}</a>]</span></p>
+    <span>作者：${r.createUser}</span><span>分类：[<a href="${blog}/articleDetail.html?type=${r.type}">${r.articleName}</a>]</span></p>
     <figure><img src="${imageService}/${r.image}"></figure>
     <ul class="nlist">
       <p>${r.remake}</p>
-      <a title="/" href="${blog}/article/manage/seeArticleDetail.html?id=${r.id}&type=${r.type}" class="readmore">详细信息>></a>
+      <a title="/" href="${blog}/articleDetail.html?id=${r.id}&type=${r.type}" class="readmore">详细信息>></a>
     </ul>
     <div class="line"></div>
 </c:forEach>
@@ -70,7 +70,7 @@
       <h2>博客分类</h2>
        <ul>
 	<c:forEach var="a" items="${articleTypeList}">
-   		 <li><a href="${blog}/article/manage/faceArticleList.html?type=${a.id}" >${a.articleName}</a></li>	  			
+   		 <li><a href="${blog}/article.html?type=${a.id}" >${a.articleName}</a></li>	  			
    	</c:forEach>
       </ul>           
     </div>
@@ -96,9 +96,6 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
     <!-- Baidu Button END -->   
 </aside>
 </article>
-<footer>
-  <p>Design by DanceSmile <a href="http://www.miitbeian.gov.cn/" target="_blank">蜀ICP备11002373号-1</a> <a href="/">网站统计</a></p>
-</footer>
-<script src="${blog}/js/silder.js"></script>
+<%@include file="/jsp/common/bottom.jsp"%>
 </body>
 </html>

@@ -116,7 +116,7 @@
    </context-param>
 
     <welcome-file-list>  
-        <welcome-file>/user/main.html</welcome-file>  
+        <welcome-file>/home.html</welcome-file>  
     </welcome-file-list>  
      <!-- Spring MVC servlet -->  
     <servlet>  

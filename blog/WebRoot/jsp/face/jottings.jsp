@@ -21,9 +21,9 @@ text-align: center;
 <![endif]-->
 </head>
 <body>
-<%@ include file="faceTop.jsp"%>
+<%@ include file="/jsp/common/top.jsp"%>
 <div class="moodlist" >
-  <h1 class="t_nav"><span>删删写写，回回忆忆，虽无法行云流水，却也可碎言碎语。</span><a href="${blog}/user/main.html" class="n1">网站首页</a><a href="${blog}/jottings/manage/faceJottingsList.html" class="n2">闲谈随笔</a></h1>
+  <h1 class="t_nav"><span>删删写写，回回忆忆，虽无法行云流水，却也可碎言碎语。</span><a href="${blog}" class="n1">网站首页</a><a href="${blog}/jottings.html" class="n2">闲谈随笔</a></h1>
   <div class="bloglist" >
  <c:forEach var="j" items="${jList}">
  	   <ul class="arrow_box">
@@ -47,14 +47,6 @@ text-align: center;
  		</div>
  </div>
 
- <!--   <div class="page"><a title="Total record"><b>41</b></a><b>1</b><a href="/news/s/index_2.html">2</a><a href="/news/s/index_2.html">&gt;</a><a href="/news/s/index_2.html">&gt;&gt;</a></div>
-</div> -->
-<!-- <footer>
-  <p>Design by DanceSmile <a href="http://www.miitbeian.gov.cn/" target="_blank">蜀ICP备11002373号-1</a> <a href="/">网站统计</a></p>
-</footer> -->
-
-
-
-<script src="${blog}/js/silder.js"></script>
+<%@include file="/jsp/common/bottom.jsp"%>
 </body>
 </html>

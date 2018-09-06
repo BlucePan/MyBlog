@@ -17,18 +17,17 @@ import com.blog.service.BlogArticleService;
 import com.blog.util.BlogUtil;
 import com.blog.util.JsonBeang;
 import com.blog.util.PageView;
+
 @Controller
 @RequestMapping("/article/manage/*")
 public class BlogArticleController extends BaseController {
 	private JsonBeang jb = new JsonBeang();
-	@Resource
-	private BlogArticleService bArticleService;
-	
-	//文章列表
+
+	// 文章列表
 	@RequestMapping("/articleList.html")
 	public String articleList(HttpServletRequest request, Model model) {
-	  List<BlogArticleType> articleTypeList=bArticleService.getAllArticleType();//得到所有的文章类型
-	  	
+		List<BlogArticleType> articleTypeList = bArticleService.getAllArticleType();// 得到所有的文章类型
+
 		PageView page = new PageView();
 		page.setPageSize(15);
 		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
@@ -37,50 +36,49 @@ public class BlogArticleController extends BaseController {
 		map.put("type", request.getParameter("type"));
 		PageView pageView = bArticleService.findByPage(page, map);
 		StringBuffer buffer = new StringBuffer();
-		if(!BlogUtil.isEmpty(request.getParameter("title"))){
+		if (!BlogUtil.isEmpty(request.getParameter("title"))) {
 			buffer.append("&title=");
 			buffer.append(request.getParameter("title"));
-		}if(!BlogUtil.isEmpty(request.getParameter("type"))){
+		}
+		if (!BlogUtil.isEmpty(request.getParameter("type"))) {
 			buffer.append("&type=");
 			buffer.append(request.getParameter("type"));
 		}
-		model.addAttribute("pager",pageView.getPagerStr(buffer));
-        model.addAttribute("list", pageView.getItems());
-        model.addAttribute("articleTypeList", articleTypeList);
-			
+		model.addAttribute("pager", pageView.getPagerStr(buffer));
+		model.addAttribute("list", pageView.getItems());
+		model.addAttribute("articleTypeList", articleTypeList);
+
 		return "background/article/articleList";
 	}
 
-	
-	//跳到增加页面
+	// 跳到增加页面
 	@RequestMapping("/addToArticle.html")
-	public String addToArticle(HttpServletRequest request, Model model) {	
-		  List<BlogArticleType> articleTypeList=bArticleService.getAllArticleType();//得到所有的文章类型
-		   model.addAttribute("articleTypeList", articleTypeList);
-			return "background/article/addArticle";
+	public String addToArticle(HttpServletRequest request, Model model) {
+		List<BlogArticleType> articleTypeList = bArticleService.getAllArticleType();// 得到所有的文章类型
+		model.addAttribute("articleTypeList", articleTypeList);
+		return "background/article/addArticle";
 	}
-	
-	
-	//添加文章
+
+	// 添加文章
 	@RequestMapping("addArticle.html")
-	public String addArticle(HttpServletRequest request, Model model,BlogArticle article) {	
+	public String addArticle(HttpServletRequest request, Model model, BlogArticle article) {
 		article.setId(BlogUtil.getKey());
 		article.setCreateUserId(String.valueOf(getLoginUser(request).getId()));
 		bArticleService.addArticle(article);
-		 return "forward:/article/manage/articleList.html";
-}	
-	
-	//查看文章详情
+		return "forward:/article/manage/articleList.html";
+	}
+
+	// 查看文章详情
 	@RequestMapping("/articleDetail.html")
 	public String menuDetail(HttpServletRequest request, Model model) {
 		BlogArticle article = bArticleService.queryBlogArticleById(request.getParameter("id"));
 		model.addAttribute("article", article);
-	List<BlogArticleType> articleTypeList=bArticleService.getAllArticleType();//得到所有的文章类型
+		List<BlogArticleType> articleTypeList = bArticleService.getAllArticleType();// 得到所有的文章类型
 		model.addAttribute("articleTypeList", articleTypeList);
 		return "background/article/editArticle";
 	}
-	
-	//修改文章
+
+	// 修改文章
 	@RequestMapping("/articleUpdate.html")
 	public String articleUpdate(HttpServletRequest request, Model model) {
 		BlogArticle article = new BlogArticle();
@@ -93,42 +91,43 @@ public class BlogArticleController extends BaseController {
 		article.setContext(request.getParameter("context"));
 		bArticleService.updateBlogArticle(article);
 		return "forward:/article/manage/articleList.html";
-		//	return "redirect:activityList.html";
+		// return "redirect:activityList.html";
 	}
-	//删除文章
+
+	// 删除文章
 	@RequestMapping("/delArticle.html")
-	public void delArticle(HttpServletRequest request,HttpServletResponse response){
-		String id=request.getParameter("id");
-		if (id == null || id.equals("") ) {
-			 jb.setStatus("000");
-			 jb.setMessage("非法操作");
-		}else{		
+	public void delArticle(HttpServletRequest request, HttpServletResponse response) {
+		String id = request.getParameter("id");
+		if (id == null || id.equals("")) {
+			jb.setStatus("000");
+			jb.setMessage("非法操作");
+		} else {
 			bArticleService.deleteBlogArticle(id);
 			jb.setStatus("100");
 			jb.setMessage("操作成功");
 		}
 		BlogUtil.fromPrintJson(jb, response);
 	}
-	
-	//置顶操作
+
+	// 置顶操作
 	@RequestMapping("/editTopArticle.html")
-	public String editTopArticle(HttpServletRequest request){
+	public String editTopArticle(HttpServletRequest request) {
 		try {
 			BlogArticle article = new BlogArticle();
 			article.setId(request.getParameter("id"));
-			article.setTop(1);		
+			article.setTop(1);
 			article.setUpdateUserId(getLoginUser(request).getId());
 			bArticleService.updateBlogArticle(article);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		 return "forward:/article/manage/articleList.html";
+		return "forward:/article/manage/articleList.html";
 		// return "redirect:activityList.html";
 	}
-	
-	//取消置顶
+
+	// 取消置顶
 	@RequestMapping("/delTopArticle.html")
-	public String delTopArticle(HttpServletRequest request){
+	public String delTopArticle(HttpServletRequest request) {
 		try {
 			BlogArticle article = new BlogArticle();
 			article.setId(request.getParameter("id"));
@@ -139,61 +138,5 @@ public class BlogArticleController extends BaseController {
 		}
 		return "forward:/article/manage/articleList.html";
 	}
-	
-	
-	//前台查看文章详情
-	@RequestMapping("/seeArticleDetail.html")
-	public String seeArticleDetail(HttpServletRequest request, Model model) {
-		BlogArticle article = bArticleService.queryBlogArticleById(request.getParameter("id"));
-		  model.addAttribute("article", article);	
-		
-		  BlogArticle blogArticle =new BlogArticle();
-		  blogArticle.setId(request.getParameter("id"));
-		  blogArticle.setType(Integer.valueOf(request.getParameter("type")));
-		  //上一篇
-		  blogArticle.setIsNext("1");		
-		  BlogArticle aboveArticle  =bArticleService.getNextArticle(blogArticle);
-		  model.addAttribute("aboveArticle", aboveArticle);
-		  //下一篇
-		  blogArticle.setIsNext("2");		
-		  BlogArticle nextArticle  =bArticleService.getNextArticle(blogArticle);
-		  model.addAttribute("nextArticle", nextArticle);
-		  Map map=new HashMap();
-		  map.put("id", article.getId());
-		  map.put("keyWord", article.getKeyWord());
-		  //相关文章
-	      List<BlogArticle> lArticleList=bArticleService.getLikeArticle(map);
-	      request.setAttribute("lArticleList", lArticleList);
-		  return "face/articleDetail";
-	}
-	
-	//前台显示个人博客
-	//文章列表
-	@RequestMapping("/faceArticleList.html")
-	public String faceArticleList(HttpServletRequest request, Model model) {
-	  List<BlogArticleType> articleTypeList=bArticleService.getAllArticleType();//得到所有的文章类型
-	  	
-		PageView page = new PageView();
-		page.setPageSize(3);
-		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
-		Map map = new HashMap();
-		map.put("title", request.getParameter("title"));
-		map.put("type", request.getParameter("type"));
-		PageView pageView = bArticleService.findByPage(page, map);
-		StringBuffer buffer = new StringBuffer();
-		if(!BlogUtil.isEmpty(request.getParameter("title"))){
-			buffer.append("&title=");
-			buffer.append(request.getParameter("title"));
-		}if(!BlogUtil.isEmpty(request.getParameter("type"))){
-			buffer.append("&type=");
-			buffer.append(request.getParameter("type"));
-		}
-		model.addAttribute("pager",pageView.getPagerStr(buffer));
-        model.addAttribute("list", pageView.getItems());
-        model.addAttribute("articleTypeList", articleTypeList);
-			
-		return "face/faceArticleList";
-	}
-	
-	
+
 }

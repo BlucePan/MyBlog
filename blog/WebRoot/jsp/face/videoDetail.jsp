@@ -15,9 +15,9 @@
 <![endif]-->
 </head>
 <body>
-<%@ include file="faceTop.jsp"%>
+<%@ include file="/jsp/common/top.jsp"%>
 <article class="blogs">
-  <h1 class="t_nav"><span>我们长路漫漫，只因学无止境。</span><a href="${blog}/user/main.html" class="n1">网站首页</a><a href="${blog}/voice/manage/faceVideoList.html" class="n2">娱乐视频</a></h1>
+  <h1 class="t_nav"><span>我们长路漫漫，只因学无止境。</span><a href="${blog}" class="n1">网站首页</a><a href="${blog}/video.html" class="n2">娱乐视频</a></h1>
   <div class="index_about">
     <h2 class="c_titile">${video.title}</h2>
     <p class="box_c"><span class="d_time">发布时间：2013-09-08</span><span>编辑：${video.createUser}</span><span>阅读：100</span></p>
@@ -71,7 +71,7 @@
       <h2>相关视频</h2>
       <ul>
          <c:forEach var="l" items="${lVideoList}">
-      <li><a href="${blog}/voice/manage/faceVideoDetail.html?id=${l.id}" title="${l.title}" >${l.title}</a></li>    
+      <li><a href="${blog}/videosDetail.html?id=${l.id}" title="${l.title}" >${l.title}</a></li>    
          </c:forEach> 
       </ul>
     </div>
@@ -112,9 +112,6 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
     </div>
   </aside>
 </article>
-<footer>
-  <p>Design by DanceSmile <a href="http://www.miitbeian.gov.cn/" target="_blank">蜀ICP备11002373号-1</a> <a href="/">网站统计</a></p>
-</footer>
-<script src="${blog}/js/silder.js"></script>
+<%@include file="/jsp/common/bottom.jsp"%>
 </body>
 </html>

@@ -21,22 +21,21 @@ import com.blog.util.PageView;
 @Controller
 @RequestMapping("/menu")
 public class BlogMenuController extends BaseController {
-	@Resource
-	private BlogMenuService blogMenuService;
-	//退出系统
+
+	// 退出系统
 	@RequestMapping("/clearManage.html")
-	public String clearManage(HttpServletRequest request){
+	public String clearManage(HttpServletRequest request) {
 		request.getSession(true).setAttribute("oa_user_info", null);
 		return "redirect:/menu/toLogin.html";
 	}
-	
+
 	@RequestMapping("/toLogin.html")
-	public String toLogin(HttpServletRequest request){
-		
+	public String toLogin(HttpServletRequest request) {
+
 		return "background/login";
 	}
-	
-	//菜单列表
+
+	// 菜单列表
 	@RequestMapping("/menuList.html")
 	public String menuList(HttpServletRequest request, Model model) {
 		PageView page = new PageView();
@@ -46,16 +45,17 @@ public class BlogMenuController extends BaseController {
 		map.put("menuName", request.getParameter("menuName"));
 		PageView pageView = blogMenuService.findByPage(page, map);
 		StringBuffer buffer = new StringBuffer();
-		if(!BlogUtil.isEmpty(request.getParameter("menuName"))){
+		if (!BlogUtil.isEmpty(request.getParameter("menuName"))) {
 			buffer.append("&menuName=");
 			buffer.append(request.getParameter("menuName"));
 		}
-		model.addAttribute("pager",pageView.getPagerStr(buffer));
-        model.addAttribute("list", pageView.getItems());
-			
+		model.addAttribute("pager", pageView.getPagerStr(buffer));
+		model.addAttribute("list", pageView.getItems());
+
 		return "background/menu/list";
 	}
-	//跳到增加页面	
+
+	// 跳到增加页面
 	@RequestMapping("/menuToAdd.html")
 	public String menuToAdd(HttpServletRequest request, Model model) {
 		BlogMenu menu = new BlogMenu();
@@ -64,7 +64,8 @@ public class BlogMenuController extends BaseController {
 		model.addAttribute("list", list);
 		return "background/menu/add";
 	}
-	//增加菜单
+
+	// 增加菜单
 	@RequestMapping("/menuAdd.html")
 	public String menuAdd(HttpServletRequest request, Model model) {
 		BlogMenu menu = new BlogMenu();
@@ -84,7 +85,8 @@ public class BlogMenuController extends BaseController {
 		blogMenuService.addBlogMenu(menu);
 		return "forward:/menu/menuList.html";
 	}
-	//查看详情
+
+	// 查看详情
 	@RequestMapping("/menuDetail.html")
 	public String menuDetail(HttpServletRequest request, Model model) {
 		BlogMenu menu = blogMenuService.queryBlogMenuById(request.getParameter("id"));
@@ -95,7 +97,8 @@ public class BlogMenuController extends BaseController {
 		model.addAttribute("list", list);
 		return "background/menu/edit";
 	}
-	//修改菜单
+
+	// 修改菜单
 	@RequestMapping("/menuUpdate.html")
 	public String menuUpdate(HttpServletRequest request, Model model) {
 		BlogMenu menu = new BlogMenu();
@@ -114,22 +117,23 @@ public class BlogMenuController extends BaseController {
 		blogMenuService.updateBlogMenu(menu);
 		return "forward:/menu/menuList.html";
 	}
-	//删除菜单
+
+	// 删除菜单
 	@ResponseBody
 	@RequestMapping("/menuDel.html")
-	public String menuDel(HttpServletRequest request){
+	public String menuDel(HttpServletRequest request) {
 		String data = "";
 		String id = request.getParameter("id");
 		BlogMenu menu = new BlogMenu();
 		menu.setSuperior(id);
 		List<BlogMenu> menuList = blogMenuService.getAllMenuList(menu);
-		if(menuList.size()>0){
+		if (menuList.size() > 0) {
 			data = "error";
-		}else{
+		} else {
 			blogMenuService.deleteBlogMenu(id);
 			data = "success";
 		}
 		return data;
 	}
-	
+
 }

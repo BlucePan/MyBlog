@@ -23,13 +23,13 @@
 
 </head>
 <body>
-<%@ include file="faceTop.jsp"%>
+<%@ include file="/jsp/common/top.jsp"%>
 <article class="blogs">
-<h1 class="t_nav"><span>好咖啡要和朋友一起品尝，好“模板”也要和同样喜欢它的人一起分享。 </span><a href="${blog}/user/main.html" class="n1">网站首页</a><a href="${blog}/voice/manage/faceVideoList.html" class="n2">娱乐视频</a></h1>
+<h1 class="t_nav"><span>好咖啡要和朋友一起品尝，好“模板”也要和同样喜欢它的人一起分享。 </span><a href="${blog}" class="n1">网站首页</a><a href="${blog}/video.html" class="n2">娱乐视频</a></h1>
 <div class="caselist left">
  <ul>
  <c:forEach var="v" items="${list}">
-    <li><a href="${blog}/voice/manage/faceVideoDetail.html?id=${v.id}"><img src="${imageService}/${v.image}">
+    <li><a href="${blog}/videosDetail.html?id=${v.id}"><img src="${imageService}/${v.image}">
    	 <span class="vTitle">${v.title}</span>	
     </a></li>
  </c:forEach>
@@ -78,9 +78,6 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
     <!-- Baidu Button END -->   
 </aside>
 </article>
-<footer>
-  <p>Design by DanceSmile <a href="http://www.miitbeian.gov.cn/" >蜀ICP备11002373号-1</a> <a href="#">网站统计</a></p>
-</footer>
-<script src="${blog}/js/silder.js"></script>
+<%@include file="/jsp/common/bottom.jsp"%>
 </body>
 </html>
