@@ -8,6 +8,7 @@
 <title>个人博客 BlucePan</title>
 <meta name="keywords" content="个人博客模板,博客模板"/>
 <meta name="description" content="寻梦主题的个人博客模板，优雅、稳重、大气,低调。" />
+<link rel="icon" href="${blog}/img/pz.ico">
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/new.css" rel="stylesheet">
 <!--[if lt IE 9]>
@@ -17,7 +18,7 @@
 <body>
 <%@ include file="/jsp/common/top.jsp"%>
 <article class="blogs">
-  <h1 class="t_nav"><span>我们长路漫漫，只因学无止境。</span><a href="${blog}" class="n1">网站首页</a><a href="${blog}/article.html?type=${article.type}" class="n2">${article.articleName}</a></h1>
+  <h1 class="t_nav"><span>我们长路漫漫，只因学无止境。</span><a href="${blog}/" class="n1">网站首页</a><a href="${blog}/article.html?type=${article.type}" class="n2">${article.articleName}</a></h1>
   <div class="index_about">
     <h2 class="c_titile">${article.title}</h2>
     <p class="box_c"><span class="d_time">发布时间：2013-09-08</span><span>编辑：${article.createUser}</span><span>阅读：（${article.browse}）</span></p>

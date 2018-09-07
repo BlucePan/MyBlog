@@ -8,7 +8,7 @@
 <title>盘子博客 BlucePan</title>
 <meta name="keywords" content="盘子博客 BlucePan"/>
 <meta name="description" content="个人博客模板,博客模板,盘子" />
-<link rel="icon" href="${blog}/img/favicon.gif">
+<link rel="icon" href="${blog}/img/pz.ico">
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/index.css" rel="stylesheet">
 
@@ -52,7 +52,7 @@
     <ul>
   <%--     <li><a href="/"  ><img src="${blog}/img/01.jpg"></a><span>小帅哥</span></li>--%>   
  	 <c:forEach var="v" items="${bSlideList}">
- 	   <li><a href="${v.url}"><img src="/imageService/uploadFiles/${v.image}"></a><span>${v.title}</span></li>
+ 	   <li><a href="${v.url}"><img src="${imageService}/${v.image}"></a><span>${v.title}</span></li>
      </c:forEach>
   </ul>
   </div>
@@ -63,27 +63,39 @@
     <p>文章<span>推荐</span></p>
   </h2>
   <div class="bloglist left">
-  <c:forEach var="b" items="${bArticleList}">
-    <h3>${b.title}</h3>
+  <c:forEach var="b" items="${bArticleList}" varStatus="d">
+  	<c:choose>		
+		<c:when test="${d.count==1}">
+            <h3><a href="#" style="color: #f00;">${b.title}</a><span class="hot"></span></h3>
+	    </c:when>
+		<c:otherwise>		
+            <h3><a href="#">${b.title}</a></h3>
+		</c:otherwise>
+	</c:choose>
     <figure><img src="${imageService}/${b.image}"></figure>
     <ul>
       <p>${b.remake}</p>
-      <a title="/" href="${blog}/article/manage/seeArticleDetail.html?id=${b.id}&type=${b.type}"  class="readmore">阅读全文>></a>
+      <a title="/" href="${blog}/articleDetail.html?id=${b.id}&type=${b.type}"  class="readmore">阅读全文>></a>
     </ul>
     <p class="dateview">
     <span><fmt:parseDate value='${b.createTime}' var="yearMonth" pattern="yyyy-MM-dd "/>
           <fmt:formatDate value="${yearMonth}" pattern="yyyy-MM-dd " /></span>          
-          <span>作者：${b.createUser}</span><span>个人博客：[<a href="${blog}/article/manage/faceArticleList.html?type=${b.type}">${b.articleName}</a>]</span></p>
+          <span>作者：${b.createUser}</span><span>个人博客：[<a href="${blog}/article.html?type=${b.type}">${b.articleName}</a>]</span></p>
 </c:forEach>
    </div>
   <aside class="right">
-    <div class="weather"><iframe width="250" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=1"></iframe></div>
-    <div class="music">
+    <div class="sale"><figure><p><a href="#"  target="_blank" title="本站个人博客主题出售"><img src='${blog}/img/sale.jpg' alt='本站个人博客主题出售'/></a></p></figure></div>	
+	<div class="blank"></div>
+	<div class="time" style="border:#CCC 2px solid;border-radius:10px;padding-left: 3%;margin-bottom:5px;">
+	  <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" name="movie" width="235" height="97" id="movie"><param name="movie" value="${blog}/img/time.swf"><param name="quality" value="high"><param name="menu" value="false"><embed src="${blog}/img/time.swf" width="235" height="97" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" id="movie" name="movie" menu="false"><param name="wmode" value="Opaque"></object></div>
+<!--<div class="weather"><iframe width="250" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=1"></iframe></div>    -->    <div class="music">
 		<h3>
 		  <p>分享<span>音乐</span></p>
 		</h3>
+		<span style="margin-left: -10px;">
 		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="300" height="110" src="https://music.163.com/outchain/player?type=2&amp;id=438903458&amp;auto=1&amp;height=90"></iframe>		
-	</div>
+		</span>
+	</div>	
     <div class="news">
     <h3>
       <p>最新<span>文章</span></p>
@@ -92,10 +104,10 @@
       <c:forEach var="n" items="${nArticleList}" varStatus="d">
    	<c:choose>		
 		<c:when test="${d.count==1}">
-            <li><a href="${blog}/article/manage/seeArticleDetail.html?id=${n.id}&type=${n.type}" title="${n.title}" style="color:red;">${n.title}</a></li>
+            <li><a href="${blog}/articleDetail.html?id=${n.id}&type=${n.type}" title="${n.title}" style="color:red;">${n.title}</a></li>
 	    </c:when>
 		<c:otherwise>		
-            <li><a href="${blog}/article/manage/seeArticleDetail.html?id=${n.id}&type=${n.type}" title="${n.title}" >${n.title}</a></li>
+            <li><a href="${blog}/articleDetail.html?id=${n.id}&type=${n.type}" title="${n.title}" >${n.title}</a></li>
 		</c:otherwise>
 	</c:choose>
       </c:forEach>
@@ -105,16 +117,16 @@
     </h3>
     <ul class="paih">
         <c:forEach var="s" items="${sArticleList}">
-      <li><a href="${blog}/article/manage/seeArticleDetail.html?id=${s.id}&type=${s.type}" title="${s.title}" >${s.title}</a></li>    
+      <li><a href="${blog}/articleDetail.html?id=${s.id}&type=${s.type}" title="${s.title}" >${s.title}</a></li>    
     </c:forEach>
     </ul>
     <h3 class="links">
       <p>友情<span>链接</span></p>
     </h3>
     <ul class="website">
-      <li><a href="http://www.guduke.cn" target="_blank">微光博客</a></li>
       <li><a href="http://www.yangqq.com" target="_blank">杨青博客</a></li>
-      <li><a href="#" target="_blank">王者农药</a></li>
+      <li><a href="http://www.guduke.cn" target="_blank">微光博客</a></li>
+      <li><a href="http://www.xiaozhanfei.com" target="_blank">肖战飞</a></li>
       <li><a href="#" target="_blank">皇室战争</a></li>
     </ul> 
     </div>  

@@ -8,17 +8,18 @@
 <title>个人博客 BlucePan</title>
 <meta name="keywords" content="个人博客模板,博客模板"/>
 <meta name="description" content="寻梦主题的个人博客模板，优雅、稳重、大气,低调。" />
+<link rel="icon" href="${blog}/img/pz.ico">
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/about.css" rel="stylesheet">
 <!--[if lt IE 9]>
 <script src="js/modernizr.js"></script>
 <![endif]-->
-<link href='http://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+<!-- <link href='http://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'> -->
 </head>
 <body>
 <%@ include file="/jsp/common/top.jsp"%>
 <article class="aboutcon">
-<h1 class="t_nav"><span>我不知道该说些什么。</span><a href="${blog}" class="n1">网站首页</a><a href="${blog}/jsp/face/about.jsp" class="n2">关于我</a></h1>
+<h1 class="t_nav"><span>我不知道该说些什么。</span><a href="${blog}/" class="n1">网站首页</a><a href="${blog}/jsp/face/about.jsp" class="n2">关于我</a></h1>
 <div class="about left">
   <h2>Just about me</h2>
     <ul> 

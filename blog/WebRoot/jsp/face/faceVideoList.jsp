@@ -8,6 +8,7 @@
 <title>个人博客 BlucePan</title>
 <meta name="keywords" content="个人博客模板,博客模板"/>
 <meta name="description" content="寻梦主题的个人博客模板，优雅、稳重、大气,低调。" />
+<link rel="icon" href="${blog}/img/pz.ico">
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/case.css" rel="stylesheet">
 <link href="${blog}/css/page.css" rel="stylesheet">
@@ -25,7 +26,7 @@
 <body>
 <%@ include file="/jsp/common/top.jsp"%>
 <article class="blogs">
-<h1 class="t_nav"><span>好咖啡要和朋友一起品尝，好“模板”也要和同样喜欢它的人一起分享。 </span><a href="${blog}" class="n1">网站首页</a><a href="${blog}/video.html" class="n2">娱乐视频</a></h1>
+<h1 class="t_nav"><span>好咖啡要和朋友一起品尝，好“模板”也要和同样喜欢它的人一起分享。 </span><a href="${blog}/" class="n1">网站首页</a><a href="${blog}/video.html" class="n2">娱乐视频</a></h1>
 <div class="caselist left">
  <ul>
  <c:forEach var="v" items="${list}">

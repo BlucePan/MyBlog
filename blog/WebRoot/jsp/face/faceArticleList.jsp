@@ -8,6 +8,7 @@
 <title>个人博客 BlucePan</title>
 <meta name="keywords" content="个人博客模板,博客模板"/>
 <meta name="description" content="寻梦主题的个人博客模板，优雅、稳重、大气,低调。" />
+<link rel="icon" href="${blog}/img/pz.ico">
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/learn.css" rel="stylesheet">
 <link href="${blog}/css/page.css" rel="stylesheet">
@@ -17,7 +18,7 @@
 <%@ include file="/jsp/common/top.jsp"%>
 
 <article class="blogs">
-<h1 class="t_nav"><span>我们长路漫漫，只因学无止境。 </span><a href="${blog}" class="n1">网站首页</a>
+<h1 class="t_nav"><span>我们长路漫漫，只因学无止境。 </span><a href="${blog}/" class="n1">网站首页</a>
 	<c:choose>		
 		<c:when test="${param.type=='1'}">
 			<a href="${blog}/article.html?type=1" class="n2">网站建设</a>
@@ -66,11 +67,16 @@
     <div class="page"><a title="Total record"><b>41</b></a><b>1</b><a href="/news/s/index_2.html">2</a><a href="/news/s/index_2.html">&gt;</a><a href="/news/s/index_2.html">&gt;&gt;</a></div>
  --%></div>
 <aside class="right">
+	<div class="container"><div id="search"> 
+	<form name="search_js1" method="post" action="#"> 
+	<input type="text" name="keyboard">    
+	<input class="button" type="submit" value="搜索"> 
+    </form></div></div>
    <div class="rnav">
       <h2>博客分类</h2>
        <ul>
-	<c:forEach var="a" items="${articleTypeList}">
-   		 <li><a href="${blog}/article.html?type=${a.id}" >${a.articleName}</a></li>	  			
+	<c:forEach var="a" items="${articleTypeList}" varStatus="d">
+   		 <li class="rnav${d.count}"><a href="${blog}/article.html?type=${a.id}" >${a.articleName}</a></li>	  			
    	</c:forEach>
       </ul>           
     </div>
