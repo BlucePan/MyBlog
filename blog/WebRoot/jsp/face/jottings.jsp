@@ -12,11 +12,6 @@
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/mood.css" rel="stylesheet">
 <link href="${blog}/css/page.css" rel="stylesheet">
-<style type="text/css">
-.pagelistFace{
-text-align: center;
-}
-</style>
 <!--[if lt IE 9]>
 <script src="js/modernizr.js"></script>
 <![endif]-->
@@ -39,13 +34,13 @@ text-align: center;
     </ul> 	
  </c:forEach>
  
-   	    <!-- 分页信息 -->
-    <div id="page" class="pagelistFace">
-      <ul>
+   <!-- 分页信息 -->
+   <div  class="fenye">
+      <ul class="clear">
         ${pager}
       </ul>
     </div>
- 		</div>
+ 	</div>
  </div>
 
 <%@include file="/jsp/common/bottom.jsp"%>

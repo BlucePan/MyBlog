@@ -195,7 +195,7 @@ public class HomeController extends BaseController {
 	@RequestMapping("/jottings.html")
 	public String jottings(HttpServletRequest request, Model model) {
 		PageView page = new PageView();
-		page.setPageSize(10);
+		page.setPageSize(3);
 		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
 		Map map = new HashMap();
 		map.put("createTime", request.getParameter("createTime"));
@@ -205,7 +205,7 @@ public class HomeController extends BaseController {
 			buffer.append("&createTime=");
 			buffer.append(request.getParameter("createTime"));
 		}
-		model.addAttribute("pager", pageView.getPagerStr(buffer));
+		model.addAttribute("pager", pageView.toHtml(buffer));
 		model.addAttribute("jList", pageView.getItems());
 		return "face/jottings";
 	}

@@ -8,10 +8,12 @@
 <title>盘子博客 BlucePan</title>
 <meta name="keywords" content="盘子博客 BlucePan"/>
 <meta name="description" content="个人博客模板,博客模板,盘子" />
-<link rel="icon" href="${blog}/img/pz.ico">
+<link rel="icon" href="${blog}/img/pz.ico"/>
+<link rel="shortcut icon" href="${blog}/img/pz.ico"/>
+<link rel="bookmark" href="${blog}/img/pz.ico"/>
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/index.css" rel="stylesheet">
-
+<link href="${blog}/css/csshake.css" rel="stylesheet">
 <!--[if lt IE 9]>
 <script src="js/modernizr.js"></script>
 <![endif]-->
@@ -42,7 +44,7 @@
   <div class="box">
     <h3>
       <p><span></span>猜你喜欢</p>
-      <div class="gd" style="width:80.5%;float: right;font-size: 14px;height: 30px;line-height: 30px;color: #4E3E3E;position: absolute;bottom:0;right: 0;font-weight: 400">
+      <div class="gg" style="float: right;width:80.5%;font-size: 14px;height: 30px;line-height: 30px;color: #4E3E3E;position: absolute;bottom:0;right: 0;font-weight: 400;">
 	   <!--  <script type="text/javascript" src="https://api.lwl12.com/hitokoto/main/get?encode=js&amp;charset=utf-8"></script> -->
 		<marquee scrollamount="5" direction="left" onmouseover="this.stop()" onmouseout="this.start()">
 		<span style="color:#2b97d5;font-weight:bold">偶遇佳句：一生中，总有那么一段时间，需要你自己走，自己扛。 不要感觉害怕，不要感觉孤单，这只不过是成长的代价。</span>
@@ -52,7 +54,7 @@
     <ul>
   <%--     <li><a href="/"  ><img src="${blog}/img/01.jpg"></a><span>小帅哥</span></li>--%>   
  	 <c:forEach var="v" items="${bSlideList}">
- 	   <li><a href="${v.url}"><img src="${imageService}/${v.image}"></a><span>${v.title}</span></li>
+ 	   <li><a  class="shake shake-little" href="${v.url}"><img src="${imageService}/${v.image}"></a><span>${v.title}</span></li>
      </c:forEach>
   </ul>
   </div>
@@ -127,6 +129,7 @@
       <li><a href="http://www.yangqq.com" target="_blank">杨青博客</a></li>
       <li><a href="http://www.guduke.cn" target="_blank">微光博客</a></li>
       <li><a href="http://www.xiaozhanfei.com" target="_blank">肖战飞</a></li>
+      <li><a href="http://www.liuyuyao.com" target="_blank">刘玉尧</a></li>
       <li><a href="#" target="_blank">皇室战争</a></li>
     </ul> 
     </div>  

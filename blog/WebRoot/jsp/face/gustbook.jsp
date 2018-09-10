@@ -48,4 +48,10 @@ window.changyan.api.config({
 </article>
 <%@include file="/jsp/common/bottom.jsp"%>
 </body>
+<script type="text/javascript">
+	
+
+</script>
+
+
 </html>

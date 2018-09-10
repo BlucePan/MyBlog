@@ -2,7 +2,7 @@
 /* CSS Document */
 * { margin: 0; padding: 0 }
 body { font: 12px "宋体", Arial, Helvetica, sans-serif; color: #756F71 }
-img { border: 0; display: block }
+/* img { border: 0; display: block } */
 ul { list-style: none; }
 a:link, a:visited {text-decoration: none; color: #333;}
 .left { float: left; }
@@ -23,15 +23,19 @@ nav a:hover { text-decoration: none }
 article { width: 1000px; margin: 20px auto; overflow: hidden }
 aside { width: 250px; }
 footer { text-align: center; line-height: 40px; border-top: #E8E8E8 1px solid ; width:1000px; margin:auto}
+footer .dh{padding-top:1px;}
+.beian{text-align: center;color: #999;margin-top: -3px;}
+.beian a{border: 0;color:#848589}
+.beian img{vertical-align: middle;}
 <!--滚动公告-->
-.gd{width:80.5%;float: right;font-size: 14px;height: 30px;line-height: 30px;color: #4E3E3E;position: absolute;bottom:0;right: 0;font-weight: 400}
+.gg{float: right;width:80.5%;font-size: 14px;height: 30px;line-height: 30px;color: #4E3E3E;position: absolute;bottom:0;right: 0;font-weight: 400;}
 
 /*鼠标滑过放大图片*/
 figure:hover::before {opacity: 0.9;}
 figure img {transition: all 0.5s ease-out 0s;}
 figure:hover img {transform: matrix(1.04, 0, 0, 1.04, 0, 0);}
 
-<!--蒲公英-->
+/*蒲公英*/
 @media screen and (max-width:600px){
 .dandelion{display: none !important;}
 }
@@ -104,7 +108,25 @@ input[type=text],input[type=password] {font-size: 13px;min-height: 32px;margin: 
 /*文章导航颜色*/
 .rnav1 { color: #FE5187 }
 .rnav2 { color: #339967 }
-.rnav3 { background: #FF8151 }
-.rnav4 { background: #66CC9A }
-.rnav5 { background: #FA8072 }
-.rnav6 { background: #BDB76B }
+.rnav3 { color: #FF8151 }
+.rnav4 { color: #66CC9A }
+.rnav5 { color: #FA8072 }
+.rnav6 { color: #BDB76B }
+
+/* 返回顶部 start */
+.to-top {
+	position: fixed;
+	right: 25px; bottom: 50px; cursor: pointer;
+    background: url(../img/back-top-6d393d81d4b3282acd31db0e52162290.png) no-repeat left top;
+    width: 55px;
+    height: 55px;
+    color: #fff;
+    padding: 0px;
+    border-radius: 4px;
+    z-index: 100;
+    display:none;
+}
+.to-top:hover {
+    background: url(../img/back-top-6d393d81d4b3282acd31db0e52162290.png) no-repeat left bottom;
+}
+/* 返回顶部 end */

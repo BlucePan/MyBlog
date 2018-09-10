@@ -146,5 +146,66 @@ public class PageView {
 		
 		
 	}
+	
+	
+	/**
+	 * 前台分页
+	 * @return html
+	 */
+	public String  toHtml(StringBuffer buffer) {
+		StringBuilder sb=new StringBuilder();
+		
+		int pageCount=getTotalPage();//总页数
+		int a_total=5;      //分页条中有多少个超链接
+		sb.append("<ul class='clear'>");
+		
+		sb.append("<li class='noborder'><span>共"+totalCount+"条数据    ");		
+		if(pageCount>0){
+			sb.append(" 页次"+currentPage+"/"+pageCount+"页");
+		}
+		sb.append("</span></li>");
+		
+		
+		if(totalCount>0){
+			int a_padding=(int)Math.ceil(a_total/2);  //中间的那个超链接距离边缘链接的间隔a的个数 例如：共11个分页 那么这个就是5
+			if(pageCount-currentPage<=a_padding&&currentPage>a_padding+1){
+				a_padding=a_total-(pageCount-currentPage);
+			}
+			int start=currentPage-a_padding,
+			end=start+a_total;
+			if(buffer.length()>0){
+				if(currentPage-1>0){
+					sb.append("<a href=?page=1"+buffer+"><li><<</li></a>");
+				}
+				if(pageCount>0){
+					for (int i = start; i <=end; i++) {
+						if(i<=0){end+=Math.abs(i);i=1;	}
+						sb.append("  <a href=?page="+i+buffer+" "+(i==currentPage ? " class=\"li\"":"")+"><li>"+i+"</li></a>");
+						if(i==pageCount){break;}
+					}
+				}
+				if(currentPage-pageCount<0){
+					sb.append(" <a href=?page="+pageCount+buffer+"><li>>></li></a>");
+				}
+			}else{
+//				/首页
+				if(currentPage-1>0){
+					sb.append("<a href=?page=1><li><<</li></a>");
+				}
+
+				for (int i = start; i <=end; i++) {
+					if(i<=0){end+=Math.abs(i);i=1;	}
+					sb.append("  <a href=?page="+i+" "+(i==currentPage?" class=\"li\"":"")+"><li>"+i+"</li></a>");
+					if(i==pageCount){break;}
+				}
+
+				if(currentPage-pageCount<0){
+					sb.append(" <a href=?page="+pageCount+"><li>>></li></a>");
+				}
+			}
+		}
+		sb.append("</ul");
+		return sb.toString();	
+	}
     
 }
