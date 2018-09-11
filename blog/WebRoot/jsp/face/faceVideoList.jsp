@@ -40,11 +40,11 @@
  </ul>
  		
   	 <!-- 分页信息 -->  	
- 	<div id="page" class="pagelistFace">
+ 	<%-- <div id="page" class="pagelistFace">
       <ul>
         ${pager}
       </ul>
-    </div>  
+    </div>   --%>
  	
 </div>
 

@@ -195,7 +195,7 @@ public class HomeController extends BaseController {
 	@RequestMapping("/jottings.html")
 	public String jottings(HttpServletRequest request, Model model) {
 		PageView page = new PageView();
-		page.setPageSize(3);
+		page.setPageSize(10);
 		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
 		Map map = new HashMap();
 		map.put("createTime", request.getParameter("createTime"));

@@ -25,7 +25,7 @@
  	   <ul class="arrow_box">
          <div class="sy">
       <p>
-      <img  src="${imageService}/${j.image}" />
+      <c:if test="${j.image != null &&  j.image != ''}"><img  src="${imageService}/${j.image}" /></c:if>
        ${j.context}
       </p>
       <span class="dateview"><fmt:parseDate value='${j.createTime}' var="yearMonth" pattern="yyyy-MM-dd "/>
