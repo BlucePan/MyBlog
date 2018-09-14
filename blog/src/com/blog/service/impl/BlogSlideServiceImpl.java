@@ -88,4 +88,74 @@ public class BlogSlideServiceImpl implements BlogSlideService {
 		return null;
 	}
 
+	@Override
+	public List<PageData> ariticleLabelGroup(String type) {
+		// TODO Auto-generated method stub
+		try {
+			return (List<PageData>) dao.findForList("BlogSlideMapping.ariticleLabelGroup", type);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public PageView findLabelByPage(Map map, PageView page) {
+		try {
+			page.setTotalCount((Integer)dao.findForObject("BlogSlideMapping.findLabelByPageCount", map));
+			map.put("start", page.getStart());
+			map.put("max", page.getPageSize());
+			List<PageData> list = (List<PageData>)dao.findForList("BlogSlideMapping.findLabelByPage", map);
+			page.setItems(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return page;
+	}
+
+	@Override
+	public void addLabel(PageData pageData) {
+		try {
+			dao.save("BlogSlideMapping.addLabel", pageData);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void updateLabel(PageData pageData) {
+		try {
+			dao.update("BlogSlideMapping.updateLabel", pageData);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void delLabel(String id) {
+		try {
+			dao.delete("BlogSlideMapping.delLabel", id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public List<PageData> queryAllLabel() {
+		try {
+			return (List<PageData>) dao.findForList("BlogSlideMapping.queryAllLabel", null);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

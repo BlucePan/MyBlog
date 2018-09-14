@@ -5,10 +5,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>个人博客 BlucePan</title>
-<meta name="keywords" content="个人博客模板,博客模板"/>
-<meta name="description" content="寻梦主题的个人博客模板，优雅、稳重、大气,低调。" />
-<link rel="icon" href="${blog}/img/pz.ico">
+<title>${article.title}-盘子博客 BlucePan</title>
+<meta name="keywords" content="${article.title}"/>
+<meta name="description" content="${r.remake}" />
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/new.css" rel="stylesheet">
 <!--[if lt IE 9]>

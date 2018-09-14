@@ -16,6 +16,7 @@ import com.blog.model.BlogArticleType;
 import com.blog.service.BlogArticleService;
 import com.blog.util.BlogUtil;
 import com.blog.util.JsonBeang;
+import com.blog.util.PageData;
 import com.blog.util.PageView;
 
 @Controller
@@ -56,6 +57,8 @@ public class BlogArticleController extends BaseController {
 	public String addToArticle(HttpServletRequest request, Model model) {
 		List<BlogArticleType> articleTypeList = bArticleService.getAllArticleType();// 得到所有的文章类型
 		model.addAttribute("articleTypeList", articleTypeList);
+		List<PageData>  labelList=bSlideService.queryAllLabel();
+		model.addAttribute("labelList", labelList);
 		return "background/article/addArticle";
 	}
 
@@ -75,6 +78,8 @@ public class BlogArticleController extends BaseController {
 		model.addAttribute("article", article);
 		List<BlogArticleType> articleTypeList = bArticleService.getAllArticleType();// 得到所有的文章类型
 		model.addAttribute("articleTypeList", articleTypeList);
+		List<PageData>  labelList=bSlideService.queryAllLabel();
+		model.addAttribute("labelList", labelList);
 		return "background/article/editArticle";
 	}
 
@@ -87,6 +92,7 @@ public class BlogArticleController extends BaseController {
 		article.setImage(request.getParameter("image"));
 		article.setRemake(request.getParameter("remake"));
 		article.setType(Integer.parseInt(request.getParameter("type")));
+		article.setLabel(request.getParameter("label"));
 		article.setUpdateUserId(String.valueOf(getLoginUser(request).getId()));
 		article.setContext(request.getParameter("context"));
 		bArticleService.updateBlogArticle(article);

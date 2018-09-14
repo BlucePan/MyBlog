@@ -8,7 +8,6 @@
 <title>个人博客 BlucePan</title>
 <meta name="keywords" content="个人博客模板,博客模板"/>
 <meta name="description" content="寻梦主题的个人博客模板，优雅、稳重、大气,低调。" />
-<link rel="icon" href="${blog}/img/pz.ico">
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/new.css" rel="stylesheet">
 <!--[if lt IE 9]>
@@ -78,12 +77,12 @@
     </div>
     
 <!--PC版-->
-<div id="SOHUCS" sid="${video.id}"></div>
+<div id="SOHUCS" sid="${video.id}" style="margin-left: 1;width:96%"></div>
 <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
 window.changyan.api.config({
-appid: 'cysU9ouu1',
-conf: 'prod_f7b4b4284527f7d0ac5eb32a6acb6ae5'
+appid: 'cytN4LNTj',
+conf: 'prod_aef07d70ca8ec23ae9bbbfb1bffff613'
 });
 </script>
     

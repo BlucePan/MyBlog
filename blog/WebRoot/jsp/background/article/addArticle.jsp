@@ -48,6 +48,16 @@
    			</c:forEach>
    	</select>
   </div></li>
+		 <li><span>文章标签：</span>
+		        <div class="sel_wrap">        
+		        <label>请选择类型</label>
+		    <select id="label" name="label" class="form-control">
+		  			<option  value="">请选择标签</option>
+		  			 <c:forEach var="a" items="${labelList}">
+		  			<option  value="${a.id}" >${a.name}</option>
+		  			</c:forEach>
+		  	</select>
+		 </div></li>
         <li><span>图片：</span>
           <div id="picup" class="zyupload"></div><input type="hidden" id="image" name="image"/>
           <input type="hidden" id="img" name="img" value=""/>

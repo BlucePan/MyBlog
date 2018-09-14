@@ -294,5 +294,60 @@ public class VoiceController extends BaseController {
 		}
 		return data;
 	}
+	
+	//标签列表
+	@RequestMapping("/labelList.html")
+	public String labelList(HttpServletRequest request, Model model) {
+		PageView page = new PageView();
+		page.setPageSize(15);
+		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
+		Map map = new HashMap();
+		map.put("name", request.getParameter("name"));
+		PageView pageView = bSlideService.findLabelByPage(map, page);
+		StringBuffer buffer = new StringBuffer();
+		if (!BlogUtil.isEmpty(request.getParameter("name"))) {
+			buffer.append("&name=");
+			buffer.append(request.getParameter("name"));
+		}
+		model.addAttribute("pager", pageView.getPagerStr(buffer));
+		model.addAttribute("list", pageView.getItems());
+
+		return "background/slide/labelList";
+	}
+	
+	// 增加标签
+	@RequestMapping("/labelAdd.html")
+	public String labelAdd(HttpServletRequest request, Model model) {
+		PageData pageData = new PageData();
+		pageData.put("id", BlogUtil.getKey());
+		pageData.put("name", request.getParameter("name"));
+		bSlideService.addLabel(pageData);
+		return "forward:/voice/manage/labelList.html";
+	}
+	
+	// 修改标签
+	@RequestMapping("/labelUpdate.html")
+	public String labelUpdate(BlogVideo bVideo, HttpServletRequest request, Model model) {
+		PageData pageData = new PageData();
+		pageData.put("id", request.getParameter("id"));
+		pageData.put("name", request.getParameter("name"));
+		bSlideService.updateLabel(pageData);
+		return "redirect:labelList.html";
+	}
+
+	// 删除标签
+	@ResponseBody
+	@RequestMapping("/delLabel.html")
+	public String delLabel(HttpServletRequest request, HttpServletResponse response) {
+		String data = "";
+		String id = request.getParameter("id");
+		if (id == null || id.equals("")) {
+			data = "erro";
+		} else {
+			bSlideService.delLabel(id);
+			data = "success";
+		}
+		return data;
+	}
 
 }

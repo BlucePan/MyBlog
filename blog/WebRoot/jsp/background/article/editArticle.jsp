@@ -56,6 +56,16 @@
    			</c:forEach>
    	</select>
   </div></li>
+   <li><span>文章标签：</span>
+		        <div class="sel_wrap">        
+		        <label>请选择类型</label>
+		    <select id="label" name="label" class="form-control">
+		  			<option  value="">请选择标签</option>
+		  			 <c:forEach var="a" items="${labelList}">
+		  			<option  value="${a.id}"  <c:if test="${article.label==a.id}"> selected="selected" </c:if>>${a.name}</option>
+		  			</c:forEach>
+		  	</select>
+		 </div></li>
             <li><span>菜单图片：</span>
         	<c:if test="${not empty article.image}">
         		<div class="nowImg">

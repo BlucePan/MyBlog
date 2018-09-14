@@ -22,7 +22,6 @@ import com.blog.util.PageView;
 public class BlogSlideController extends BaseController {
 	private JsonBeang jb;
 
-	// 商户商品管理
 	@ResponseBody
 	@RequestMapping(value = "/api/slideList.html")
 	public JsonBeang goodsList(HttpServletRequest request) {

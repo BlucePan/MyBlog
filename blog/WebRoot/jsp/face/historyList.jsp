@@ -18,23 +18,7 @@
 
 <article class="blogs">
 <h1 class="t_nav"><span>我们长路漫漫，只因学无止境。 </span><a href="${blog}/" class="n1">网站首页</a>
-	<c:choose>		
-		<c:when test="${param.type=='1'}">
-			<a href="${blog}/article.html?type=1" class="n2">网站建设</a>
-		</c:when>
-		<c:when test="${param.type=='2'}">
-			<a href="${blog}/article.html?type=2" class="n2">心得笔记</a>
-		</c:when>
-		<c:when test="${param.type=='3'}">
-			<a href="${blog}/article.html?type=3" class="n2">程序人生</a>
-		</c:when>
-		<c:when test="${param.type=='4'}">
-			<a href="${blog}/article.html?type=4" class="n2">web前端</a>
-		</c:when>
-		<c:otherwise>		
-            <a href="${blog}/article.html" class="n2">我的博客</a>
-		</c:otherwise>
-	</c:choose>
+	<a href="#" class="n2">口述历史</a>
 </h1>
 
 <!-- 博客列表 -->

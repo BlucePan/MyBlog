@@ -64,7 +64,48 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 		ORDER BY createTime desc 
 	</select>
+	<!-- 获取标签列表 -->
+	<select id="ariticleLabelGroup" parameterType="String" resultType="pageData">
+		select a.label,l.name,count(a.label) count from blog_article a left join blog_label l on a.label=l.id GROUP BY a.label
+	</select>
+	<select id="queryAllLabel" parameterType="String" resultType="pageData">
+		select * from  blog_label 
+	</select>
+	 <!-- 分页SQL语句 -->
+	 <select id="findLabelByPage" parameterType="java.util.HashMap" resultType="pageData">
+	   select * from blog_label  where 1 = 1
+		<if test="name != null and name != ''">
+		and name like '%${name}%'
+		</if>
+		ORDER BY createTime desc limit #{start}, #{max}
+	</select> 
+	<!-- 取得记录的总数 -->
+	<select id="findLabelByPageCount" parameterType="java.util.HashMap" resultType="int">
+		select count(id) from blog_label where 1 = 1
+		<if test="name != null and name != ''">
+		and name like '%${name}%'
+		</if>
+	</select>
+		<!-- 新增标签 -->
+	 <insert id="addLabel" parameterType="pageData">
+	    insert into blog_label(
+		id,name,createTime,updateTime
+		)values
+		(#{id},#{name},now(),now())
+	 </insert>
+	 
+	 <!-- 修改标签  -->
+	<update id="updateLabel" parameterType="pageData">
+		UPDATE blog_label set
+		    <if test="name != null and name != ''">
+				name = #{name},
+			</if>
+		updateTime=now()
+		where id = #{id}
+	</update>
 	
-
-
+	<!-- 删除标签 -->
+	  <delete id="delLabel" parameterType="String">
+	 	DELETE FROM blog_label WHERE id = #{id}
+	 </delete>
 </mapper> 

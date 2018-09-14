@@ -19,6 +19,7 @@ public class BlogArticle implements Serializable {
 	private String updateUserId; //修改者
 	private String updateTime; //修改时间
 	private Integer type; //文章类型  1.网站建设  2.心得笔记 3.程序人生 4.web前端
+	private String  label;//标签
 	private Integer browse; //浏览量
 	private Integer popularity;//人气
 	private String context;//内容
@@ -27,6 +28,12 @@ public class BlogArticle implements Serializable {
 	private String createUser;  //创建者
 	private String isNext; //判断上一篇下一篇
 
+	public String getLabel() {
+		return label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
+	}
 	public String getKeyWord() {
 		return keyWord;
 	}public void setKeyWord(String keyWord) {

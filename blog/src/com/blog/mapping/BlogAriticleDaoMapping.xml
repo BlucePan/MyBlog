@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- 增加新闻 -->	
 	  <insert id="addEntity" parameterType="com.blog.model.BlogArticle" >
 	INSERT into blog_article (id,title,image,keyWord,remake,createTime,createUserId
-	,updateUserId,updateTime,type,browse,popularity,context,top) VALUES 
+	,updateUserId,updateTime,type,label,browse,popularity,context,top) VALUES 
 	(
 	#{id},
 	#{title}, 
@@ -47,6 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	#{updateUserId},
 	#{updateTime},
 	#{type},
+	#{label},
     0,
     0,
     #{context},
@@ -67,6 +68,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 		<if test="type != null and type != ''">
 		 type = #{type},
+		</if>
+		<if test="label != null and label != ''">
+		 label = #{label},
 		</if>
 		<if test="image != null and image != ''">
 		 image = #{image},

@@ -8,9 +8,6 @@
 <title>盘子博客 BlucePan</title>
 <meta name="keywords" content="盘子博客 BlucePan"/>
 <meta name="description" content="个人博客模板,博客模板,盘子" />
-<link rel="icon" href="${blog}/img/pz.ico"/>
-<link rel="shortcut icon" href="${blog}/img/pz.ico"/>
-<link rel="bookmark" href="${blog}/img/pz.ico"/>
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/index.css" rel="stylesheet">
 <link href="${blog}/css/csshake.css" rel="stylesheet">
@@ -90,7 +87,8 @@
 	<div class="blank"></div>
 	<div class="time" style="border:#CCC 2px solid;border-radius:10px;padding-left: 3%;margin-bottom:5px;">
 	  <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" name="movie" width="235" height="97" id="movie"><param name="movie" value="${blog}/img/time.swf"><param name="quality" value="high"><param name="menu" value="false"><embed src="${blog}/img/time.swf" width="235" height="97" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" id="movie" name="movie" menu="false"><param name="wmode" value="Opaque"></object></div>
-<!--<div class="weather"><iframe width="250" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=1"></iframe></div>    -->    <div class="music">
+<!--<div class="weather"><iframe width="250" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=1"></iframe></div>    -->    
+    <div class="music">
 		<h3>
 		  <p>分享<span>音乐</span></p>
 		</h3>
@@ -98,6 +96,16 @@
 		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="300" height="110" src="https://music.163.com/outchain/player?type=2&amp;id=438903458&amp;auto=1&amp;height=90"></iframe>		
 		</span>
 	</div>	
+	<div class="label" id="divTags">
+	<h3 >
+      <p>标签<span>列表</span></p>
+    </h3>
+    <ul>
+    <c:forEach var="l" items="${labelList}">
+	<li><a href="#">${l.name}<span class="tag-count"> (${l.count})</span></a></li>
+	</c:forEach>
+    </ul>	 
+	</div>
     <div class="news">
     <h3>
       <p>最新<span>文章</span></p>
