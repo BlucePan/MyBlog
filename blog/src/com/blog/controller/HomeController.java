@@ -40,13 +40,13 @@ public class HomeController extends BaseController {
 		model.addAttribute("sArticleList", sArticleList); // 首页排行文章
 		List<PageData> bSlideList = bSlideService.queryAllSlide(new PageData());
 		model.addAttribute("bSlideList", bSlideList); // 首页轮播图
-		List<PageData> labelList =bSlideService.ariticleLabelGroup("1"); //获取有文章的标签
-		model.addAttribute("labelList", labelList); // 首页轮播图
+		List<PageData> labelList =bSlideService.ariticleLabelGroup("1"); 
+		model.addAttribute("labelList", labelList); //获取有文章的标签
 		return "face/home";
 	}
 
 	/**
-	 * 个人博客
+	 * 技术分享
 	 * 
 	 * @param request
 	 * @param model
@@ -54,29 +54,106 @@ public class HomeController extends BaseController {
 	 */
 	@RequestMapping("/article.html")
 	public String articleList(HttpServletRequest request, Model model) {
-		List<BlogArticleType> articleTypeList = bArticleService.getAllArticleType();// 得到所有的文章类型
-
+		String parentCode="002.010";
+		PageData pageData=new PageData();
+		pageData.put("parentCode", parentCode);
+		List<PageData> articleTypeList=bSlideService.selectType(pageData);//得到当前分类的文章类型
+		
 		PageView page = new PageView();
 		page.setPageSize(3);
 		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
 		Map map = new HashMap();
 		map.put("title", request.getParameter("title"));
-		map.put("type", request.getParameter("type"));
+		map.put("catCode", parentCode);
 		PageView pageView = bArticleService.findByPage(page, map);
 		StringBuffer buffer = new StringBuffer();
 		if (!BlogUtil.isEmpty(request.getParameter("title"))) {
 			buffer.append("&title=");
 			buffer.append(request.getParameter("title"));
 		}
-		if (!BlogUtil.isEmpty(request.getParameter("type"))) {
-			buffer.append("&type=");
-			buffer.append(request.getParameter("type"));
+		if (!BlogUtil.isEmpty(parentCode)) {
+			buffer.append("&catCode=");
+			buffer.append(parentCode);
 		}
 		model.addAttribute("pager", pageView.getPagerStr(buffer));
 		model.addAttribute("list", pageView.getItems());
 		model.addAttribute("articleTypeList", articleTypeList);
 
-		return "face/faceArticleList";
+		return "face/articleList";
+	}
+	
+	/**
+	 * 口述历史
+	 * 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/history.html")
+	public String historyList(HttpServletRequest request, Model model) {
+		String parentCode="002.020";
+		PageData pageData=new PageData();
+		pageData.put("parentCode", parentCode);
+		List<PageData> articleTypeList=bSlideService.selectType(pageData);//得到当前分类的文章类型
+		
+		PageView page = new PageView();
+		page.setPageSize(3);
+		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
+		Map map = new HashMap();
+		map.put("title", request.getParameter("title"));
+		map.put("catCode", parentCode);
+		PageView pageView = bArticleService.findByPage(page, map);
+		StringBuffer buffer = new StringBuffer();
+		if (!BlogUtil.isEmpty(request.getParameter("title"))) {
+			buffer.append("&title=");
+			buffer.append(request.getParameter("title"));
+		}
+		if (!BlogUtil.isEmpty(parentCode)) {
+			buffer.append("&catCode=");
+			buffer.append(parentCode);
+		}
+		model.addAttribute("pager", pageView.getPagerStr(buffer));
+		model.addAttribute("list", pageView.getItems());
+		model.addAttribute("articleTypeList", articleTypeList);
+
+		return "face/historyList";
+	}
+	
+	/**
+	 * 生活百态
+	 * 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/funny.html")
+	public String funnyList(HttpServletRequest request, Model model) {
+		String parentCode="002.030";
+		PageData pageData=new PageData();
+		pageData.put("parentCode", parentCode);
+		List<PageData> articleTypeList=bSlideService.selectType(pageData);//得到当前分类的文章类型
+		
+		PageView page = new PageView();
+		page.setPageSize(3);
+		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
+		Map map = new HashMap();
+		map.put("title", request.getParameter("title"));
+		map.put("catCode", parentCode);
+		PageView pageView = bArticleService.findByPage(page, map);
+		StringBuffer buffer = new StringBuffer();
+		if (!BlogUtil.isEmpty(request.getParameter("title"))) {
+			buffer.append("&title=");
+			buffer.append(request.getParameter("title"));
+		}
+		if (!BlogUtil.isEmpty(parentCode)) {
+			buffer.append("&catCode=");
+			buffer.append(parentCode);
+		}
+		model.addAttribute("pager", pageView.getPagerStr(buffer));
+		model.addAttribute("list", pageView.getItems());
+		model.addAttribute("articleTypeList", articleTypeList);
+
+		return "face/funnyList";
 	}
 
 	/**
@@ -93,7 +170,7 @@ public class HomeController extends BaseController {
 
 		BlogArticle blogArticle = new BlogArticle();
 		blogArticle.setId(request.getParameter("id"));
-		blogArticle.setType(Integer.valueOf(request.getParameter("type")));
+	//	blogArticle.setType(Integer.valueOf(request.getParameter("type")));
 		// 上一篇
 		blogArticle.setIsNext("1");
 		BlogArticle aboveArticle = bArticleService.getNextArticle(blogArticle);
@@ -212,38 +289,6 @@ public class HomeController extends BaseController {
 		return "face/jottings";
 	}
 	
-	/**
-	 * 口述历史
-	 * 
-	 * @param request
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/history.html")
-	public String historyList(HttpServletRequest request, Model model) {
-		List<BlogArticleType> articleTypeList = bArticleService.getAllArticleType();// 得到所有的文章类型
 
-		PageView page = new PageView();
-		page.setPageSize(3);
-		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
-		Map map = new HashMap();
-		map.put("title", request.getParameter("title"));
-		map.put("type", request.getParameter("type"));
-		PageView pageView = bArticleService.findByPage(page, map);
-		StringBuffer buffer = new StringBuffer();
-		if (!BlogUtil.isEmpty(request.getParameter("title"))) {
-			buffer.append("&title=");
-			buffer.append(request.getParameter("title"));
-		}
-		if (!BlogUtil.isEmpty(request.getParameter("type"))) {
-			buffer.append("&type=");
-			buffer.append(request.getParameter("type"));
-		}
-		model.addAttribute("pager", pageView.getPagerStr(buffer));
-		model.addAttribute("list", pageView.getItems());
-		model.addAttribute("articleTypeList", articleTypeList);
-
-		return "face/historyList";
-	}
 
 }

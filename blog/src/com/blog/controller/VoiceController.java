@@ -349,5 +349,128 @@ public class VoiceController extends BaseController {
 		}
 		return data;
 	}
+	
+	//类目列表
+	@RequestMapping("/typeList.html")
+	public String typeList(HttpServletRequest request, Model model) {
+		PageView page = new PageView();
+		page.setPageSize(15);
+		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
+		Map map = new HashMap();
+		map.put("name", request.getParameter("name"));
+		map.put("depth", 1);
+		PageView pageView = bSlideService.findTypeByPage(map, page);
+		StringBuffer buffer = new StringBuffer();
+		if (!BlogUtil.isEmpty(request.getParameter("name"))) {
+			buffer.append("&name=");
+			buffer.append(request.getParameter("name"));
+		}
+		buffer.append("&depth="+1);
+		model.addAttribute("pager", pageView.getPagerStr(buffer));
+		model.addAttribute("list", pageView.getItems());
+
+		return "background/slide/typeList";
+	}
+	
+	// 增加类目
+	@RequestMapping("/typeAdd.html")
+	public String typeAdd(HttpServletRequest request, Model model) {
+		String type=request.getParameter("type");
+		String parentCode=request.getParameter("parentCode");
+		String parentName=request.getParameter("parentName");
+		PageData pageData = new PageData();		
+		pageData.put("id", BlogUtil.getKey());
+		pageData.put("articleName", request.getParameter("articleName"));		
+		pageData.put("isShow", 1);
+		if(type.equals("1")){ //父类
+		pageData.put("depth", 1);
+		pageData.put("catCode", request.getParameter("catCode"));
+		pageData.put("parentCode", request.getParameter("catCode").substring(0, 3));
+		bSlideService.addType(pageData);
+		return "forward:/voice/manage/typeList.html";
+		}else{ //二级类目
+		pageData.put("depth", 2);
+		pageData.put("parentCode", parentCode);
+		pageData.put("catCode", parentCode+"."+((int)(Math.random()*1000)));
+		bSlideService.addType(pageData);
+		return "forward:/voice/manage/typeArticleList.html?parentCode="+parentCode+"&parentName="+parentName;
+		}
+	}
+	
+	// 修改类目
+	@RequestMapping("/typeUpdate.html")
+	public String typeUpdate(BlogVideo bVideo, HttpServletRequest request, Model model) {
+		String type=request.getParameter("type");
+		String parentCode=request.getParameter("parentCode");
+		String parentName=request.getParameter("parentName");
+		PageData pageData = new PageData();
+		pageData.put("id", request.getParameter("id"));
+		pageData.put("articleName", request.getParameter("articleName"));
+		if(type.equals("1")){ //父类		
+		pageData.put("catCode", request.getParameter("catCode"));
+		pageData.put("parentCode", request.getParameter("catCode").substring(0, 3));
+		bSlideService.updateType(pageData);
+		return "forward:/voice/manage/typeList.html";
+		}else{
+		bSlideService.updateType(pageData);
+		return "forward:/voice/manage/typeArticleList.html?parentCode="+parentCode+"&parentName="+parentName;	
+		}
+	}
+
+	// 删除类目
+	@ResponseBody
+	@RequestMapping("/delType.html")
+	public String delType(HttpServletRequest request, HttpServletResponse response) {
+		String data = "";
+		String id = request.getParameter("id");
+		if (id == null || id.equals("")) {
+			data = "erro";
+		} else {
+			bSlideService.delType(id);
+			data = "success";
+		}
+		return data;
+	}
+	
+	//类目列表
+	@RequestMapping("/typeArticleList.html")
+	public String typeArticleList(HttpServletRequest request, Model model) {
+		PageView page = new PageView();
+		page.setPageSize(15);
+		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
+		Map map = new HashMap();
+		map.put("name", request.getParameter("name"));
+		map.put("parentCode", request.getParameter("parentCode"));
+		PageView pageView = bSlideService.findTypeByPage(map, page);
+		StringBuffer buffer = new StringBuffer();
+		if (!BlogUtil.isEmpty(request.getParameter("name"))) {
+			buffer.append("&name=");
+			buffer.append(request.getParameter("name"));
+		}if (!BlogUtil.isEmpty(request.getParameter("parentCode"))){
+			buffer.append("&parentCode=");
+			buffer.append(request.getParameter("parentCode"));
+		}
+		model.addAttribute("pager", pageView.getPagerStr(buffer));
+		model.addAttribute("list", pageView.getItems());
+		model.addAttribute("parentName", request.getParameter("parentName"));
+		model.addAttribute("parentCode", request.getParameter("parentCode"));
+		return "background/slide/typeArticleList";
+	}
+	
+	//ajax加载类别
+	@ResponseBody
+	@RequestMapping("/selectType.html")
+	public List selectType(HttpServletRequest request, HttpServletResponse response) {
+
+		String catCode = request.getParameter("catCode");
+		PageData pageData=new PageData();
+		if(BlogUtil.isNotBlank(catCode)){
+			pageData.put("parentCode", catCode);
+			return bSlideService.selectType(pageData);
+		}else{
+			pageData.put("depth", 1);
+			return bSlideService.selectType(pageData);
+		}
+	}
 
 }

@@ -125,7 +125,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="queryBlogMenuByUserId" parameterType="String" resultType="com.blog.model.BlogMenu">
 	select p.*
 	from blog_menu p , role_permission rp, user_role ur 
-	where uid = #{userId} and p.id = rp.pid and rp.rid = ur.rid	
+	where uid = #{userId} and p.id = rp.pid and rp.rid = ur.rid	ORDER BY p.priority asc
 	</select>
 	
 </mapper> 

@@ -108,4 +108,67 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  <delete id="delLabel" parameterType="String">
 	 	DELETE FROM blog_label WHERE id = #{id}
 	 </delete>
+	 
+	 	 <select id="findTypeByPage" parameterType="java.util.HashMap" resultType="pageData">
+	   select * from blog_article_type  where 1 = 1 
+	    <if test="depth != null and depth != ''">
+		and depth = #{depth}
+		</if>
+		<if test="parentCode != null and parentCode != ''">
+		and parentCode = #{parentCode}
+		</if>
+		<if test="articleName != null and articleName != ''">
+		and articleName like '%${articleName}%'
+		</if>
+		ORDER BY createTime desc limit #{start}, #{max}
+	</select> 
+	<!-- 取得记录的总数 -->
+	<select id="findTypeByPageCount" parameterType="java.util.HashMap" resultType="int">
+		select count(id) from blog_article_type where 1 = 1 
+		<if test="depth != null and depth != ''">
+		and depth = #{depth}
+		</if>
+		<if test="parentCode != null and parentCode != ''">
+		and parentCode = #{parentCode}
+		</if>
+		<if test="articleName != null and articleName != ''">
+		and articleName like '%${articleName}%'
+		</if>
+	</select>
+			<!-- 新增类别 -->
+	 <insert id="addType" parameterType="pageData">
+	    insert into blog_article_type(
+		id,articleName,catCode,parentCode,depth,isShow,createTime,updateTime
+		)values
+		(#{id},#{articleName},#{catCode},#{parentCode},#{depth},#{isShow},now(),now())
+	 </insert>
+	 
+	 <!-- 修改标签  -->
+	<update id="updateType" parameterType="pageData">
+		UPDATE blog_article_type set
+		<if test="articleName != null and articleName != ''">articleName = #{articleName},</if>
+		<if test="catCode != null and catCode != ''">catCode = #{catCode},</if>
+		<if test="parentCode != null and parentCode != ''">parentCode = #{parentCode},</if>
+		<if test="depth != null and depth != ''">depth = #{depth},</if>
+		<if test="isShow != null and isShow != ''">isShow = #{isShow},</if>
+		updateTime=now()
+		where id = #{id}
+	</update>
+	
+	<!-- 删除标签 -->
+	  <delete id="delType" parameterType="String">
+	 	DELETE FROM blog_article_type WHERE id = #{id}
+	 </delete>
+	 
+	 <!-- ajax加载类别 -->
+	  <select id="selectType" parameterType="pageData" resultType="pageData">
+	   select * from blog_article_type  where 1 = 1 
+	    <if test="depth != null and depth != ''">
+		and depth = #{depth}
+		</if>
+		<if test="parentCode != null and parentCode != ''">
+		and parentCode = #{parentCode}
+		</if>
+		ORDER BY createTime desc
+	</select> 
 </mapper> 

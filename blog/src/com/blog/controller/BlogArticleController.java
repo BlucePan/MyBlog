@@ -55,8 +55,6 @@ public class BlogArticleController extends BaseController {
 	// 跳到增加页面
 	@RequestMapping("/addToArticle.html")
 	public String addToArticle(HttpServletRequest request, Model model) {
-		List<BlogArticleType> articleTypeList = bArticleService.getAllArticleType();// 得到所有的文章类型
-		model.addAttribute("articleTypeList", articleTypeList);
 		List<PageData>  labelList=bSlideService.queryAllLabel();
 		model.addAttribute("labelList", labelList);
 		return "background/article/addArticle";
@@ -91,7 +89,7 @@ public class BlogArticleController extends BaseController {
 		article.setTitle(request.getParameter("title"));
 		article.setImage(request.getParameter("image"));
 		article.setRemake(request.getParameter("remake"));
-		article.setType(Integer.parseInt(request.getParameter("type")));
+		article.setCatCode(request.getParameter("catCode"));
 		article.setLabel(request.getParameter("label"));
 		article.setUpdateUserId(String.valueOf(getLoginUser(request).getId()));
 		article.setContext(request.getParameter("context"));

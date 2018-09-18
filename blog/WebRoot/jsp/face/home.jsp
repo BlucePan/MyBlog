@@ -74,12 +74,12 @@
     <figure><img src="${imageService}/${b.image}"></figure>
     <ul>
       <p>${b.remake}</p>
-      <a title="/" href="${blog}/articleDetail.html?id=${b.id}&type=${b.type}"  class="readmore">阅读全文>></a>
+      <a title="/" href="${blog}/articleDetail.html?id=${b.id}&type=${b.catCode}"  class="readmore">阅读全文>></a>
     </ul>
     <p class="dateview">
     <span><fmt:parseDate value='${b.createTime}' var="yearMonth" pattern="yyyy-MM-dd "/>
           <fmt:formatDate value="${yearMonth}" pattern="yyyy-MM-dd " /></span>          
-          <span>作者：${b.createUser}</span><span>个人博客：[<a href="${blog}/article.html?type=${b.type}">${b.articleName}</a>]</span></p>
+          <span>作者：${b.createUser}</span><span>个人博客：[<a href="${blog}/article.html?type=${b.catCode}">${b.articleName}</a>]</span></p>
 </c:forEach>
    </div>
   <aside class="right">
@@ -114,10 +114,10 @@
       <c:forEach var="n" items="${nArticleList}" varStatus="d">
    	<c:choose>		
 		<c:when test="${d.count==1}">
-            <li><a href="${blog}/articleDetail.html?id=${n.id}&type=${n.type}" title="${n.title}" style="color:red;">${n.title}</a></li>
+            <li><a href="${blog}/articleDetail.html?id=${n.id}&type=${n.catCode}" title="${n.title}" style="color:red;">${n.title}</a></li>
 	    </c:when>
 		<c:otherwise>		
-            <li><a href="${blog}/articleDetail.html?id=${n.id}&type=${n.type}" title="${n.title}" >${n.title}</a></li>
+            <li><a href="${blog}/articleDetail.html?id=${n.id}&type=${n.catCode}" title="${n.title}" >${n.title}</a></li>
 		</c:otherwise>
 	</c:choose>
       </c:forEach>
@@ -127,7 +127,7 @@
     </h3>
     <ul class="paih">
         <c:forEach var="s" items="${sArticleList}">
-      <li><a href="${blog}/articleDetail.html?id=${s.id}&type=${s.type}" title="${s.title}" >${s.title}</a></li>    
+      <li><a href="${blog}/articleDetail.html?id=${s.id}&type=${s.catCode}" title="${s.title}" >${s.title}</a></li>    
     </c:forEach>
     </ul>
     <h3 class="links">
@@ -138,7 +138,7 @@
       <li><a href="http://www.guduke.cn" target="_blank">微光博客</a></li>
       <li><a href="http://www.xiaozhanfei.com" target="_blank">肖战飞</a></li>
       <li><a href="http://www.liuyuyao.com" target="_blank">刘玉尧</a></li>
-      <li><a href="#" target="_blank">皇室战争</a></li>
+      <li><a href="http://mindhacks.cn" target="_blank">刘未鹏</a></li>
     </ul> 
     </div>  
     <!-- 百度分享 -->

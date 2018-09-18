@@ -15,7 +15,7 @@
 <div class="maincont">
   <form name="listForm" action="" method="post">
     <div class="operation customer"> <span>标题</span>
-      <input type="text" name="title" placeholder="请输入标题" value="${param.title}"/>
+      <input type="text" name="title" placeholder="请输入标题" value="${param.title}"/>
       
           <div class="sel_wrap">        
          <label>请选择类型</label>
@@ -24,10 +24,10 @@
    			<option >${a.articleName}</option>
    			</c:forEach>
     </select>
-    <select id="type" name="type" class="form-control">
+    <select id="catCode" name="catCode" class="form-control">
    			<option  value="">请选择类型</option>
    			 <c:forEach var="a" items="${articleTypeList}">
-   			<option  value="${a.id}"  <c:if test="${param.type==a.id}"> selected="selected" </c:if>>${a.articleName}</option>
+   			<option  value="${a.catCode}"  <c:if test="${param.catCode==a.catCode}"> selected="selected" </c:if>>${a.articleName}</option>
    			</c:forEach>
    	</select>
   </div>
@@ -39,7 +39,7 @@
     <table class="table" cellpadding="0" cellspacing="0">
       <thead>
         <tr>
-          <th>知识标题</th>
+          <th>文章标题</th>
           <th>创建时间</th>
           <th>预览图</th>
           <th>所属类型</th>

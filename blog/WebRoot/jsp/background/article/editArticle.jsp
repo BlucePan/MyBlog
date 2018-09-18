@@ -41,22 +41,15 @@
           <input type="text" placeholder="" name="title" id="title" value="${article.title}"/>
           <p class="error">* 标题不能为空</p>
         </li>
-			  <li><span>文章类型：</span>
-                <div class="sel_wrap">        
-         <label>请选择类型</label>
-       <select class="form-control">
-            <c:forEach var="a" items="${articleTypeList}">
-   			<option >${a.articleName}</option>
-   			</c:forEach>
-    </select>
-    <select id="type" name="type" class="form-control">
-   			<option  value="">请选择类型</option>
-   			 <c:forEach var="a" items="${articleTypeList}">
-   			<option  value="${a.id}"  <c:if test="${article.type==a.id}"> selected="selected" </c:if>>${a.articleName}</option>
-   			</c:forEach>
-   	</select>
-  </div></li>
-   <li><span>文章标签：</span>
+			 <li><span>文章类型：</span>
+		   <select id="type" name="type" style="width: 150px;height: 34px;padding-left: 3px;font-size: 15px;" onchange="selectTypeByCode(this.value)">
+		  			<option  value="">请选择类型</option>
+		   </select>		  	
+		   <select id="catCode" name="catCode" style="width: 150px;height: 34px;padding-left: 3px;font-size: 15px;">
+		  			<option  value="">请选择二级类型</option>
+		   </select>
+		 </li>
+        <li><span>文章标签：</span>
 		        <div class="sel_wrap">        
 		        <label>请选择类型</label>
 		    <select id="label" name="label" class="form-control">
@@ -102,6 +95,52 @@
 <script src="${blog}/js/bigimg/zoom.js" type="text/javascript"></script>
 <script type="text/javascript" src="${blog}/zyupload/zyupload.basic-1.0.0.min.js"></script>
 <script type="text/javascript">
+$(function(){
+	selectType();
+	var catCode = '${article.catCode}';
+	console.log(catCode);
+	var parent = catCode.substring(0,7) ;
+	console.log(parent);
+	selectTypeByCode(parent);
+	$("#type option[value='"+parent+"']").prop("selected", "selected");
+	$("#catCode option[value='"+catCode+"']").prop("selected", "selected");
+});
+
+//加载一级类目
+function selectType(){
+		$.ajax({
+		async:false,
+		type : "POST",
+		url: "${blog}/voice/manage/selectType.html",
+		dataType:'json',
+     		success: function(data){
+     			for(var i=0;i<data.length;i++){
+     				$("<option value='"+data[i].catCode+"'>"
+     				+data[i].articleName+"</option>").appendTo($("#type"));
+     			}
+     		}
+	});
+}
+function selectTypeByCode(parentCode){
+	$("#catCode").html("");
+	$("<option>请选择二级类型</option>").appendTo($("#catCode"));
+	$.ajax({
+		async:false,
+		type : "POST",
+		data:{catCode:parentCode},
+		url: "${blog}/voice/manage/selectType.html",
+		dataType:'json',
+      		success: function(data){
+      			for(var i=0;i<data.length;i++){
+     				$("<option value='"+data[i].catCode+"'>"
+     				+data[i].articleName+"</option>").appendTo($("#catCode"));
+     			}
+      		}
+	});
+}
+
+
+
 	    $(function () {       
          //删除原图
          if($('#image').val()!=''){

@@ -158,4 +158,61 @@ public class BlogSlideServiceImpl implements BlogSlideService {
 		return null;
 	}
 
+	@Override
+	public PageView findTypeByPage(Map map, PageView page) {
+		try {
+			page.setTotalCount((Integer)dao.findForObject("BlogSlideMapping.findTypeByPageCount", map));
+			map.put("start", page.getStart());
+			map.put("max", page.getPageSize());
+			List<PageData> list = (List<PageData>)dao.findForList("BlogSlideMapping.findTypeByPage", map);
+			page.setItems(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		return page;
+	}
+	
+	@Override
+	public void addType(PageData pageData) {
+		try {
+			dao.save("BlogSlideMapping.addType", pageData);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void updateType(PageData pageData) {
+		try {
+			dao.update("BlogSlideMapping.updateType", pageData);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void delType(String id) {
+		try {
+			dao.delete("BlogSlideMapping.delType", id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public List<PageData> selectType(PageData pageData) {
+		try {
+			return (List<PageData>) dao.findForList("BlogSlideMapping.selectType", pageData);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

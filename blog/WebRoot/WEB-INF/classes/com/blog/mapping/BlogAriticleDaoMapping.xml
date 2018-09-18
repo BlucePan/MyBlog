@@ -6,18 +6,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	  <!-- 得到所有的文章类型 -->
 	<select id="getAllArticleType"  resultType="com.blog.model.BlogArticleType">
-		select * from blog_article_type 
+		select * from blog_article_type  where depth=2
 	</select>
 		
 	 <!-- 分页SQL语句 -->
 	<select id="findByPage" parameterType="java.util.HashMap" resultType="com.blog.model.BlogArticle">
-	select a.*,(select articleName from blog_article_type where id=a.type) articleName,
+	select a.*,(select articleName from blog_article_type where catCode=a.catCode) articleName,
 	(select name from user where id=a.createUserId) createUser from blog_article a where 1=1
 		<if test="title != null and title != ''">
 		and a.title like '%${title}%'
 		</if>
-		<if test="type != null and type != ''">
-		and a.type =#{type}
+		<if test="catCode != null and catCode != ''">
+		and a.catCode IN (SELECT catCode FROM blog_article_type WHERE parentCode=#{catCode} )
 		</if>
 		ORDER BY a.top desc,a.createTime desc limit #{start}, #{max}
 	</select> 
@@ -27,15 +27,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<if test="title != null and title != ''">
 		and a.title like '%${title}%'
 		</if>
-		<if test="type != null and type != ''">
-		and a.type =#{type}
+		<if test="catCode != null and catCode != ''">
+		and a.catCode IN (SELECT catCode FROM blog_article_type WHERE parentCode=#{catCode} )
 		</if>
 	</select>
 			
 		<!-- 增加新闻 -->	
 	  <insert id="addEntity" parameterType="com.blog.model.BlogArticle" >
 	INSERT into blog_article (id,title,image,keyWord,remake,createTime,createUserId
-	,updateUserId,updateTime,type,label,browse,popularity,context,top) VALUES 
+	,updateUserId,updateTime,catCode,label,browse,popularity,context,top) VALUES 
 	(
 	#{id},
 	#{title}, 
@@ -46,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	#{createUserId},
 	#{updateUserId},
 	#{updateTime},
-	#{type},
+	#{catCode},
 	#{label},
     0,
     0,
@@ -56,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>		
 	<!-- 根据id查当前文章对象 -->
 	<select id="queryBlogArticleById" parameterType="String" resultType="com.blog.model.BlogArticle">
-		select a.*,(select articleName from blog_article_type where id=a.type) articleName,
+		select a.*,(select articleName from blog_article_type where catCode=a.catCode) articleName,
 	(select name from user where id=a.createUserId) createUser from blog_article a where id=#{id}
 	</select>	
 		
@@ -66,8 +66,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    <if test="title != null and title != ''">
 		 title = #{title},
 		</if>
-		<if test="type != null and type != ''">
-		 type = #{type},
+		<if test="catCode != null and catCode != ''">
+		 catCode = #{catCode},
 		</if>
 		<if test="label != null and label != ''">
 		 label = #{label},
@@ -105,7 +105,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- 得到推荐文章  根据置顶与浏览量来排序 -->			
 	<select id="getRecommendArticle" resultType="com.blog.model.BlogArticle">
 	  SELECT a.*,b.articleName articleName,u.name createUser  from blog_article a LEFT JOIN blog_article_type b 
-	  ON a.type=b.id left join user u on u.id=a.createUserId  ORDER BY a.top desc,a.browse desc,a.createTime desc limit 10
+	  ON a.catCode=b.catCode left join user u on u.id=a.createUserId  ORDER BY a.top desc,a.browse desc,a.createTime desc limit 10
 	</select>	
 	
 		<!-- 得到最新文章  根据时间来排序 -->			
@@ -120,7 +120,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 上一篇，下一篇 -->
 	<select id="getNextArticle" resultType="com.blog.model.BlogArticle" parameterType="com.blog.model.BlogArticle">
-	SELECT * from blog_article where type= #{type}
+	SELECT * from blog_article where catCode= #{catCode}
 <!-- 	    <if test="isNext != null and isNext == '1' "> 上一篇   
 		  	 createTime &lt; (
              select  createTime  from  blog_article  where  id = #{id} 

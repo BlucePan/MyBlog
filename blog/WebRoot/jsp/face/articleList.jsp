@@ -43,11 +43,11 @@
      <h2>${r.title}</h2>
       <p class="dateview"><span>发布时间：<fmt:parseDate value='${r.createTime}' var="yearMonth" pattern="yyyy-MM-dd "/>
         <fmt:formatDate value="${yearMonth}" pattern="yyyy-MM-dd " /></span>
-    <span>作者：${r.createUser}</span><span>分类：[<a href="${blog}/articleDetail.html?type=${r.type}">${r.articleName}</a>]</span></p>
+    <span>作者：${r.createUser}</span><span>分类：[<a href="${blog}/articleDetail.html?type=${r.catCode}">${r.articleName}</a>]</span></p>
     <figure><img src="${imageService}/${r.image}"></figure>
     <ul class="nlist">
       <p>${r.remake}</p>
-      <a title="/" href="${blog}/articleDetail.html?id=${r.id}&type=${r.type}" class="readmore">详细信息>></a>
+      <a title="/" href="${blog}/articleDetail.html?id=${r.id}&type=${r.catCode}" class="readmore">详细信息>></a>
     </ul>
     <div class="line"></div>
 </c:forEach>

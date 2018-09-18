@@ -9,21 +9,74 @@ import java.io.Serializable;
  */
 public class BlogArticleType implements Serializable {
 	private static final long serialVersionUID = -1889117758708071287L;
-	private Integer id; 
-	private String articleName; //博客类型  1.网站建设  2.心得笔记 3.程序人生 4.web前端
+	private String id; 
+	private String articleName;
+	private String catCode;
+	private String parentCode;
+	private String depth;
+	private String isShow;
 	
-	public Integer getId() {
+	
+	public String getId() {
 		return id;
-	}public void setId(Integer id) {
+	}
+
+
+	public void setId(String id) {
 		this.id = id;
 	}
-	
+
+
 	public String getArticleName() {
 		return articleName;
-	}public void setArticleName(String articleName) {
+	}
+
+
+	public void setArticleName(String articleName) {
 		this.articleName = articleName;
 	}
-	
+
+
+	public String getCatCode() {
+		return catCode;
+	}
+
+
+	public void setCatCode(String catCode) {
+		this.catCode = catCode;
+	}
+
+
+	public String getParentCode() {
+		return parentCode;
+	}
+
+
+	public void setParentCode(String parentCode) {
+		this.parentCode = parentCode;
+	}
+
+
+	public String getDepth() {
+		return depth;
+	}
+
+
+	public void setDepth(String depth) {
+		this.depth = depth;
+	}
+
+
+	public String getIsShow() {
+		return isShow;
+	}
+
+
+	public void setIsShow(String isShow) {
+		this.isShow = isShow;
+	}
+
+
 	@Override
 	public String toString() {
 		return "BlogArticleName [articleName=" + articleName + ", id=" + id

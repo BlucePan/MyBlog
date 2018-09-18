@@ -20,4 +20,9 @@ public interface BlogSlideService {
 	void updateLabel(PageData pageData);
 	void delLabel(String id);
 	List<PageData> queryAllLabel();
+	public PageView findTypeByPage(Map map,PageView page);
+	void addType(PageData pageData);
+	void updateType(PageData pageData);
+	void delType(String id);
+	List<PageData> selectType(PageData pageData);
 }

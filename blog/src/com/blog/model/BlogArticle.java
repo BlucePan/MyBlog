@@ -18,7 +18,7 @@ public class BlogArticle implements Serializable {
 	private String createUserId; //创建者
 	private String updateUserId; //修改者
 	private String updateTime; //修改时间
-	private Integer type; //文章类型  1.网站建设  2.心得笔记 3.程序人生 4.web前端
+	private String catCode; //文章类别
 	private String  label;//标签
 	private Integer browse; //浏览量
 	private Integer popularity;//人气
@@ -106,12 +106,12 @@ public class BlogArticle implements Serializable {
 		this.updateTime = updateTime;
 	}
 	
-	public Integer getType() {
-		return type;
-	}public void setType(Integer type) {
-		this.type = type;
+	public String getCatCode() {
+		return catCode;
 	}
-	
+	public void setCatCode(String catCode) {
+		this.catCode = catCode;
+	}
 	public Integer getBrowse() {
 		return browse;
 	}public void setBrowse(Integer browse) {
@@ -142,7 +142,7 @@ public class BlogArticle implements Serializable {
 				+ ", createTime=" + createTime + ", createUserId="
 				+ createUserId + ", id=" + id + ", image=" + image
 				+ ", popularity=" + popularity + ", remake=" + remake
-				+ ", title=" + title + ", top=" + top + ", type=" + type
+				+ ", title=" + title + ", top=" + top + ", catCode=" + catCode
 				+ ", updateTime=" + updateTime + ", updateUserId="
 				+ updateUserId + "]";
 	}

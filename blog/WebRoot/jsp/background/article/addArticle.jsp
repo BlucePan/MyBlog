@@ -33,21 +33,14 @@
           <input type="text" placeholder="" name="title" id="title" />
           <p class="error">* 标题不能为空</p>
         </li>
- 		  <li><span>文章类型：</span>
-                <div class="sel_wrap">        
-         <label>请选择类型</label>
-       <select class="form-control">
-            <c:forEach var="a" items="${articleTypeList}">
-   			<option >${a.articleName}</option>
-   			</c:forEach>
-    </select>
-    <select id="type" name="type" class="form-control">
-   			<option  value="">请选择类型</option>
-   			 <c:forEach var="a" items="${articleTypeList}">
-   			<option  value="${a.id}"  <c:if test="${param.type==a.id}"> selected="selected" </c:if>>${a.articleName}</option>
-   			</c:forEach>
-   	</select>
-  </div></li>
+ 		 <li><span>文章类型：</span>
+		  <select id="type" name="type" style="width: 150px;height: 34px;padding-left: 3px;font-size: 15px;" onchange="selectTypeByCode(this.value)">
+		  			<option  value="">请选择类型</option>
+		  </select>		  	
+		 <select id="catCode" name="catCode" style="width: 150px;height: 34px;padding-left: 3px;font-size: 15px;">
+		  			<option  value="">请选择二级类型</option>
+		 </select>
+		 </li>
 		 <li><span>文章标签：</span>
 		        <div class="sel_wrap">        
 		        <label>请选择类型</label>
@@ -82,6 +75,45 @@
   </div>
 </div>
 <script type="text/javascript">
+$(function(){
+	selectType();
+
+});
+//加载一级类目
+function selectType(){
+		$.ajax({
+		async:false,
+		type : "POST",
+		url: "${blog}/voice/manage/selectType.html",
+		dataType:'json',
+     		success: function(data){
+     			for(var i=0;i<data.length;i++){
+     				$("<option value='"+data[i].catCode+"'>"
+     				+data[i].articleName+"</option>").appendTo($("#type"));
+     			}
+     		}
+	});
+}
+function selectTypeByCode(parentCode){
+	$("#catCode").html("");
+	$("<option>请选择二级类型</option>").appendTo($("#catCode"));
+	$.ajax({
+		async:false,
+		type : "POST",
+		data:{catCode:parentCode},
+		url: "${blog}/voice/manage/selectType.html",
+		dataType:'json',
+      		success: function(data){
+      			for(var i=0;i<data.length;i++){
+     				$("<option value='"+data[i].catCode+"'>"
+     				+data[i].articleName+"</option>").appendTo($("#catCode"));
+     			}
+      		}
+	});
+}
+
+
+
 //表单验证
 function verifyDate(){
 	var img = $('#image').val();
