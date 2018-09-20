@@ -5,14 +5,10 @@
 <c:set var="blog" value="${pageContext.request.contextPath}" />
 <c:set var="imageService" value= 'https://www.blucepan.top/imageService/uploadFiles/'/>
 <c:set var="imageServices" value= 'https://www.blucepan.top/imageService/uploadBaiduFiles/'/>
-
 <link href="${blog}/zepto/mdialog.css" type="text/css" rel="stylesheet" />
 <script type='text/javascript' src="${blog}/zepto/zepto.min.js"></script>
 <script type='text/javascript' src="${blog}/zepto/mdialog.js"></script>
-
-
 <script type="text/javascript" src="${blog}/js/jquery-1.11.2.min.js"></script>
-
 <!--删除框操作-->
 <div class="model"></div>
 <div class="modelcont">
@@ -21,9 +17,7 @@
     <dd></dd>
   </dl>
 </div>
-
 <script type="text/javascript">
-
 function del(id){
      	$(".model,.modelcont").show();
      	$(".contdl dt").text("确定要删除吗？");
@@ -33,9 +27,7 @@ function del(id){
 $("body").on("click",".close,.model",function(){
         $(".model,.modelcont").hide();	
 });
-
 </script>
-
 <script type="text/javascript"> 
 /* 鼠标特效 */
 /* var a_idx = 0; 

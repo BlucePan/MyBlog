@@ -1,6 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@include file="/jsp/common/common.jsp"%>
-
 <!doctype html>
 <html>
 <head>
@@ -10,9 +9,6 @@
 <meta name="description" content="${r.remake}" />
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/new.css" rel="stylesheet">
-<!--[if lt IE 9]>
-<script src="js/modernizr.js"></script>
-<![endif]-->
 </head>
 <body>
 <%@ include file="/jsp/common/top.jsp"%>
@@ -43,8 +39,7 @@
       <li><a href="${blog}/articleDetail.html?id=${l.id}&type=${l.catCode}" title="${l.title}" >${l.title}</a></li>    
          </c:forEach>
       </ul>
-    </div>
-    
+    </div>   
 <!--PC版-->
 <div id="SOHUCS" sid="${article.id}" style="margin-left: 1;width:96%"></div>
 <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
@@ -54,8 +49,7 @@ appid: 'cytN4LNTj',
 conf: 'prod_aef07d70ca8ec23ae9bbbfb1bffff613'
 });
 </script>
-    
-  </div>
+</div>
   
   <aside class="right">
     <!-- Baidu Button BEGIN -->
@@ -69,8 +63,7 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
     <div class="blank"></div>
     <div class="news">
     	<!-- 右边加载的数据 -->
-      <iframe src="${blog}/user/faceRightArticleList.html" id="right"  scrolling="no" frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight"></iframe> 
-   
+      <iframe src="${blog}/user/faceRightArticleList.html" id="right"  scrolling="no" frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight"></iframe>   
     </div>
     <div class="visitors">
       <h3>

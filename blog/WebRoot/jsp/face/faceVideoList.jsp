@@ -11,16 +11,11 @@
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/case.css" rel="stylesheet">
 <link href="${blog}/css/page.css" rel="stylesheet">
-<!--[if lt IE 9]>
-<script src="js/modernizr.js"></script>
-<![endif]-->
-
 <style type="text/css">
 .vTitle{
 	text-align: center;
 }
 </style>
-
 </head>
 <body>
 <%@ include file="/jsp/common/top.jsp"%>
@@ -33,21 +28,16 @@
    	 <span class="vTitle">${v.title}</span>	
     </a></li>
  </c:forEach>
- 
 <%-- <li><a href="#"><img src="${blog}/img/01.jpg"></a></li>
 <li><a href="#"><img src="${blog}/img/02.jpg"></a></li> --%>  
- </ul>
- 		
+ </ul>	
   	 <!-- 分页信息 -->  	
  	<%-- <div id="page" class="pagelistFace">
       <ul>
         ${pager}
       </ul>
     </div>   --%>
- 	
 </div>
-
-
 <aside class="right">
    <div class="rnav">
       <h2>栏目导航</h2>

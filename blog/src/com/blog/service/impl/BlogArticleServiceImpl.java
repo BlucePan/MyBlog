@@ -12,6 +12,7 @@ import com.blog.model.BlogArticle;
 import com.blog.model.BlogArticleType;
 import com.blog.model.BlogMenu;
 import com.blog.service.BlogArticleService;
+import com.blog.util.PageData;
 import com.blog.util.PageView;
 @Service("bArticleService")
 public class BlogArticleServiceImpl implements BlogArticleService {
@@ -64,13 +65,13 @@ public class BlogArticleServiceImpl implements BlogArticleService {
 	}
 
 	@Override
-	public List<BlogArticle> getNewArticle() {
-		return bArticleDao.getNewArticle();
+	public List<BlogArticle> getNewArticle(PageData pageData) {
+		return bArticleDao.getNewArticle(pageData);
 	}
 
 	@Override
-	public List<BlogArticle> getSeniorityArticle() {
-		return bArticleDao.getSeniorityArticle();
+	public List<BlogArticle> getSeniorityArticle(PageData pageData) {
+		return bArticleDao.getSeniorityArticle(pageData);
 	}
 
 	@Override

@@ -32,18 +32,39 @@ public class HomeController extends BaseController {
 	@RequestMapping("/home.html")
 	public String home(HttpServletRequest request, Model model) {
 		// 跳往主页
+		PageData pageData=new PageData();
 		List<BlogArticle> bArticleList = bArticleService.getRecommendArticle();
 		model.addAttribute("bArticleList", bArticleList); // 首页推荐文章
-		List<BlogArticle> nArticleList = bArticleService.getNewArticle();
+		List<BlogArticle> nArticleList = bArticleService.getNewArticle(pageData);
 		model.addAttribute("nArticleList", nArticleList); // 首页最新文章
-		List<BlogArticle> sArticleList = bArticleService.getSeniorityArticle();
+		List<BlogArticle> sArticleList = bArticleService.getSeniorityArticle(pageData);
 		model.addAttribute("sArticleList", sArticleList); // 首页排行文章
 		List<PageData> bSlideList = bSlideService.queryAllSlide(new PageData());
 		model.addAttribute("bSlideList", bSlideList); // 首页轮播图
-		List<PageData> labelList =bSlideService.ariticleLabelGroup("1"); 
+		List<PageData> labelList =bSlideService.ariticleLabelGroup(pageData); 
 		model.addAttribute("labelList", labelList); //获取有文章的标签
 		return "face/home";
 	}
+	/**
+	 * 跳转类目
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/chose.html")
+	public String chose(HttpServletRequest request, Model model) {
+		String catCode=request.getParameter("catCode");
+		String label=request.getParameter("label");
+		if(catCode.contains("002.010")){//技术分享
+			return  !BlogUtil.isEmpty(label) ? "redirect:/article.html?catCode="+catCode+"&label="+label : "redirect:/article.html?catCode="+catCode;
+		}else if(catCode.contains("002.020")){//口述历史
+			return  !BlogUtil.isEmpty(label) ? "redirect:/history.html?catCode="+catCode+"&label="+label : "redirect:/article.html?catCode="+catCode;
+		}else if(catCode.contains("002.030")){//生活百态
+			return  !BlogUtil.isEmpty(label) ? "redirect:/funny.html?catCode="+catCode+"&label="+label : "redirect:/article.html?catCode="+catCode;
+		}
+		return null;
+	}
+	
 
 	/**
 	 * 技术分享
@@ -55,30 +76,43 @@ public class HomeController extends BaseController {
 	@RequestMapping("/article.html")
 	public String articleList(HttpServletRequest request, Model model) {
 		String parentCode="002.010";
+		String searchName="技术分享";
 		PageData pageData=new PageData();
 		pageData.put("parentCode", parentCode);
 		List<PageData> articleTypeList=bSlideService.selectType(pageData);//得到当前分类的文章类型
+		List<PageData> labelList =bSlideService.ariticleLabelGroup(pageData);//得到当前分类的文章标签
 		
 		PageView page = new PageView();
 		page.setPageSize(3);
 		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
-		Map map = new HashMap();
-		map.put("title", request.getParameter("title"));
-		map.put("catCode", parentCode);
-		PageView pageView = bArticleService.findByPage(page, map);
+		String catCode=request.getParameter("catCode");
+		Map map = new HashMap();		
 		StringBuffer buffer = new StringBuffer();
-		if (!BlogUtil.isEmpty(request.getParameter("title"))) {
-			buffer.append("&title=");
-			buffer.append(request.getParameter("title"));
-		}
 		if (!BlogUtil.isEmpty(parentCode)) {
-			buffer.append("&catCode=");
-			buffer.append(parentCode);
+			map.put("parentCode", parentCode);
+			buffer.append("&parentCode="+parentCode);
+			model.addAttribute("parentCode",parentCode);
+		}if(!BlogUtil.isEmpty(catCode) && catCode.length()>8){
+			map.put("catCode", catCode);
+			buffer.append("&catCode="+catCode);
+			PageData articleType=bSlideService.queryTypeByCatCode(catCode);
+			searchName=articleType.getString("articleName");
+		}if(!BlogUtil.isEmpty(request.getParameter("title"))) {
+			map.put("title", request.getParameter("title"));
+			buffer.append("&title="+request.getParameter("title"));
+			searchName=request.getParameter("title");
+		}if(!BlogUtil.isEmpty(request.getParameter("label"))) {
+			map.put("label", request.getParameter("label"));
+			buffer.append("&label="+request.getParameter("label"));
+			PageData labelType=bSlideService.queryLabelByLabel(request.getParameter("label"));
+			searchName=labelType.getString("name");
 		}
+		PageView pageView = bArticleService.findByPage(page, map);
 		model.addAttribute("pager", pageView.getPagerStr(buffer));
 		model.addAttribute("list", pageView.getItems());
 		model.addAttribute("articleTypeList", articleTypeList);
-
+		model.addAttribute("labelList", labelList);
+		model.addAttribute("searchName",searchName);
 		return "face/articleList";
 	}
 	
@@ -92,30 +126,43 @@ public class HomeController extends BaseController {
 	@RequestMapping("/history.html")
 	public String historyList(HttpServletRequest request, Model model) {
 		String parentCode="002.020";
+		String searchName="口述历史";
 		PageData pageData=new PageData();
 		pageData.put("parentCode", parentCode);
 		List<PageData> articleTypeList=bSlideService.selectType(pageData);//得到当前分类的文章类型
+		List<PageData> labelList =bSlideService.ariticleLabelGroup(pageData);//得到当前分类的文章标签
 		
 		PageView page = new PageView();
 		page.setPageSize(3);
 		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
-		Map map = new HashMap();
-		map.put("title", request.getParameter("title"));
-		map.put("catCode", parentCode);
-		PageView pageView = bArticleService.findByPage(page, map);
+		String catCode=request.getParameter("catCode");
+		Map map = new HashMap();		
 		StringBuffer buffer = new StringBuffer();
-		if (!BlogUtil.isEmpty(request.getParameter("title"))) {
-			buffer.append("&title=");
-			buffer.append(request.getParameter("title"));
-		}
 		if (!BlogUtil.isEmpty(parentCode)) {
-			buffer.append("&catCode=");
-			buffer.append(parentCode);
+			map.put("parentCode", parentCode);
+			buffer.append("&parentCode="+parentCode);
+			model.addAttribute("parentCode",parentCode);
+		}if(!BlogUtil.isEmpty(catCode) && catCode.length()>8){
+			map.put("catCode", catCode);
+			buffer.append("&catCode="+catCode);
+			PageData articleType=bSlideService.queryTypeByCatCode(catCode);
+			searchName=articleType.getString("articleName");
+		}if(!BlogUtil.isEmpty(request.getParameter("title"))) {
+			map.put("title", request.getParameter("title"));
+			buffer.append("&title="+request.getParameter("title"));
+			searchName=request.getParameter("title");
+		}if(!BlogUtil.isEmpty(request.getParameter("label"))) {
+			map.put("label", request.getParameter("label"));
+			buffer.append("&label="+request.getParameter("label"));
+			PageData labelType=bSlideService.queryLabelByLabel(request.getParameter("label"));
+			searchName=labelType.getString("name");
 		}
+		PageView pageView = bArticleService.findByPage(page, map);
 		model.addAttribute("pager", pageView.getPagerStr(buffer));
 		model.addAttribute("list", pageView.getItems());
 		model.addAttribute("articleTypeList", articleTypeList);
-
+		model.addAttribute("labelList", labelList);
+		model.addAttribute("searchName",searchName);
 		return "face/historyList";
 	}
 	
@@ -129,30 +176,43 @@ public class HomeController extends BaseController {
 	@RequestMapping("/funny.html")
 	public String funnyList(HttpServletRequest request, Model model) {
 		String parentCode="002.030";
+		String searchName="生活百态";
 		PageData pageData=new PageData();
 		pageData.put("parentCode", parentCode);
 		List<PageData> articleTypeList=bSlideService.selectType(pageData);//得到当前分类的文章类型
+		List<PageData> labelList =bSlideService.ariticleLabelGroup(pageData);//得到当前分类的文章标签
 		
 		PageView page = new PageView();
 		page.setPageSize(3);
 		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
-		Map map = new HashMap();
-		map.put("title", request.getParameter("title"));
-		map.put("catCode", parentCode);
-		PageView pageView = bArticleService.findByPage(page, map);
+		String catCode=request.getParameter("catCode");
+		Map map = new HashMap();		
 		StringBuffer buffer = new StringBuffer();
-		if (!BlogUtil.isEmpty(request.getParameter("title"))) {
-			buffer.append("&title=");
-			buffer.append(request.getParameter("title"));
-		}
 		if (!BlogUtil.isEmpty(parentCode)) {
-			buffer.append("&catCode=");
-			buffer.append(parentCode);
+			map.put("parentCode", parentCode);
+			buffer.append("&parentCode="+parentCode);
+			model.addAttribute("parentCode",parentCode);
+		}if(!BlogUtil.isEmpty(catCode) && catCode.length()>8){
+			map.put("catCode", catCode);
+			buffer.append("&catCode="+catCode);
+			PageData articleType=bSlideService.queryTypeByCatCode(catCode);
+			searchName=articleType.getString("articleName");
+		}if(!BlogUtil.isEmpty(request.getParameter("title"))) {
+			map.put("title", request.getParameter("title"));
+			buffer.append("&title="+request.getParameter("title"));
+			searchName=request.getParameter("title");
+		}if(!BlogUtil.isEmpty(request.getParameter("label"))) {
+			map.put("label", request.getParameter("label"));
+			buffer.append("&label="+request.getParameter("label"));
+			PageData labelType=bSlideService.queryLabelByLabel(request.getParameter("label"));
+			searchName=labelType.getString("name");
 		}
+		PageView pageView = bArticleService.findByPage(page, map);
 		model.addAttribute("pager", pageView.getPagerStr(buffer));
 		model.addAttribute("list", pageView.getItems());
 		model.addAttribute("articleTypeList", articleTypeList);
-
+		model.addAttribute("labelList", labelList);
+		model.addAttribute("searchName",searchName);
 		return "face/funnyList";
 	}
 
@@ -289,6 +349,18 @@ public class HomeController extends BaseController {
 		return "face/jottings";
 	}
 	
+	// 右边公共文章展示
+	@RequestMapping("/faceRightArticleList.html")
+	public String faceRightArticleList(HttpServletRequest request, Model model) {
+		// 跳往主页
+		PageData pageData=new PageData();
+		pageData.put("parentCode", request.getParameter("catCode"));
+		List<BlogArticle> nArticleList = bArticleService.getNewArticle(pageData);
+		model.addAttribute("nArticleList", nArticleList); // 首页最新文章
+		List<BlogArticle> sArticleList = bArticleService.getSeniorityArticle(pageData);
+		model.addAttribute("sArticleList", sArticleList); // 首页排行文章
 
+		return "face/faceRight";
+	}
 
 }

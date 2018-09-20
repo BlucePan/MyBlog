@@ -1,6 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@include file="/jsp/common/common.jsp"%>
-
 <!doctype html>
 <html>
 <head>
@@ -10,9 +9,6 @@
 <meta name="description" content="寻梦主题的个人博客模板，优雅、稳重、大气,低调。" />
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/share.css" rel="stylesheet">
-<!--[if lt IE 9]>
-<script src="js/modernizr.js"></script>
-<![endif]-->
 </head>
 <body>
 <header>

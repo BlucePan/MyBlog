@@ -16,8 +16,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="title != null and title != ''">
 		and a.title like '%${title}%'
 		</if>
+		<if test="parentCode != null and parentCode != ''">
+		and a.catCode IN (SELECT catCode FROM blog_article_type WHERE parentCode=#{parentCode} )
+		</if>
 		<if test="catCode != null and catCode != ''">
-		and a.catCode IN (SELECT catCode FROM blog_article_type WHERE parentCode=#{catCode} )
+		and a.catCode = #{catCode}
+		</if>
+		<if test="label != null and label != ''">
+		and a.label =#{label}
 		</if>
 		ORDER BY a.top desc,a.createTime desc limit #{start}, #{max}
 	</select> 
@@ -27,8 +33,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<if test="title != null and title != ''">
 		and a.title like '%${title}%'
 		</if>
+		<if test="parentCode != null and parentCode != ''">
+		and a.catCode IN (SELECT catCode FROM blog_article_type WHERE parentCode=#{parentCode} )
+		</if>
 		<if test="catCode != null and catCode != ''">
-		and a.catCode IN (SELECT catCode FROM blog_article_type WHERE parentCode=#{catCode} )
+		and a.catCode = #{catCode}
+		</if>
+		<if test="label != null and label != ''">
+		and a.label =#{label}
 		</if>
 	</select>
 			
@@ -109,13 +121,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>	
 	
 		<!-- 得到最新文章  根据时间来排序 -->			
-	<select id="getNewArticle" resultType="com.blog.model.BlogArticle">
-	  SELECT * from blog_article  ORDER BY createTime desc limit 10
+	<select id="getNewArticle" resultType="com.blog.model.BlogArticle" parameterType="pageData">
+	    SELECT * from blog_article where 1=1
+	  <if test="parentCode != null and parentCode != ''">
+		and catCode IN (SELECT catCode FROM blog_article_type WHERE parentCode=#{parentCode} )
+	  </if>
+	    ORDER BY createTime desc limit 10
 	</select>	
 	
 			<!-- 得到排行文章  根据时间来排序 -->			
-	<select id="getSeniorityArticle" resultType="com.blog.model.BlogArticle">
-	  SELECT * from blog_article  ORDER BY popularity desc,browse desc limit 10
+	<select id="getSeniorityArticle" resultType="com.blog.model.BlogArticle" parameterType="pageData">
+	  SELECT * from blog_article where 1=1
+	  <if test="parentCode != null and parentCode != ''">
+		and catCode IN (SELECT catCode FROM blog_article_type WHERE parentCode=#{parentCode} )
+	  </if>
+	   ORDER BY popularity desc,browse desc limit 10
 	</select>	
 	
 	<!-- 上一篇，下一篇 -->

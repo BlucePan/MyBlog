@@ -1,6 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@include file="/jsp/common/common.jsp"%>
-
 <!doctype html>
 <html>
 <head>
@@ -11,9 +10,6 @@
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/index.css" rel="stylesheet">
 <link href="${blog}/css/csshake.css" rel="stylesheet">
-<!--[if lt IE 9]>
-<script src="js/modernizr.js"></script>
-<![endif]-->
 </head>
 <body>
 <%-- <header>
@@ -23,7 +19,6 @@
 </header> --%>
 <!-- 引入公共头部 -->
 <%@ include file="/jsp/common/top.jsp"%>
-
 <!-- 滚动字幕 -->
 <div class="banner">
   <section class="box">
@@ -35,28 +30,25 @@
     <div class="avatar"><a href="#"><span>盘子</span></a> </div>
   </section>
 </div>
-
 <!-- 图片模块 -->
 <div class="template">
   <div class="box">
     <h3>
       <p><span></span>猜你喜欢</p>
       <div class="gg" style="float: right;width:80.5%;font-size: 14px;height: 30px;line-height: 30px;color: #4E3E3E;position: absolute;bottom:0;right: 0;font-weight: 400;">
-	   <!--  <script type="text/javascript" src="https://api.lwl12.com/hitokoto/main/get?encode=js&amp;charset=utf-8"></script> -->
 		<marquee scrollamount="5" direction="left" onmouseover="this.stop()" onmouseout="this.start()">
 		<span style="color:#2b97d5;font-weight:bold">偶遇佳句：一生中，总有那么一段时间，需要你自己走，自己扛。 不要感觉害怕，不要感觉孤单，这只不过是成长的代价。</span>
 		</marquee>
 	  </div> 
     </h3>
     <ul>
-  <%--     <li><a href="/"  ><img src="${blog}/img/01.jpg"></a><span>小帅哥</span></li>--%>   
  	 <c:forEach var="v" items="${bSlideList}">
  	   <li><a  class="shake shake-little" href="${v.url}"><img src="${imageService}/${v.image}"></a><span>${v.title}</span></li>
      </c:forEach>
   </ul>
   </div>
 </div>
-
+<!-- 文章模块 -->
 <article>
   <h2 class="title_tj">
     <p>文章<span>推荐</span></p>
@@ -79,10 +71,15 @@
     <p class="dateview">
     <span><fmt:parseDate value='${b.createTime}' var="yearMonth" pattern="yyyy-MM-dd "/>
           <fmt:formatDate value="${yearMonth}" pattern="yyyy-MM-dd " /></span>          
-          <span>作者：${b.createUser}</span><span>个人博客：[<a href="${blog}/article.html?type=${b.catCode}">${b.articleName}</a>]</span></p>
+          <span>作者：${b.createUser}</span><span>个人博客：[<a href="${blog}/chose.html?catCode=${b.catCode}">${b.articleName}</a>]</span></p>
 </c:forEach>
    </div>
   <aside class="right">
+  	<div class="container"><div id="search"> 
+	<form name="search_js1" method="post" action="#"> 
+	<input type="text" name="keyboard">    
+	<input class="button" type="submit" value="搜索"> 
+    </form></div></div>
     <div class="sale"><figure><p><a href="#"  target="_blank" title="本站个人博客主题出售"><img src='${blog}/img/sale.jpg' alt='本站个人博客主题出售'/></a></p></figure></div>	
 	<div class="blank"></div>
 	<div class="time" style="border:#CCC 2px solid;border-radius:10px;padding-left: 3%;margin-bottom:5px;">
@@ -102,7 +99,7 @@
     </h3>
     <ul>
     <c:forEach var="l" items="${labelList}">
-	<li><a href="#">${l.name}<span class="tag-count"> (${l.count})</span></a></li>
+	<li><a href="${blog}/chose.html?label=${l.label}">${l.name}<span class="tag-count"> (${l.count})</span></a></li>
 	</c:forEach>
     </ul>	 
 	</div>
@@ -146,14 +143,12 @@
     <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6574585" ></script> 
     <script type="text/javascript" id="bdshell_js"></script> 
     <script type="text/javascript">
-document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
-</script> 
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+	</script> 
     <!-- Baidu Button END -->   
     <!-- <a href="/" class="weixin"> </a></aside> -->
 </article>
-
 <!-- 引入公共头部 -->
 <%@include file="/jsp/common/bottom.jsp"%>
-
 </body>
 </html>

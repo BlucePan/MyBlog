@@ -1,6 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-
-
 <!-- 返回顶部 -->
 <a class="to-top" id="toTop" title="点击返回顶部" ></a>
 <footer>
@@ -18,7 +16,8 @@
   </div>
 </footer>
 <script src="${blog}/js/silder.js"></script>
-
+<!-- 鼠标点击特效 -->
+<script type="text/javascript" src="${blog}/js/public.js"></script>
 <!-- 灰色背景特效 -->
 <%-- <script type="text/javascript" src="${blog}/js/particle.js"></script> --%>
  <!-- 按需加载背景 -->
@@ -56,7 +55,7 @@
   <!-- 识别手机或电脑的js结束 --> 
   <!-- 红色背景特效 --> 
  <script color="255,0,0" opacity='0.7' zIndex="-2" count="150"   src="${blog}/js/canvas-nest.min.js"></script>
- <script type="text/javascript">   
+<script type="text/javascript">   
  /* 返回顶部插件 */
 $(function(){
         //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
@@ -113,4 +112,4 @@ var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours
 document.getElementById("sitetime").innerHTML=+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒"
 }
 siteTime()
- </script>
+</script>

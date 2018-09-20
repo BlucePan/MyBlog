@@ -9,7 +9,6 @@
 <meta name="description" content="寻梦主题的个人博客模板，优雅、稳重、大气,低调。" />
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/index.css" rel="stylesheet">
-
 <div class="news">
     <h3>
       <p>最新<span>文章</span></p>

@@ -65,8 +65,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY createTime desc 
 	</select>
 	<!-- 获取标签列表 -->
-	<select id="ariticleLabelGroup" parameterType="String" resultType="pageData">
-		select a.label,l.name,count(a.label) count from blog_article a left join blog_label l on a.label=l.id GROUP BY a.label
+	<select id="ariticleLabelGroup" parameterType="pageData" resultType="pageData">
+		select a.label,l.name,count(a.label) count from blog_article a left join blog_label l on a.label=l.id where 1=1
+		<if test="parentCode != null and parentCode != ''">
+		and a.catCode IN (SELECT catCode FROM blog_article_type WHERE parentCode=#{parentCode} )
+	  </if>
+		 GROUP BY a.label
 	</select>
 	<select id="queryAllLabel" parameterType="String" resultType="pageData">
 		select * from  blog_label 
@@ -170,5 +174,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and parentCode = #{parentCode}
 		</if>
 		ORDER BY createTime desc
+	</select> 
+	
+	  <select id="queryTypeByCatCode" parameterType="String" resultType="pageData">
+	   select articleName from blog_article_type  where catCode=#{catCode}
+	</select> 
+	<select id="queryLabelByLabel" parameterType="String" resultType="pageData">
+	   select name from blog_label  where id=#{label}
 	</select> 
 </mapper> 

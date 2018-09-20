@@ -15,7 +15,7 @@ public interface BlogSlideService {
 	public PageView findByPage(Map map,PageView page);
 	PageData queryBlogSlideById(String id);
 	public PageView findLabelByPage(Map map,PageView page);
-	List<PageData> ariticleLabelGroup(String type);
+	List<PageData> ariticleLabelGroup(PageData pageData);
 	void addLabel(PageData pageData);
 	void updateLabel(PageData pageData);
 	void delLabel(String id);
@@ -25,4 +25,6 @@ public interface BlogSlideService {
 	void updateType(PageData pageData);
 	void delType(String id);
 	List<PageData> selectType(PageData pageData);
+	PageData queryTypeByCatCode(String catCode);
+	PageData queryLabelByLabel(String label);
 }

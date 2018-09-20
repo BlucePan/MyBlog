@@ -1,6 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@include file="/jsp/common/common.jsp"%>
-
 <!doctype html>
 <html>
 <head>
@@ -11,9 +10,6 @@
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/mood.css" rel="stylesheet">
 <link href="${blog}/css/page.css" rel="stylesheet">
-<!--[if lt IE 9]>
-<script src="js/modernizr.js"></script>
-<![endif]-->
 </head>
 <body>
 <%@ include file="/jsp/common/top.jsp"%>
@@ -32,7 +28,6 @@
         </div>
     </ul> 	
  </c:forEach>
- 
    <!-- 分页信息 -->
    <div  class="fenye">
       <ul class="clear">
@@ -41,7 +36,6 @@
     </div>
  	</div>
  </div>
-
 <%@include file="/jsp/common/bottom.jsp"%>
 </body>
 </html>

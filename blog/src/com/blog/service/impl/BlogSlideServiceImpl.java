@@ -89,10 +89,10 @@ public class BlogSlideServiceImpl implements BlogSlideService {
 	}
 
 	@Override
-	public List<PageData> ariticleLabelGroup(String type) {
+	public List<PageData> ariticleLabelGroup(PageData pageData) {
 		// TODO Auto-generated method stub
 		try {
-			return (List<PageData>) dao.findForList("BlogSlideMapping.ariticleLabelGroup", type);
+			return (List<PageData>) dao.findForList("BlogSlideMapping.ariticleLabelGroup", pageData);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -215,4 +215,25 @@ public class BlogSlideServiceImpl implements BlogSlideService {
 		return null;
 	}
 
+	@Override
+	public PageData queryTypeByCatCode(String catCode) {
+		try {
+			return (PageData) dao.findForObject("BlogSlideMapping.queryTypeByCatCode", catCode);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public PageData queryLabelByLabel(String label) {
+		try {
+			return (PageData) dao.findForObject("BlogSlideMapping.queryLabelByLabel", label);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

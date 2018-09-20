@@ -138,17 +138,7 @@ public class UserController extends BaseController {
 		return "background/framework/center";
 	}
 
-	// 右边公共文章展示
-	@RequestMapping("/faceRightArticleList.html")
-	public String faceRightArticleList(HttpServletRequest request, Model model) {
-		// 跳往主页
-		List<BlogArticle> nArticleList = bArticleService.getNewArticle();
-		model.addAttribute("nArticleList", nArticleList); // 首页最新文章
-		List<BlogArticle> sArticleList = bArticleService.getSeniorityArticle();
-		model.addAttribute("sArticleList", sArticleList); // 首页排行文章
-
-		return "face/faceRight";
-	}
+	
 
 	// 测试跳转vm
 	@RequestMapping("/toVm.html")
