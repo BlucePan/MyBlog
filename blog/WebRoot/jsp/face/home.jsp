@@ -7,6 +7,7 @@
 <title>盘子博客 BlucePan</title>
 <meta name="keywords" content="盘子博客 BlucePan"/>
 <meta name="description" content="个人博客模板,博客模板,盘子" />
+<link href="/favicon.ico" mce_href="/favicon.ico" rel="icon" type="image/x-icon">
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/index.css" rel="stylesheet">
 <link href="${blog}/css/csshake.css" rel="stylesheet">
