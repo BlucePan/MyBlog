@@ -13,7 +13,7 @@
 <body>
 <%@ include file="/jsp/common/top.jsp"%>
 <article class="blogs">
-  <h1 class="t_nav"><span>我们长路漫漫，只因学无止境。</span><a href="${blog}/" class="n1">网站首页</a><a href="${blog}/article.html?type=${article.catCode}" class="n2">${article.articleName}</a></h1>
+  <h1 class="t_nav"><span>我们长路漫漫，只因学无止境。</span><a href="${blog}/" class="n1">网站首页</a><a href="#" class="n2">${article.articleName}</a></h1>
   <div class="index_about">
     <h2 class="c_titile">${article.title}</h2>
     <p class="box_c"><span class="d_time">发布时间：2013-09-08</span><span>编辑：${article.createUser}</span><span>阅读：（${article.browse}）</span></p>
@@ -53,17 +53,13 @@ conf: 'prod_aef07d70ca8ec23ae9bbbfb1bffff613'
   
   <aside class="right">
     <!-- Baidu Button BEGIN -->
-    <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><a class="bds_qzone"></a><a class="bds_tqq"></a><a class="bds_renren"></a><span class="bds_more"></span><a class="shareCount"></a></div>
-    <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6574585" ></script> 
-    <script type="text/javascript" id="bdshell_js"></script> 
-    <script type="text/javascript">
-document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
-</script> 
+   <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+   <script>window._bd_share_config={"common":{"bdSnsKey":{"tsina":"#","tqq":"#","t163":"#","tsohu":"#"},"bdText":"觉得有用就分享一下吧！","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
     <!-- Baidu Button END -->
     <div class="blank"></div>
     <div class="news">
     	<!-- 右边加载的数据 -->
-      <iframe src="${blog}/user/faceRightArticleList.html" id="right"  scrolling="no" frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight"></iframe>   
+      <iframe src="${blog}/faceRightArticleList.html?catCode=${parentCode}" id="right"  scrolling="no" frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight"></iframe>   
     </div>
     <div class="visitors">
       <h3>

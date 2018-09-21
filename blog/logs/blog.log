@@ -1,12 +1,13 @@
 face      前台页面
 background 后台页面
-测试
 
 后台访问：http://localhost:8080/blog/user/index.html
 前台访问：http://localhost:8080/blog/home.html 
 数据库连接池访问：http://localhost:8080/blog/druid
 程序监控平台：http://localhost:8080/blog/monitoring 
-
+百度统计:https://tongji.baidu.com/web/26436793/overview/index
+百度分享：http://share.baidu.com/analysis
+畅言：http://changyan.kuaizhan.com/overview
 
 blog分类：
 
@@ -15,43 +16,3 @@ blog分类：
 生活百态：经典语录/优秀文章/个人日记/今日头条/搞笑娱乐/精品收藏/电影推荐/读书笔记/
 
 标签：
-
-
-菜单表
-   blog_menu :
-
-菜单编号    id  
-菜单key值  resKey
-  menuName
-	imgUrl
-	url(访问路径)
- menuType(菜单类型)（1目录，2菜单，3按钮） 
-superior(上级id，没有默认为1)
-priority (优先级  菜单排序)
-createTime（创建时间）
-createUserId (创建者id)
-updateUserId(修改者id)
-updateTime(修改时间)
-flag（这个菜单是否启用1启用2不启用）
-iscommon(是否是公用菜单)
-
-文章表
-   blog_article
-
-id (文章id)
-title（标题）
-image(展示图片)
-remake(摘要)
-createTime（创建时间）
-createUserId (创建者id)
-updateUserId(修改者id)
-updateTime(修改时间)
-type   文章类型（对应类型表）
-browse      浏览量
-popularity  人气
-context	内容
-top 置顶
-blog_article_type
-id
-name(分类名称)
-article_id(文章id)

@@ -7,7 +7,7 @@
   <span class="bigdan"></span>
   </div>
   <p>博客已稳定运行   <span id="sitetime" style="color:#f00">siteTime()</span>  Design by BlucePan <a href="http://www.miitbeian.gov.cn/" target="_blank" style="color:#848589">版权所有  浙ICP备18037226号</a></p>
-  <p class="dh"> <a href="${blog}/" target="_blank">首页</a>&nbsp;|&nbsp;<a href="${blog}/jottings.html" target="_blank">闲谈随笔</a>&nbsp;|&nbsp;<a href="${blog}/gustbook.html" target="_blank">给我留言</a>&nbsp;|&nbsp;<a href="#" target="_blank">免费声明</a></p>
+  <p class="dh"> <a href="${blog}/" target="_blank">首页</a>&nbsp;|&nbsp;<a href="${blog}/jottings.html" target="_blank">闲谈随笔</a>&nbsp;|&nbsp;<a href="${blog}/gustbook.html" target="_blank">给我留言</a>&nbsp;|&nbsp;<a href="#" target="_blank">免费声明</a>&nbsp;|&nbsp;<a href="https://tongji.baidu.com/web/welcome/ico?s=dd28fbe52b1daa3bdea6b4893748ec61" target="_blank">百度统计分析</a></p>
   <div class="beian">
    <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo">
   	  <img src="${blog}/img/ga.png" alt="">
@@ -15,6 +15,16 @@
    </a>
   </div>
 </footer>
+<!-- 百度统计代码 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?dd28fbe52b1daa3bdea6b4893748ec61";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 <script src="${blog}/js/silder.js"></script>
 <!-- 鼠标点击特效 -->
 <script type="text/javascript" src="${blog}/js/public.js"></script>

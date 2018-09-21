@@ -66,7 +66,7 @@
     <figure><img src="${imageService}/${b.image}"></figure>
     <ul>
       <p>${b.remake}</p>
-      <a title="/" href="${blog}/articleDetail.html?id=${b.id}&type=${b.catCode}"  class="readmore">阅读全文>></a>
+      <a title="/" href="${blog}/articleDetail.html?id=${b.id}&type=${b.catCode}"  class="readmore" target="_blank">阅读全文>></a>
     </ul>
     <p class="dateview">
     <span><fmt:parseDate value='${b.createTime}' var="yearMonth" pattern="yyyy-MM-dd "/>
@@ -76,11 +76,11 @@
    </div>
   <aside class="right">
   	<div class="container"><div id="search"> 
-	<form name="search_js1" method="post" action="#"> 
-	<input type="text" name="keyboard">    
+	<form name="search_js1" method="post" action="${blog}/search.html"> 
+	<input type="text" name="title" placeholder="请输入关键字" required="required" value="${param.title}">    
 	<input class="button" type="submit" value="搜索"> 
     </form></div></div>
-    <div class="sale"><figure><p><a href="#"  target="_blank" title="本站个人博客主题出售"><img src='${blog}/img/sale.jpg' alt='本站个人博客主题出售'/></a></p></figure></div>	
+    <div class="sale" style="display:none;"><figure><p><a href="#"  target="_blank" title="本站个人博客主题出售"><img src='${blog}/img/sale.jpg' alt='本站个人博客主题出售'/></a></p></figure></div>	
 	<div class="blank"></div>
 	<div class="time" style="border:#CCC 2px solid;border-radius:10px;padding-left: 3%;margin-bottom:5px;">
 	  <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" name="movie" width="235" height="97" id="movie"><param name="movie" value="${blog}/img/time.swf"><param name="quality" value="high"><param name="menu" value="false"><embed src="${blog}/img/time.swf" width="235" height="97" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" id="movie" name="movie" menu="false"><param name="wmode" value="Opaque"></object></div>
@@ -138,15 +138,6 @@
       <li><a href="http://mindhacks.cn" target="_blank">刘未鹏</a></li>
     </ul> 
     </div>  
-    <!-- 百度分享 -->
-    <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><a class="bds_qzone"></a><a class="bds_tqq"></a><a class="bds_renren"></a><span class="bds_more"></span><a class="shareCount"></a></div>
-    <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6574585" ></script> 
-    <script type="text/javascript" id="bdshell_js"></script> 
-    <script type="text/javascript">
-	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
-	</script> 
-    <!-- Baidu Button END -->   
-    <!-- <a href="/" class="weixin"> </a></aside> -->
 </article>
 <!-- 引入公共头部 -->
 <%@include file="/jsp/common/bottom.jsp"%>

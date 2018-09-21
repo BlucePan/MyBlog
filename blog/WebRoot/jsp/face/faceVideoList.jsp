@@ -20,11 +20,11 @@
 <body>
 <%@ include file="/jsp/common/top.jsp"%>
 <article class="blogs">
-<h1 class="t_nav"><span>好咖啡要和朋友一起品尝，好“模板”也要和同样喜欢它的人一起分享。 </span><a href="${blog}/" class="n1">网站首页</a><a href="${blog}/video.html" class="n2">娱乐视频</a></h1>
+<h1 class="t_nav"><span>好的视频要给大家分享。 </span><a href="${blog}/" class="n1">网站首页</a><a href="${blog}/video.html" class="n2">娱乐视频</a></h1>
 <div class="caselist left">
  <ul>
  <c:forEach var="v" items="${list}">
-    <li><a href="${blog}/videosDetail.html?id=${v.id}"><img src="${imageService}/${v.image}">
+    <li><a href="${blog}/videosDetail.html?id=${v.id}" target="_blank"><img src="${imageService}/${v.image}">
    	 <span class="vTitle">${v.title}</span>	
     </a></li>
  </c:forEach>
@@ -42,15 +42,15 @@
    <div class="rnav">
       <h2>栏目导航</h2>
       <ul>
-       <li><a href="#" >个人博客模板</a></li>
-       <li><a href="#" >国外Html5模板</a></li>
-       <li><a href="#" >企业网站模板</a></li>
-       <li><a href="#" >作品展示</a></li>
+       <li><a href="#" >搞笑视频</a></li>
+       <li><a href="#" >美国大片</a></li>
+       <li><a href="#" >国产电影</a></li>
+       <li><a href="#" >好看视频</a></li>
      </ul>      
     </div>
 	<div class="news"> 
 	  	<!-- 右边加载的数据 -->
-	      <iframe src="${blog}/user/faceRightArticleList.html" id="right"  scrolling="no" frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight"></iframe>    
+	      <iframe src="${blog}/faceRightArticleList.html?catCode=${parentCode}" id="right"  scrolling="no" frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight"></iframe>    
 	</div>
     <div class="visitors">
       <h3><p>最近访客</p></h3>
@@ -58,14 +58,6 @@
 
       </ul>
     </div>
-     <!-- Baidu Button BEGIN -->
-    <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><a class="bds_qzone"></a><a class="bds_tqq"></a><a class="bds_renren"></a><span class="bds_more"></span><a class="shareCount"></a></div>
-    <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6574585" ></script> 
-    <script type="text/javascript" id="bdshell_js"></script> 
-    <script type="text/javascript">
-document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
-</script> 
-    <!-- Baidu Button END -->   
 </aside>
 </article>
 <%@include file="/jsp/common/bottom.jsp"%>

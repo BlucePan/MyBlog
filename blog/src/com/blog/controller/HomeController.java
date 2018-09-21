@@ -58,9 +58,9 @@ public class HomeController extends BaseController {
 		if(catCode.contains("002.010")){//技术分享
 			return  !BlogUtil.isEmpty(label) ? "redirect:/article.html?catCode="+catCode+"&label="+label : "redirect:/article.html?catCode="+catCode;
 		}else if(catCode.contains("002.020")){//口述历史
-			return  !BlogUtil.isEmpty(label) ? "redirect:/history.html?catCode="+catCode+"&label="+label : "redirect:/article.html?catCode="+catCode;
+			return  !BlogUtil.isEmpty(label) ? "redirect:/history.html?catCode="+catCode+"&label="+label : "redirect:/history.html?catCode="+catCode;
 		}else if(catCode.contains("002.030")){//生活百态
-			return  !BlogUtil.isEmpty(label) ? "redirect:/funny.html?catCode="+catCode+"&label="+label : "redirect:/article.html?catCode="+catCode;
+			return  !BlogUtil.isEmpty(label) ? "redirect:/funny.html?catCode="+catCode+"&label="+label : "redirect:/funny.html?catCode="+catCode;
 		}
 		return null;
 	}
@@ -214,6 +214,49 @@ public class HomeController extends BaseController {
 		model.addAttribute("labelList", labelList);
 		model.addAttribute("searchName",searchName);
 		return "face/funnyList";
+	}
+	
+	/**
+	 * 全局搜索
+	 * 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/search.html")
+	public String searchList(HttpServletRequest request, Model model) {
+		String searchName="未知";
+		PageData pageData=new PageData();
+		List<PageData> articleTypeList=bSlideService.selectType(pageData);//得到当前分类的文章类型
+		List<PageData> labelList =bSlideService.ariticleLabelGroup(pageData);//得到当前分类的文章标签
+		PageView page = new PageView();
+		page.setPageSize(3);
+		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
+		String catCode=request.getParameter("catCode");
+		Map map = new HashMap();		
+		StringBuffer buffer = new StringBuffer();
+        if(!BlogUtil.isEmpty(catCode)){
+			map.put("catCode", catCode);
+			buffer.append("&catCode="+catCode);
+			PageData articleType=bSlideService.queryTypeByCatCode(catCode);
+			searchName=articleType.getString("articleName");
+		}if(!BlogUtil.isEmpty(request.getParameter("title"))) {
+			map.put("title", request.getParameter("title"));
+			buffer.append("&title="+request.getParameter("title"));
+			searchName=request.getParameter("title");
+		}if(!BlogUtil.isEmpty(request.getParameter("label"))) {
+			map.put("label", request.getParameter("label"));
+			buffer.append("&label="+request.getParameter("label"));
+			PageData labelType=bSlideService.queryLabelByLabel(request.getParameter("label"));
+			searchName=labelType.getString("name");
+		}
+		PageView pageView = bArticleService.findByPage(page, map);
+		model.addAttribute("pager", pageView.getPagerStr(buffer));
+		model.addAttribute("list", pageView.getItems());
+		model.addAttribute("articleTypeList", articleTypeList);
+		model.addAttribute("labelList", labelList);
+		model.addAttribute("searchName",searchName);
+		return "face/resultList";
 	}
 
 	/**

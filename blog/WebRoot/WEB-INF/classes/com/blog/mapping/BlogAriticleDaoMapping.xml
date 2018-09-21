@@ -140,7 +140,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 上一篇，下一篇 -->
 	<select id="getNextArticle" resultType="com.blog.model.BlogArticle" parameterType="com.blog.model.BlogArticle">
-	SELECT * from blog_article where catCode= #{catCode}
+	SELECT * from blog_article where 1=1
+		<if test="catCode != null and catCode != ''">
+		and catCode = #{catCode}
+		</if>
 <!-- 	    <if test="isNext != null and isNext == '1' "> 上一篇   
 		  	 createTime &lt; (
              select  createTime  from  blog_article  where  id = #{id} 
