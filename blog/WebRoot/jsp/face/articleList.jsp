@@ -29,7 +29,7 @@
     <figure><img src="${imageService}/${r.image}"></figure>
     <ul class="nlist">
       <p>${r.remake}</p>
-      <a title="/" href="${blog}/articleDetail.html?id=${r.id}&type=${r.catCode}" class="readmore" target="_blank">详细信息>></a>
+      <a title="/" href="${blog}/articleDetail.html?id=${r.id}" class="readmore" target="_blank">详细信息>></a>
     </ul>
     <div class="line"></div>
 </c:forEach>

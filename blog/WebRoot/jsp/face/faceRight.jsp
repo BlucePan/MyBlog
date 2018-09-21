@@ -17,10 +17,10 @@
         <c:forEach var="n" items="${nArticleList}" varStatus="d">
    	<c:choose>		
 		<c:when test="${d.count==1}">
-            <li><a href="${blog}/articleDetail.html?id=${n.id}&type=${n.catCode}" title="${n.title}" style="color:red;" target="_blank">${n.title}</a></li>
+            <li><a href="${blog}/articleDetail.html?id=${n.id}" title="${n.title}" style="color:red;" target="_blank">${n.title}</a></li>
 	    </c:when>
 		<c:otherwise>		
-            <li><a href="${blog}/articleDetail.html?id=${n.id}&type=${n.catCode}" title="${n.title}"  target="_blank">${n.title}</a></li>
+            <li><a href="${blog}/articleDetail.html?id=${n.id}" title="${n.title}"  target="_blank">${n.title}</a></li>
 		</c:otherwise>
 	</c:choose>
       </c:forEach>   
@@ -31,7 +31,7 @@
     </h3>
     <ul class="paih">
         <c:forEach var="s" items="${sArticleList}">
-      <li><a href="${blog}/articleDetail.html?id=${s.id}&type=${s.catCode}" title="${s.title}" target="_blank">${s.title}</a></li>    
+      <li><a href="${blog}/articleDetail.html?id=${s.id}" title="${s.title}" target="_blank">${s.title}</a></li>    
     </c:forEach>
       <!-- <li><a href="/" title="Column 三栏布局 个人网站模板" target="_blank">Column 三栏布局 个人网站模板</a></li> -->
     </ul>    

@@ -67,7 +67,7 @@
     <figure><img src="${imageService}/${b.image}"></figure>
     <ul>
       <p>${b.remake}</p>
-      <a title="/" href="${blog}/articleDetail.html?id=${b.id}&type=${b.catCode}"  class="readmore" target="_blank">阅读全文>></a>
+      <a title="/" href="${blog}/articleDetail.html?id=${b.id}"  class="readmore" target="_blank">阅读全文>></a>
     </ul>
     <p class="dateview">
     <span><fmt:parseDate value='${b.createTime}' var="yearMonth" pattern="yyyy-MM-dd "/>
@@ -112,10 +112,10 @@
       <c:forEach var="n" items="${nArticleList}" varStatus="d">
    	<c:choose>		
 		<c:when test="${d.count==1}">
-            <li><a href="${blog}/articleDetail.html?id=${n.id}&type=${n.catCode}" title="${n.title}" style="color:red;">${n.title}</a></li>
+            <li><a href="${blog}/articleDetail.html?id=${n.id}" title="${n.title}" style="color:red;">${n.title}</a></li>
 	    </c:when>
 		<c:otherwise>		
-            <li><a href="${blog}/articleDetail.html?id=${n.id}&type=${n.catCode}" title="${n.title}" >${n.title}</a></li>
+            <li><a href="${blog}/articleDetail.html?id=${n.id}" title="${n.title}" >${n.title}</a></li>
 		</c:otherwise>
 	</c:choose>
       </c:forEach>
@@ -125,7 +125,7 @@
     </h3>
     <ul class="paih">
         <c:forEach var="s" items="${sArticleList}">
-      <li><a href="${blog}/articleDetail.html?id=${s.id}&type=${s.catCode}" title="${s.title}" >${s.title}</a></li>    
+      <li><a href="${blog}/articleDetail.html?id=${s.id}" title="${s.title}" >${s.title}</a></li>    
     </c:forEach>
     </ul>
     <h3 class="links">
