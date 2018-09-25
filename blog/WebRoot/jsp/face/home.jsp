@@ -100,7 +100,7 @@
     </h3>
     <ul>
     <c:forEach var="l" items="${labelList}">
-	<li><a href="${blog}/chose.html?label=${l.label}">${l.name}<span class="tag-count"> (${l.count})</span></a></li>
+	<li><a href="${blog}/search.html?label=${l.label}">${l.name}<span class="tag-count"> (${l.count})</span></a></li>
 	</c:forEach>
     </ul>	 
 	</div>
@@ -132,11 +132,14 @@
       <p>友情<span>链接</span></p>
     </h3>
     <ul class="website">
+      <li><a href="http://www.gov.cn/" target="_blank">中国政府网</a></li>
+      <li><a href="http://www.amall360.com" target="_blank">A猫商城</a></li>
+      <li><a href="http://218.200.143.38:8503/Index.aspx" target="_blank">枣阳房地产发布平台</a></li>
+      <li><a href="http://www.ruanyifeng.com" target="_blank">阮一峰</a></li>
       <li><a href="http://www.yangqq.com" target="_blank">杨青博客</a></li>
       <li><a href="http://www.guduke.cn" target="_blank">微光博客</a></li>
       <li><a href="http://www.xiaozhanfei.com" target="_blank">肖战飞</a></li>
       <li><a href="http://www.liuyuyao.com" target="_blank">刘玉尧</a></li>
-      <li><a href="http://mindhacks.cn" target="_blank">刘未鹏</a></li>
     </ul> 
     </div>  
 </article>

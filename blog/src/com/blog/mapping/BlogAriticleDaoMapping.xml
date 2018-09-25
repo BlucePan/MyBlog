@@ -135,7 +135,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  <if test="parentCode != null and parentCode != ''">
 		and catCode IN (SELECT catCode FROM blog_article_type WHERE parentCode=#{parentCode} )
 	  </if>
-	   ORDER BY popularity desc,browse desc limit 10
+	   ORDER BY popularity desc,browse desc limit 9
 	</select>	
 	
 	<!-- 上一篇，下一篇 -->
@@ -171,6 +171,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 		<!-- 获取相关文章 -->
 	<select id="getLikeArticle" resultType="com.blog.model.BlogArticle" parameterType="java.util.HashMap">
-	SELECT * from blog_article where id!=#{id} and FIND_IN_SET(#{keyWord},keyWord) limit 6
+	SELECT * from blog_article where id!=#{id} and (FIND_IN_SET(#{keyWord},keyWord) or FIND_IN_SET(keyWord,#{keyWord})) limit 6
 	</select>
 </mapper> 

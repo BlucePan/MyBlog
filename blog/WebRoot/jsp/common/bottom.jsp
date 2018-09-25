@@ -6,7 +6,7 @@
   <span class="smalldan"></span>
   <span class="bigdan"></span>
   </div>
-  <p>博客已稳定运行   <span id="sitetime" style="color:#f00">siteTime()</span>  Design by BlucePan <a href="http://www.miitbeian.gov.cn/" target="_blank" style="color:#848589">版权所有  浙ICP备18037226号</a></p>
+  <p>博客已稳定运行   <span id="sitetime" style="color:#f00">siteTime()</span>  Design by BlucePan <a href="http://www.miitbeian.gov.cn/" target="_blank" style="color:#848589">版权所有（转载稿涉及版权问题联系站长）  浙ICP备18037226号</a></p>
   <p class="dh"> <a href="${blog}/" target="_blank">首页</a>&nbsp;|&nbsp;<a href="${blog}/jottings.html" target="_blank">闲谈随笔</a>&nbsp;|&nbsp;<a href="${blog}/gustbook.html" target="_blank">给我留言</a>&nbsp;|&nbsp;<a href="#" target="_blank">免费声明</a>&nbsp;|&nbsp;<a href="https://tongji.baidu.com/web/welcome/ico?s=dd28fbe52b1daa3bdea6b4893748ec61" target="_blank">百度统计分析</a></p>
   <div class="beian">
    <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo">
