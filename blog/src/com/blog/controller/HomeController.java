@@ -83,7 +83,7 @@ public class HomeController extends BaseController {
 		List<PageData> labelList =bSlideService.ariticleLabelGroup(pageData);//得到当前分类的文章标签
 		
 		PageView page = new PageView();
-		page.setPageSize(3);
+		page.setPageSize(10);
 		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
 		String catCode=request.getParameter("catCode");
 		Map map = new HashMap();		
@@ -133,7 +133,7 @@ public class HomeController extends BaseController {
 		List<PageData> labelList =bSlideService.ariticleLabelGroup(pageData);//得到当前分类的文章标签
 		
 		PageView page = new PageView();
-		page.setPageSize(3);
+		page.setPageSize(10);
 		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
 		String catCode=request.getParameter("catCode");
 		Map map = new HashMap();		
@@ -183,7 +183,7 @@ public class HomeController extends BaseController {
 		List<PageData> labelList =bSlideService.ariticleLabelGroup(pageData);//得到当前分类的文章标签
 		
 		PageView page = new PageView();
-		page.setPageSize(3);
+		page.setPageSize(10);
 		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
 		String catCode=request.getParameter("catCode");
 		Map map = new HashMap();		
@@ -225,12 +225,12 @@ public class HomeController extends BaseController {
 	 */
 	@RequestMapping("/search.html")
 	public String searchList(HttpServletRequest request, Model model) {
-		String searchName="未知";
+		String searchName="Nothing";
 		PageData pageData=new PageData();
 		List<PageData> articleTypeList=bSlideService.selectType(pageData);//得到当前分类的文章类型
 		List<PageData> labelList =bSlideService.ariticleLabelGroup(pageData);//得到当前分类的文章标签
 		PageView page = new PageView();
-		page.setPageSize(3);
+		page.setPageSize(10);
 		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
 		String catCode=request.getParameter("catCode");
 		Map map = new HashMap();		

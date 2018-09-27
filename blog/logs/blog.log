@@ -5,7 +5,7 @@ background 后台页面
 前台访问：http://localhost:8080/blog/home.html 
 数据库连接池访问：http://localhost:8080/blog/druid
 程序监控平台：http://localhost:8080/blog/monitoring 
-百度统计:https://tongji.baidu.com/web/26436793/overview/index
+百度统计:https://tongji.baidu.com/web/26436793/overview/index   用户名：小鬼头love盘
 百度分享：http://share.baidu.com/analysis
 畅言：http://changyan.kuaizhan.com/overview
 

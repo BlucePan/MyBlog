@@ -26,7 +26,7 @@
       <p class="dateview"><span>发布时间：<fmt:parseDate value='${r.createTime}' var="yearMonth" pattern="yyyy-MM-dd "/>
         <fmt:formatDate value="${yearMonth}" pattern="yyyy-MM-dd " /></span>
     <span>作者：${r.createUser}</span><span>分类：[<a href="${blog}/chose.html?catCode=${r.catCode}">${r.articleName}</a>]</span></p>
-    <figure><img src="${imageService}/${r.image}"></figure>
+    <figure><c:if test="${empty r.image}"><img src="${imageService}/blog.jpg"></c:if><c:if test="${ not empty r.image}"><img src="${imageService}/${r.image}"></c:if></figure>
     <ul class="nlist">
       <p>${r.remake}</p>
       <a title="/" href="${blog}/articleDetail.html?id=${r.id}" class="readmore" target="_blank">详细信息>></a>

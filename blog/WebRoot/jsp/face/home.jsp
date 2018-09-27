@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>盘子博客 BlucePan</title>
-<meta name="keywords" content="盘子博客 BlucePan"/>
-<meta name="description" content="个人博客模板,博客模板,盘子" />
+<title>盘子博客 BlucePan-一个在Java道路上的技术员个人博客网站</title>
+<meta name="keywords" content="个人博客,盘子,盘子博客 BlucePan"/>
+<meta name="description" content="盘子个人博客，是一个在Java道路上的技术员个人博客网站" />
 <link href="/favicon.ico" mce_href="/favicon.ico" rel="icon" type="image/x-icon">
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/index.css" rel="stylesheet">
@@ -64,7 +64,7 @@
             <h3><a href="#">${b.title}</a></h3>
 		</c:otherwise>
 	</c:choose>
-    <figure><img src="${imageService}/${b.image}"></figure>
+    <figure><c:if test="${empty b.image}"><img src="${imageService}/blog.jpg"></c:if><c:if test="${ not empty b.image}"><img src="${imageService}/${b.image}"></c:if></figure>
     <ul>
       <p>${b.remake}</p>
       <a title="/" href="${blog}/articleDetail.html?id=${b.id}"  class="readmore" target="_blank">阅读全文>></a>

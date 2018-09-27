@@ -39,5 +39,23 @@ public class BlogSlideController extends BaseController {
 		}
 		return jb;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/api/demo.html")
+	public JsonBeang demo(HttpServletRequest request) {
+		jb = new JsonBeang();
+		try {
+			PageData pd = new PageData();
+			List<PageData> slideList = blogSlideService.queryAllSlide(pd);
+			jb.setList(slideList);
+			jb.setMessage("获取成功");
+			jb.setStatus("200");
+		} catch (Exception e) {
+			jb.setMessage("服务器异常");
+			jb.setStatus("500");
+			e.printStackTrace();
+		}
+		return jb;
+	}
 
 }

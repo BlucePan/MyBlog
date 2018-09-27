@@ -3,8 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="blog" value="${pageContext.request.contextPath}" />
-<c:set var="imageService" value= 'https://www.blucepan.top/imageService/uploadFiles/'/>
-<c:set var="imageServices" value= 'https://www.blucepan.top/imageService/uploadBaiduFiles/'/>
+<c:set var="imageService" value= 'https://www.blucepan.top/imageService/uploadFiles'/>
+<c:set var="imageServices" value= 'https://www.blucepan.top/imageService/uploadBaiduFiles'/>
 <link href="${blog}/zepto/mdialog.css" type="text/css" rel="stylesheet" />
 <script type='text/javascript' src="${blog}/zepto/zepto.min.js"></script>
 <script type='text/javascript' src="${blog}/zepto/mdialog.js"></script>
