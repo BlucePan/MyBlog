@@ -72,7 +72,7 @@
     <p class="dateview">
     <span><fmt:parseDate value='${b.createTime}' var="yearMonth" pattern="yyyy-MM-dd "/>
           <fmt:formatDate value="${yearMonth}" pattern="yyyy-MM-dd " /></span>          
-          <span>作者：${b.createUser}</span><span>个人博客：[<a href="${blog}/chose.html?catCode=${b.catCode}">${b.articleName}</a>]</span></p>
+          <span>作者：${b.createUser}</span><span>个人博客：[<a href="${blog}/chose.html?catCode=${b.catCode}">${b.articleName}</a>]</span><span>浏览：（${b.browse}）</span><span style="display:none;">喜欢：（${b.popularity}）</span></p>
 </c:forEach>
    </div>
   <aside class="right">

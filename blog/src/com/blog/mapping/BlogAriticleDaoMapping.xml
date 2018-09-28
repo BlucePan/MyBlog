@@ -106,7 +106,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<delete id="deleteEntity" parameterType="String">
 		delete from blog_article where id=#{id}
 	</delete>		
-		
+		<!--浏览 -->
+	<update id="likeArticle"  parameterType="pageData" >
+	  UPDATE blog_article 
+		<set>
+	  <if test="browse != null and browse != ''">
+			browse = browse+1
+	  </if>
+	  <if test="popularity != null and popularity != ''">
+			popularity = popularity+1
+	  </if>
+	  </set>
+	  where id = #{id}
+	</update>	
 			
 				<!--取消置顶 -->
 		<update id="delTopArticle"  parameterType="com.blog.model.BlogArticle" >

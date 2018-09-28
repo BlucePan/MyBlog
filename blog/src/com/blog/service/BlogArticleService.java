@@ -22,5 +22,6 @@ public interface BlogArticleService {
 	  List<BlogArticle> getSeniorityArticle(PageData pageData);//根据人气排行
 	  BlogArticle getNextArticle(BlogArticle article); //上一篇下一篇
 	  List<BlogArticle> getLikeArticle(Map map);//获取相关文章
+	  void likeArticle(PageData pageData); //增加浏览量
 
 }

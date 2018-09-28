@@ -270,6 +270,11 @@ public class HomeController extends BaseController {
 	public String articleDetail(HttpServletRequest request, Model model) {
 		BlogArticle article = bArticleService.queryBlogArticleById(request.getParameter("id"));
 		model.addAttribute("article", article);
+		//增加浏览量
+		PageData pageData=new PageData();
+		pageData.put("id", article.getId());
+		pageData.put("browse", "yes");
+		bArticleService.likeArticle(pageData);
 
 		BlogArticle blogArticle = new BlogArticle();
 		blogArticle.setId(request.getParameter("id"));

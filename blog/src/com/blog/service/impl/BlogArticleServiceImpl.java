@@ -84,4 +84,10 @@ public class BlogArticleServiceImpl implements BlogArticleService {
 		return bArticleDao.getLikeArticle(map);
 	}
 
+	@Override
+	public void likeArticle(PageData pageData) {
+		 bArticleDao.likeArticle(pageData);
+		
+	}
+
 }
