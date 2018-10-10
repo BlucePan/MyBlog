@@ -9,6 +9,11 @@
 <meta name="description" content="${r.remake}" />
 <link href="${blog}/css/base.css" rel="stylesheet">
 <link href="${blog}/css/new.css" rel="stylesheet">
+<script type="text/javascript" src="${blog}/ueditor/third-party/SyntaxHighlighter/shCore.js"></script>   
+<link rel="stylesheet" href="${blog}/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css" type="text/css" />
+<script>   
+SyntaxHighlighter.all() //执行代码高亮   
+</script>
 </head>
 <body>
 <%@ include file="/jsp/common/top.jsp"%>
