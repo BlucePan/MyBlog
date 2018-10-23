@@ -34,16 +34,16 @@ public class BlogArticleController extends BaseController {
 		page.setCurrentPage(request.getParameter("page") == null ? 1 : Integer.valueOf(request.getParameter("page")));
 		Map map = new HashMap();
 		map.put("title", request.getParameter("title"));
-		map.put("type", request.getParameter("type"));
+		map.put("catCode", request.getParameter("catCode"));
 		PageView pageView = bArticleService.findByPage(page, map);
 		StringBuffer buffer = new StringBuffer();
 		if (!BlogUtil.isEmpty(request.getParameter("title"))) {
 			buffer.append("&title=");
 			buffer.append(request.getParameter("title"));
 		}
-		if (!BlogUtil.isEmpty(request.getParameter("type"))) {
-			buffer.append("&type=");
-			buffer.append(request.getParameter("type"));
+		if (!BlogUtil.isEmpty(request.getParameter("catCode"))) {
+			buffer.append("&catCode=");
+			buffer.append(request.getParameter("catCode"));
 		}
 		model.addAttribute("pager", pageView.getPagerStr(buffer));
 		model.addAttribute("list", pageView.getItems());
